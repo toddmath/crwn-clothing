@@ -11,13 +11,33 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "redux": "^4.0.4",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "reselect": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.0.2",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-flowtype": "^4.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "prettier": "^1.18.2",
+    "prettier-eslint": "^9.0.0"
+  },
+  "peerDependencies": {
+    "babel-eslint": "10.0.2",
+    "eslint": "^6.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
   },
   "eslintConfig": {
     "extends": "react-app"
