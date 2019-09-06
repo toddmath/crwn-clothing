@@ -42,7 +42,7 @@ const SignIn = () => {
           name='email'
           type='email'
           value={email}
-          handleChange={e => setEmail(e)}
+          handleChange={setEmail(email)}
           label='email'
           required
           autoComplete='username'
@@ -51,7 +51,7 @@ const SignIn = () => {
           name='password'
           type='password'
           value={password}
-          handleChange={e => setPassword(e)}
+          handleChange={setPassword(password)}
           label='password'
           required
           autoComplete='current-password'
