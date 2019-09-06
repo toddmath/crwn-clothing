@@ -22,7 +22,8 @@
     "plugin:react/recommended",
     "react-app",
     "airbnb",
-    "prettier"
+    "prettier",
+    "plugin:prettier/recommended"
   ],
   "rules": {
     "prettier/prettier": [
@@ -46,6 +47,7 @@
     "react/jsx-indent-props": [0],
     "no-console": "off",
     "no-debugger": "off",
+    "no-alert": "off",
     "arrow-body-style": ["off", "as-needed"],
     "react/static-property-placement": ["off"],
     "react/state-in-constructor": ["off"],
@@ -67,6 +69,7 @@
     "react/button-has-type": [0],
     "react/prop-types": [0],
     "class-methods-use-this": [0],
-    "import/prefer-default-export": [0]
+    "import/prefer-default-export": [0],
+    "react/jsx-props-no-spreading": [0]
   }
 }
