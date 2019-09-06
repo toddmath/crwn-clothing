@@ -38,7 +38,7 @@
     "eslint": "^6.1.0"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    "src/**/*.{js,jsx,ts,tsx,json,md}": [
       "eslint -c ./.eslintrc --fix",
       "prettier --config ./.prettierrc.js --write",
       "git add"
