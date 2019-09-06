@@ -40,7 +40,7 @@
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "eslint -c ./.eslintrc --fix",
-      "prettier --config ./prettierrc.js --write",
+      "prettier --config ./.prettierrc.js --write",
       "git add"
     ],
     "src/**/*.scss": [
