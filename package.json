@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "firebase": "^6.5.0",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
     "node-sass": "^4.12.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -26,11 +28,29 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
     "prettier": "^1.18.2",
-    "prettier-eslint": "^9.0.0"
+    "prettier-eslint": "^9.0.0",
+    "stylelint": "^10.1.0",
+    "stylelint-config-recommended-scss": "^3.3.0",
+    "stylelint-scss": "^3.10.1"
   },
   "peerDependencies": {
     "babel-eslint": "10.0.2",
     "eslint": "^6.1.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "eslint -c ./.eslintrc --fix",
+      "prettier --config ./prettierrc.js --write",
+      "git add"
+    ],
+    "src/**/*.scss": [
+      "stylelint --syntax=scss --config ./.stylelintrc.json --fix",
+      "git add"
+    ],
+    "src/**/*.css": [
+      "stylelint --config ./.stylelintrc.json --fix",
+      "git add"
+    ]
   },
   "scripts": {
     "start": "react-scripts start",
@@ -38,6 +58,11 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"

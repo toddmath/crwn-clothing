@@ -26,12 +26,6 @@ const SignIn = () => {
     }
   };
 
-  // handleChange = event => {
-  //   const { value, name } = event.target;
-
-  //   this.setState({ [name]: value });
-  // };
-
   return (
     <div className='sign-in'>
       <h2>I already have an account</h2>
