@@ -5,19 +5,21 @@ import logger from 'redux-logger';
 import { persistStore } from 'redux-persist';
 import rootReducer from './root-reducer';
 
-const middlewares = [logger];
+const middlewares = [];
+
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger);
+}
 
 const composeEnhancers = composeWithDevTools({
   name: 'crwn-clothing',
   maxAge: 15,
 });
 
-/* eslint-disable no-underscore-dangle */
 export const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(...middlewares))
 );
-/* eslint-enable */
 
 export const persistor = persistStore(store);
 
