@@ -1,15 +1,20 @@
 {
-  // "cSpell.words": ["Camo", "Yeezy"],
+  "cSpell.words": [
+    "Camo",
+    "Yeezy"
+  ],
   "javascript.format.enable": false,
   "terminal.integrated.experimentalRefreshOnResume": true,
-  "terminal.integrated.rendererType": "auto",
-  "terminal.integrated.shell.osx": "/usr/local/bin/bash",
-  "typescript.disableAutomaticTypeAcquisition": true,
-  "terminal.integrated.lineHeight": 1.5,
-  "terminal.integrated.letterSpacing": 1.7,
-  "terminal.integrated.fontSize": 11,
-  "terminal.integrated.fontWeight": "300",
-  "formattingToggle.activateFor": ["formatOnSave"],
+  // "terminal.integrated.rendererType": "auto",
+  // "terminal.integrated.shell.osx": "/usr/local/bin/bash",
+  // "typescript.disableAutomaticTypeAcquisition": true,
+  // "terminal.integrated.lineHeight": 1.5,
+  // "terminal.integrated.letterSpacing": 1.7,
+  // "terminal.integrated.fontSize": 12,
+  // "terminal.integrated.fontWeight": "300",
+  // "formattingToggle.activateFor": [
+  //   "formatOnSave"
+  // ],
   "editor.formatOnSave": true,
   "eslint.autoFixOnSave": true,
   "prettier.bracketSpacing": true,
