@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-
-import FormInput from '../form-input/form-input.component';
-import CustomButton from '../custom-button/custom-button.component';
-
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
-
-import './sign-up.styles.scss';
+import CustomButton from '../custom-button/custom-button.component';
+import FormInput from '../form-input/form-input.component';
+import { SignUpContainer, SignUpTitle } from './sign-up.styles';
 
 class SignUp extends Component {
   state = {
@@ -26,9 +23,14 @@ class SignUp extends Component {
     }
 
     try {
-      const { user } = await auth.createUserWithEmailAndPassword(email, password);
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
 
-      await createUserProfileDocument(user, { displayName });
+      await createUserProfileDocument(user, {
+        displayName,
+      });
       this.setState({
         displayName: '',
         email: '',
@@ -43,15 +45,17 @@ class SignUp extends Component {
   handleChange = event => {
     const { name, value } = event.target;
 
-    this.setState({ [name]: value });
+    this.setState({
+      [name]: value,
+    });
   };
 
   render() {
     const { displayName, email, password, confirmPassword } = this.state;
     return (
-      <div className='sign-up'>
-        <h2 className='title'>I do not have an account</h2>
-        <span>Sign up with your email and password</span>
+      <SignUpContainer>
+        <SignUpTitle> I do not have an account </SignUpTitle>{' '}
+        <span> Sign up with your email and password </span>{' '}
         <form className='sign-up-form' onSubmit={this.handleSubmit}>
           <FormInput
             type='text'
@@ -88,9 +92,9 @@ class SignUp extends Component {
             required
             autoComplete='new-password'
           />
-          <CustomButton type='submit'>SIGN UP</CustomButton>
-        </form>
-      </div>
+          <CustomButton type='submit'> SIGN UP </CustomButton>{' '}
+        </form>{' '}
+      </SignUpContainer>
     );
   }
 }

@@ -7,6 +7,8 @@
     "@types/react": "^16.9.2",
     "@types/react-redux": "^7.1.2",
     "firebase": "^6.5.0",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
     "node-sass": "^4.12.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -45,6 +47,18 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json}": [
+      "eslint --config './.eslintrc' --fix",
+      "prettier --config './.prettierrc.js' --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"

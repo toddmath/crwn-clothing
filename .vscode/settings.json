@@ -1,8 +1,5 @@
 {
-  "cSpell.words": [
-    "Camo",
-    "Yeezy"
-  ],
+  "cSpell.words": ["Camo", "Yeezy"],
   "javascript.format.enable": false,
   "terminal.integrated.experimentalRefreshOnResume": true,
   // "terminal.integrated.rendererType": "auto",
@@ -26,6 +23,28 @@
   "prettier.semi": true,
   "prettier.singleQuote": true,
   "prettier.tabWidth": 2,
-  "prettier.useTabs": true,
-  "prettier.trailingComma": "es5"
+  // "prettier.useTabs": true,
+  "prettier.trailingComma": "es5",
+  "html-css-class-completion.includeGlobPattern": "**/*.{css,scss}",
+  "eslint.enable": true,
+  "formattingToggle.activateFor": ["formatOnSave"],
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "node-module-intellisense.scanFileModules": true,
+  "node-module-intellisense.autoStripExtensions": [
+    ".js",
+    ".jsx",
+    ".ts",
+    ".d.ts",
+    ".tsx"
+  ],
+  "npm-intellisense.importES6": true,
+  "npm-intellisense.importQuotes": "'",
+  "npm-intellisense.importLinebreak": ";\r\n",
+  "npm-intellisense.importDeclarationType": "const",
+  "npm-intellisense.scanDevDependencies": true,
+  "npm.packageManager": "yarn",
+  "eslint.packageManager": "yarn",
+  "gitlens.codeLens.authors.enabled": false,
+  "gitlens.codeLens.enabled": true
 }

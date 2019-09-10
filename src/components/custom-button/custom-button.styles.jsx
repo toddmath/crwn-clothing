@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 const buttonStyles = css`
   background-color: black;
   color: white;
-  border: none;
+  border: 1px solid white;
 
   &:hover {
     background-color: white;
@@ -21,17 +21,18 @@ const invertedButtonStyles = css`
   &:hover {
     background-color: black;
     color: white;
-    border: none;
+    border: 1px solid white;
   }
 `;
 
 const googleSignInStyles = css`
   background-color: #4285f4;
   color: white;
+  border: 1px solid #357ae8;
 
   &:hover {
     background-color: #357ae8;
-    border: none;
+    border: 1px solid #4285f4;
   }
 `;
 
