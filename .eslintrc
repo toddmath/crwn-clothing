@@ -21,10 +21,10 @@
     "ecmascript": 8,
     "jsx": true,
     "import/resolver": {
-            "node": {
-                "extensions": [".js"]
-            }
-        }
+      "node": {
+        "extensions": [".js"]
+      }
+    }
   },
   "env": {
     "browser": true,
@@ -50,6 +50,7 @@
     "no-shadow": "off",
     "no-tabs": "off",
     "no-var": 1,
+    "no-alert": "off",
     "import/extensions": 1,
     "import/no-named-as-default": 0,
     "indent": "off",
