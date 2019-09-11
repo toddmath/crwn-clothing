@@ -51,6 +51,7 @@
     "no-tabs": "off",
     "no-var": 1,
     "no-alert": "off",
+    "no-return-await": "off",
     "import/extensions": 1,
     "import/no-named-as-default": 0,
     "indent": "off",

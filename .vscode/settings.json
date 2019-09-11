@@ -46,5 +46,6 @@
   "npm.packageManager": "yarn",
   "eslint.packageManager": "yarn",
   "gitlens.codeLens.authors.enabled": false,
-  "gitlens.codeLens.enabled": true
+  "gitlens.codeLens.enabled": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
