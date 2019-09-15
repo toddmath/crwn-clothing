@@ -3,6 +3,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import 'firebase/performance';
 
 // cSpell: disable
 const config = {
@@ -16,21 +17,15 @@ const config = {
 };
 // cSpell: enable
 
-// * new
 firebase.initializeApp(config);
+
+const perf = firebase.performance();
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
-  // console.log(userRef);
-
-  // const collectionRef = firestore.collection('users');
-  // const collectionSnapshot = await collectionRef.get();
-  // console.log({ collection: collectionSnapshot.docs.map(doc => doc.data()) });
-
   const snapShot = await userRef.get();
-  // console.log(snapShot);
 
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
@@ -81,21 +76,27 @@ export const convertCollectionsSnapshotToMap = collections => {
     };
   });
 
-  // console.log(transformedCollection);
   return transformedCollection.reduce((accumulator, collection) => {
     accumulator[collection.title.toLowerCase()] = collection;
     return accumulator;
   }, {});
 };
 
-// firebase.initializeApp(config);
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
 
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;
