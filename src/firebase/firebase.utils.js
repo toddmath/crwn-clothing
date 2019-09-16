@@ -11,7 +11,7 @@ const config = {
   authDomain: 'crwn-db-409fe.firebaseapp.com',
   databaseURL: 'https://crwn-db-409fe.firebaseio.com',
   projectId: 'crwn-db-409fe',
-  storageBucket: '',
+  storageBucket: 'crwn-db.appspot.com',
   messagingSenderId: '717530139246',
   appId: '1:717530139246:web:0fd962b63d08668f75347f',
 };
@@ -19,18 +19,18 @@ const config = {
 
 firebase.initializeApp(config);
 
-const perf = firebase.performance();
+// const perf = firebase.performance();
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
+
   const snapShot = await userRef.get();
 
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
-
     try {
       await userRef.set({
         displayName,
@@ -39,13 +39,11 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         ...additionalData,
       });
     } catch (error) {
-      // console.warn('[Error]: creating user', error.message);
-      console.log(`error creating user ${error.message}`);
+      console.log('error creating user', error.message);
     }
   }
 
-  // eslint-disable-next-line consistent-return
-  return userRef;
+  return userRef; // eslint-disable-line consistent-return
 };
 
 export const addCollectionAndDocuments = async (
@@ -53,7 +51,6 @@ export const addCollectionAndDocuments = async (
   objectsToAdd
 ) => {
   const collectionRef = firestore.collection(collectionKey);
-  console.log(collectionRef);
 
   const batch = firestore.batch();
   objectsToAdd.forEach(obj => {
@@ -96,7 +93,6 @@ export const firestore = firebase.firestore();
 
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
-
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;
