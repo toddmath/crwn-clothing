@@ -36,7 +36,8 @@ export const CollectionItemContainer = styled.div`
   }
 
   @media screen and (max-width: 400px) {
-    width: 100%;
+    width: 90vw;
+    margin-bottom: 15px;
   }
 `;
 
@@ -62,6 +63,10 @@ export const BackgroundImage = styled.div`
   background-position: center;
   margin-bottom: 5px;
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
+
+  @media screen and (max-width: 400px) {
+    margin-bottom: 2px;
+  }
 `;
 
 export const CollectionFooterContainer = styled.div`
@@ -70,6 +75,10 @@ export const CollectionFooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 18px;
+
+  @media screen and (max-width: 400px) {
+    font-size: 20px;
+  }
 `;
 
 export const NameContainer = styled.span`

@@ -26,6 +26,7 @@ export const PreviewContainer = styled.div`
   }
 
   @media screen and (max-width: 400px) {
+    display: grid;
     grid-template-columns: 1fr;
     grid-gap: unset;
   }
