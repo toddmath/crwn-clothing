@@ -4,24 +4,36 @@ import styled, { css } from 'styled-components';
 const buttonStyles = css`
   background-color: black;
   color: white;
-  border: 1px solid white;
+  border: none;
 
   &:hover {
     background-color: white;
     color: black;
     border: 1px solid black;
   }
+
+  @media screen and (max-width: 400px) {
+    font-size: 12px;
+    padding: auto 10px;
+    vertical-align: center;
+  }
 `;
 
 const invertedButtonStyles = css`
   background-color: white;
   color: black;
-  border: 1px solid black;
+  border: none;
 
   &:hover {
     background-color: black;
     color: white;
-    border: 1px solid white;
+    border: none;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 12px;
+    padding: auto 10px;
+    vertical-align: center;
   }
 `;
 
@@ -33,6 +45,12 @@ const googleSignInStyles = css`
   &:hover {
     background-color: #357ae8;
     border: 1px solid #4285f4;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 12px;
+    padding: auto 10px;
+    vertical-align: center;
   }
 `;
 
