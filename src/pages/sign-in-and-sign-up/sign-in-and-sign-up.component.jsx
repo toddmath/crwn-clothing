@@ -3,7 +3,7 @@ import SignIn from '../../components/sign-in/sign-in.component';
 import SignUp from '../../components/sign-up/sign-up.component';
 import { SignInAndSignUpContainer } from './sign-in-and-sign-up.styles';
 
-const SignInAndSignUp = () => {
+const SignInAndSignUpPage = () => {
   return (
     <SignInAndSignUpContainer>
       <SignIn />
@@ -12,4 +12,4 @@ const SignInAndSignUp = () => {
   );
 };
 
-export default SignInAndSignUp;
+export default SignInAndSignUpPage;

@@ -7,7 +7,16 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["import", "react", "react-hooks", "prettier"],
+  "plugins": [
+    "import",
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "jest",
+    "jest-formatting",
+    "cypress",
+    "prettier"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:import/errors",
@@ -15,6 +24,11 @@
     "plugin:react/recommended",
     "react-app",
     "airbnb",
+    "plugin:jsx-a11y/recommended",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "plugin:jest-formatting/recommended",
+    "plugin:cypress/recommended",
     "prettier"
   ],
   "settings": {
@@ -40,6 +54,11 @@
         "trailingComma": "es5"
       }
     ],
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": 0,
@@ -81,6 +100,19 @@
     "react/prop-types": [0],
     "react/jsx-props-no-spreading": [0],
     "class-methods-use-this": [0],
-    "import/prefer-default-export": [0]
+    "import/prefer-default-export": [0],
+    "import/no-extraneous-dependencies": [0],
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "styled-components",
+            "message": "Please import from styled-components/macro."
+          }
+        ],
+        "patterns": ["!styled-components/macro"]
+      }
+    ]
   }
 }

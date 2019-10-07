@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
+/* CSS */
 export const SignInAndSignUpContainer = styled.div`
   width: 850px;
   display: flex;

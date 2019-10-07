@@ -3,10 +3,10 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import 'firebase/performance';
+// import 'firebase/performance';
 
 // cSpell: disable
-const config = {
+export const config = {
   apiKey: 'AIzaSyATNX2F21SsC33XuBZDOGyJwT1UgvCTPUg',
   authDomain: 'crwn-db-409fe.firebaseapp.com',
   databaseURL: 'https://crwn-db-409fe.firebaseio.com',
@@ -18,6 +18,7 @@ const config = {
 // cSpell: enable
 
 firebase.initializeApp(config);
+// firebase.firestore().enablePersistence();
 
 // const perf = firebase.performance();
 
@@ -44,6 +45,18 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
 
   return userRef; // eslint-disable-line consistent-return
+};
+
+export const getUserCartRef = async userId => {
+  const cartsRef = firestore.collection('carts').where('userId', '==', userId);
+  const snapShot = await cartsRef.get();
+
+  if (snapShot.empty) {
+    const cartDocRef = firestore.collection('carts').doc();
+    await cartDocRef.set({ userId, cartItems: [] });
+    return cartDocRef;
+  }
+  return snapShot.docs[0].ref;
 };
 
 export const addCollectionAndDocuments = async (

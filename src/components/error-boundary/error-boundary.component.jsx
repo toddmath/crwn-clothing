@@ -22,7 +22,7 @@ class ErrorBoundary extends Component {
 
   componentDidCatch(error, info) {
     if (error) {
-      console.log(error);
+      console.log(`[ERROR] ${error.name}: ${error.message}`);
     }
   }
 

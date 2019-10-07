@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
+/* CSS */
 export const CheckoutItemContainer = styled.div`
   width: 100%;
   display: flex;
@@ -14,6 +15,7 @@ export const CheckoutItemContainer = styled.div`
   }
 `;
 
+/* CSS */
 export const ImageContainer = styled.div`
   width: 23%;
   padding-right: 15px;
@@ -24,6 +26,7 @@ export const ImageContainer = styled.div`
   }
 `;
 
+/* CSS */
 export const TextContainer = styled.span`
   width: 23%;
 
@@ -32,6 +35,7 @@ export const TextContainer = styled.span`
   }
 `;
 
+/* CSS */
 export const QuantityContainer = styled(TextContainer)`
   display: flex;
 
@@ -44,6 +48,7 @@ export const QuantityContainer = styled(TextContainer)`
   }
 `;
 
+/* CSS */
 export const RemoveButtonContainer = styled.div`
   padding-left: 12px;
   cursor: pointer;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 export const CheckoutPageContainer = styled.div`
   width: 55%;
@@ -35,11 +35,12 @@ export const HeaderBlock = styled.div`
   }
 
   @media screen and (max-width: 800px) {
-    width: 22%
+    width: 22%;
 
     &:last-child {
       width: 12%;
     }
+  }
 `;
 
 export const TotalContainer = styled.div`

@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
+/* CSS */
 export const MenuItemContainer = styled.div`
   height: ${({ size }) => (size ? '380px' : '240px')};
   min-width: 30%;
@@ -15,12 +16,12 @@ export const MenuItemContainer = styled.div`
     cursor: pointer;
 
     & .background-image {
-      transform: scale(1.1);
-      transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+      transform: scale(1.11);
+      transition: transform 6.4s cubic-bezier(0.1, 0.26, 0.41, 0.87) 38ms;
     }
 
     & .content {
-      opacity: 0.9;
+      opacity: 0.7;
     }
   }
 
@@ -37,6 +38,7 @@ export const MenuItemContainer = styled.div`
   }
 `;
 
+/* CSS */
 export const BackgroundImageContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -45,6 +47,7 @@ export const BackgroundImageContainer = styled.div`
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
 
+/* CSS */
 export const ContentContainer = styled.div`
   height: 90px;
   padding: 0 25px;
@@ -68,6 +71,7 @@ export const ContentContainer = styled.div`
   }
 `;
 
+/* CSS */
 export const ContentTitle = styled.span`
   font-weight: bold;
   margin-bottom: 6px;
@@ -84,6 +88,7 @@ export const ContentTitle = styled.span`
   }
 `;
 
+/* CSS */
 export const ContentSubTitle = styled.span`
   font-weight: lighter;
   font-size: 16px;

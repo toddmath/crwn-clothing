@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
+/* CSS */
 export const ErrorImageOverlay = styled.div`
   height: 60vh;
   width: 100%;
@@ -9,6 +10,7 @@ export const ErrorImageOverlay = styled.div`
   align-items: center;
 `;
 
+/* CSS */
 export const ErrorImageContainer = styled.div`
   display: inline-block;
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
@@ -18,6 +20,7 @@ export const ErrorImageContainer = styled.div`
   height: 40vh;
 `;
 
+/* CSS */
 export const ErrorImageText = styled.h2`
   font-size: 28px;
   color: #2f8e89;

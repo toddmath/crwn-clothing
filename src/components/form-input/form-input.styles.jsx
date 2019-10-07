@@ -1,14 +1,16 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 const subColor = 'grey';
 const mainColor = 'black';
 
+/* CSS */
 const shrinkLabelStyles = css`
   top: -14px;
   font-size: 12px;
   color: ${mainColor};
 `;
 
+/* CSS */
 export const GroupContainer = styled.div`
   position: relative;
   margin: 45px 0;
@@ -18,6 +20,7 @@ export const GroupContainer = styled.div`
   }
 `;
 
+/* CSS */
 export const FormInputContainer = styled.input`
   background: none;
   background-color: white;
@@ -40,6 +43,9 @@ export const FormInputContainer = styled.input`
   }
 `;
 
+/* FormInputContainer.displayName = 'FormInputContainer'; */
+
+/* CSS */
 export const FormInputLabel = styled.label`
   color: ${subColor};
   font-size: 16px;

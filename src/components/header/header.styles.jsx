@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 
+/* CSS */
 export const HeaderContainer = styled.div`
   height: 70px;
   width: 100%;
@@ -15,6 +16,7 @@ export const HeaderContainer = styled.div`
   }
 `;
 
+/* CSS */
 export const LogoContainer = styled(Link)`
   height: 100%;
   width: 70px;
@@ -26,6 +28,7 @@ export const LogoContainer = styled(Link)`
   }
 `;
 
+/* CSS */
 export const OptionsContainer = styled.div`
   width: 50%;
   height: 100%;
@@ -38,6 +41,7 @@ export const OptionsContainer = styled.div`
   }
 `;
 
+/* CSS */
 export const OptionLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;

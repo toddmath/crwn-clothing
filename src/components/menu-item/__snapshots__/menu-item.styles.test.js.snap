@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render menu-item styled components BackgroundImageContainer styled-component should render BackgroundImageContainer without props 1`] = `
+.c0 {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-image: url(undefined);
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`should render menu-item styled components BackgroundImageContainer styled-component with imageUrl prop should render BackgroundImage with imageUrl prop 1`] = `
+.c0 {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-image: url(http://example.com/testimage.jpeg);
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`should render menu-item styled components MenuItemContainer styled-component should render MenuItemContainer without props 1`] = `
+.c0 {
+  height: 240px;
+  min-width: 30%;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: 1px solid black;
+  margin: 0 7.5px 15px;
+  overflow: hidden;
+}
+
+.c0:hover {
+  cursor: pointer;
+}
+
+.c0:hover .background-image {
+  -webkit-transform: scale(1.11);
+  -ms-transform: scale(1.11);
+  transform: scale(1.11);
+  -webkit-transition: -webkit-transform 6.4s cubic-bezier(0.1,0.26,0.41,0.87) 38ms;
+  -webkit-transition: transform 6.4s cubic-bezier(0.1,0.26,0.41,0.87) 38ms;
+  transition: transform 6.4s cubic-bezier(0.1,0.26,0.41,0.87) 38ms;
+}
+
+.c0:hover .content {
+  opacity: 0.7;
+}
+
+.c0:first-child {
+  margin-right: 7.5px;
+}
+
+.c0:last-child {
+  margin-left: 7.5px;
+}
+
+@media screen and (max-width:800px) {
+  .c0 {
+    height: 200px;
+  }
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`should render menu-item styled components MenuItemContainer styled-component with size prop should render MenuItemContainer with size prop 1`] = `
+.c0 {
+  height: 380px;
+  min-width: 30%;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: 1px solid black;
+  margin: 0 7.5px 15px;
+  overflow: hidden;
+}
+
+.c0:hover {
+  cursor: pointer;
+}
+
+.c0:hover .background-image {
+  -webkit-transform: scale(1.11);
+  -ms-transform: scale(1.11);
+  transform: scale(1.11);
+  -webkit-transition: -webkit-transform 6.4s cubic-bezier(0.1,0.26,0.41,0.87) 38ms;
+  -webkit-transition: transform 6.4s cubic-bezier(0.1,0.26,0.41,0.87) 38ms;
+  transition: transform 6.4s cubic-bezier(0.1,0.26,0.41,0.87) 38ms;
+}
+
+.c0:hover .content {
+  opacity: 0.7;
+}
+
+.c0:first-child {
+  margin-right: 7.5px;
+}
+
+.c0:last-child {
+  margin-left: 7.5px;
+}
+
+@media screen and (max-width:800px) {
+  .c0 {
+    height: 200px;
+  }
+}
+
+<div
+  className="c0"
+  size={true}
+/>
+`;

@@ -1,9 +1,18 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components/macro';
 
+/* CSS */
 export const GlobalStyle = createGlobalStyle`
+  div, p, h1, h2, h3, h4, h5, h6, span, label {
+    font-family: 'Open Sans Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  }
+
+  h2 {
+    font-weight: 600;
+  }
+
   body {
-    padding: 20px 40px;
-    font-family: 'Open Sans Condensed';
+    font-family: 'Open Sans Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    padding: 20px 30px;
 
     @media screen and (max-width: 800px) {
       padding: 10px;

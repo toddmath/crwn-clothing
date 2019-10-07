@@ -12,7 +12,7 @@ import {
   ButtonsBarContainer,
 } from './sign-in.styles';
 
-const SignIn = ({ emailSignInStart, googleSignInStart }) => {
+export const SignIn = ({ emailSignInStart, googleSignInStart }) => {
   const [userCredentials, setCredentials] = useState({
     email: '',
     password: '',
@@ -37,14 +37,17 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
       <SignInTitle>I already have an account</SignInTitle>
       <span>Sign in with your email and password</span>
 
-      <form onSubmit={handleSubmit}>
+      <form id='form' onSubmit={handleSubmit}>
         <FormInput
           name='email'
           type='email'
           value={email}
           handleChange={handleChange}
-          label='email'
+          label='Email'
+          aria-label='Email'
           autoComplete='username'
+          aria-required='true'
+          data-testid='email-input'
           required
         />
         <FormInput
@@ -52,8 +55,11 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
           type='password'
           value={password}
           handleChange={handleChange}
-          label='password'
+          label='Password'
+          aria-label='Password'
           autoComplete='current-password'
+          aria-required='true'
+          data-testid='password-input'
           required
         />
         <ButtonsBarContainer>

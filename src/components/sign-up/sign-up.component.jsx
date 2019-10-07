@@ -43,6 +43,8 @@ const SignUp = ({ signUpStart }) => {
           value={displayName}
           onChange={handleChange}
           label='Display Name'
+          aria-label='Display Name'
+          aria-required='true'
           required
         />
         <FormInput
@@ -51,6 +53,8 @@ const SignUp = ({ signUpStart }) => {
           value={email}
           onChange={handleChange}
           label='Email'
+          aria-label='Email'
+          aria-required='true'
           autoComplete='username'
           required
         />
@@ -60,6 +64,8 @@ const SignUp = ({ signUpStart }) => {
           value={password}
           onChange={handleChange}
           label='Password'
+          aria-label='Password'
+          aria-required='true'
           autoComplete='new-password'
           required
         />
@@ -69,6 +75,8 @@ const SignUp = ({ signUpStart }) => {
           value={confirmPassword}
           onChange={handleChange}
           label='Confirm Password'
+          aria-label='Confirm Password'
+          aria-required='true'
           autoComplete='new-password'
           required
         />

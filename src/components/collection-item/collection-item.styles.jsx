@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import CustomButton from '../custom-button/custom-button.component';
 
+/* CSS */
 export const CollectionItemContainer = styled.div`
   width: 22vw;
   display: flex;
@@ -8,8 +9,10 @@ export const CollectionItemContainer = styled.div`
   height: 350px;
   align-items: center;
   position: relative;
+  transition: all 330ms cubic-bezier(0.15, 0.48, 0.56, 0.98) 38ms !important;
 
-  &:hover {
+  &:hover,
+  &:focus {
     .image {
       opacity: 0.8;
     }
@@ -21,9 +24,13 @@ export const CollectionItemContainer = styled.div`
   }
 
   @media screen and (max-width: 800px) {
-    width: 40vw;
+    /* width: 46vw; */
+    /* width: calc(50% - 10px); */
+    max-width: 100%;
+    width: 45vw;
 
-    &:hover {
+    &:hover,
+    &:focus {
       .image {
         opacity: unset;
       }
@@ -41,12 +48,14 @@ export const CollectionItemContainer = styled.div`
   }
 `;
 
+/* CSS */
 export const AddButton = styled(CustomButton)`
   width: 80%;
-  opacity: 0.7;
+  opacity: 0.65;
   position: absolute;
   top: 255px;
   display: none;
+  font-weight: 700;
 
   @media screen and (max-width: 800px) {
     display: block;
@@ -56,6 +65,9 @@ export const AddButton = styled(CustomButton)`
   }
 `;
 
+AddButton.displayName = 'AddButton';
+
+/* CSS */
 export const BackgroundImage = styled.div`
   width: 100%;
   height: 95%;
@@ -69,6 +81,9 @@ export const BackgroundImage = styled.div`
   }
 `;
 
+BackgroundImage.displayName = 'BackgroundImage';
+
+/* CSS */
 export const CollectionFooterContainer = styled.div`
   width: 100%;
   height: 5%;
@@ -81,12 +96,18 @@ export const CollectionFooterContainer = styled.div`
   }
 `;
 
+/* CSS */
 export const NameContainer = styled.span`
   width: 90%;
   margin-bottom: 15px;
 `;
 
+NameContainer.displayName = 'NameContainer';
+
+/* CSS */
 export const PriceContainer = styled.span`
   width: 10%;
   text-align: right;
 `;
+
+PriceContainer.displayName = 'PriceContainer';
