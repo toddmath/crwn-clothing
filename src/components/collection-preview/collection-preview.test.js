@@ -27,7 +27,7 @@ describe('CollectionPreview component', () => {
   });
 
   it('should call history.push with the right string when TitleContainer clicked', () => {
-    wrapper.find('TitleContainer').simulate('click');
+    wrapper.find('Title').simulate('click');
     expect(mockHistory.push).toHaveBeenCalledWith(
       `${mockMatch.path}/${mockRouteName}`
     );

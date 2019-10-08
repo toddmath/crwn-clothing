@@ -16,7 +16,7 @@ describe('SignIn component', () => {
   });
 
   it('should render SignIn Component', () => {
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('should have an email and password input elements with value and handleChange props', () => {
