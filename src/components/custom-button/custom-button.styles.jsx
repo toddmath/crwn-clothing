@@ -20,6 +20,18 @@ export const buttonStyles = css`
   }
 `;
 
+const addButtonStyles = css`
+  background-color: white;
+  color: black;
+  border: unset;
+
+  @media screen and (max-width: 400px) {
+    font-size: 12px;
+    padding: auto 10px;
+    vertical-align: center;
+  }
+`;
+
 /* CSS */
 export const invertedButtonStyles = css`
   background-color: white;
@@ -66,6 +78,7 @@ export const getButtonStyles = props => {
     return googleSignInStyles;
   }
 
+  if (props.regular) return addButtonStyles;
   return props.inverted ? invertedButtonStyles : buttonStyles;
 };
 

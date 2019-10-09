@@ -8,6 +8,7 @@ import {
   CollectionFooterContainer,
   NameContainer,
   PriceContainer,
+  Box,
 } from './collection-item.styles';
 
 export const CollectionItem = ({ item, addItem }) => {
@@ -20,10 +21,12 @@ export const CollectionItem = ({ item, addItem }) => {
         <NameContainer>{name}</NameContainer>
         <PriceContainer>{price}</PriceContainer>
       </CollectionFooterContainer>
-      <AddButton onClick={() => addItem(item)} inverted>
-        {' '}
-        Add to cart{' '}
-      </AddButton>
+      <Box className='box'>
+        <AddButton onClick={() => addItem(item)} regular>
+          {' '}
+          Add to cart{' '}
+        </AddButton>
+      </Box>
     </CollectionItemContainer>
   );
 };

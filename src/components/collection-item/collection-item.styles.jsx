@@ -1,5 +1,41 @@
 import styled from 'styled-components/macro';
+import posed from 'react-pose';
 import CustomButton from '../custom-button/custom-button.component';
+
+export const Box = styled(
+  posed.div({
+    pressable: true,
+    hoverable: true,
+    init: {
+      scale: 1,
+      opacity: 0.75,
+      fontWeight: 700,
+      boxShadow: '0px 0px 0px rgba(0,0,0,0)',
+    },
+    hover: {
+      scale: 1.125,
+      opacity: 0.9,
+      fontWeight: 900,
+      boxShadow: '0px 5px 10px rgba(0,0,0,0.2)',
+    },
+    press: {
+      scale: 0.9,
+      opacity: 0.8,
+      fontWeight: 800,
+      boxShadow: '0px 2px 5px rgba(0,0,0,0.1)',
+    },
+  })
+)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 255px;
+  width: 80%;
+  outline: none;
+  margin: auto;
+  padding: auto;
+`;
 
 /* CSS */
 export const CollectionItemContainer = styled.div`
@@ -48,8 +84,15 @@ export const CollectionItemContainer = styled.div`
   }
 `;
 
-/* CSS */
 export const AddButton = styled(CustomButton)`
+  width: 100%;
+  z-index: 3;
+  display: none;
+  font-weight: 700;
+`;
+
+/* CSS */
+export const AddButton2 = styled(CustomButton)`
   width: 80%;
   opacity: 0.65;
   position: absolute;
@@ -59,7 +102,6 @@ export const AddButton = styled(CustomButton)`
 
   @media screen and (max-width: 800px) {
     display: block;
-    opacity: 0.9;
     min-width: unset;
     padding: 0 10px;
   }

@@ -4,12 +4,50 @@ import styled from 'styled-components/macro';
 export const MenuItemContainer = styled.div`
   height: ${({ size }) => (size ? '380px' : '240px')};
   min-width: 30%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid black;
+  margin: 0 7.5px 15px;
+  display: flex;
+
+  &:hover {
+    cursor: pointer;
+
+    & .background-image {
+      transform: scale(1.11);
+      transition: transform 6.4s cubic-bezier(0.1, 0.26, 0.41, 0.87) 38ms;
+    }
+
+    & .content {
+      opacity: 0.7;
+    }
+  }
+
+  &:first-child {
+    margin-right: 7.5px;
+  }
+
+  &:last-child {
+    margin-left: 7.5px;
+  }
+
+  @media screen and (max-width: 800px) {
+    flex: ${({ size }) => (size ? '1 1 100%' : '1 1 auto')};
+    height: ${({ size }) => (size ? '260px' : '200px')};
+    margin: unset;
+  }
+`;
+
+export const MenuItemContainer2 = styled.div`
+  height: ${({ size }) => (size ? '380px' : '240px')};
+  min-width: 30%;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
-  margin: 0 7.5px 15px;
   overflow: hidden;
 
   &:hover {
@@ -34,6 +72,7 @@ export const MenuItemContainer = styled.div`
   }
 
   @media screen and (max-width: 800px) {
+    flex: 1 1 50%;
     height: 200px;
   }
 `;

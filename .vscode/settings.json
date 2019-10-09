@@ -1,16 +1,11 @@
 {
-  "cSpell.words": [
-    "Buton",
-    "Camo",
-    "Yeezy",
-    "lqip"
-  ],
+  "cSpell.words": ["Buton", "Camo", "Yeezy", "lqip"],
   "javascript.format.enable": false,
   "terminal.integrated.experimentalRefreshOnResume": true,
   // "terminal.integrated.rendererType": "auto",
   // "terminal.integrated.shell.osx": "/usr/local/bin/bash",
   // "typescript.disableAutomaticTypeAcquisition": true,
-  // "terminal.integrated.lineHeight": 1,
+  "terminal.integrated.lineHeight": 1,
   "terminal.integrated.letterSpacing": 2.8,
   "terminal.integrated.fontSize": 14,
   // "terminal.integrated.fontWeight": "300",
@@ -32,10 +27,7 @@
   "prettier.trailingComma": "es5",
   "html-css-class-completion.includeGlobPattern": "**/*.{css,scss}",
   "eslint.enable": true,
-  "formattingToggle.activateFor": [
-    "formatOnSave",
-    "formatOnType"
-  ],
+  "formattingToggle.activateFor": ["formatOnSave", "formatOnType"],
   "editor.tabSize": 2,
   "editor.detectIndentation": true,
   "node-module-intellisense.scanFileModules": true,
@@ -61,14 +53,14 @@
   "gitlens.blame.compact": true,
   "gitlens.blame.heatmap.enabled": true,
   "gitlens.blame.heatmap.location": "left",
-  "gitlens.codeLens.scopes": [
-    "containers",
-    "blocks"
-  ],
+  "gitlens.codeLens.scopes": ["containers", "blocks"],
   "gitlens.hovers.enabled": true,
   "gitlens.mode.statusBar.enabled": true,
   "gitProjectManager.codePath": "/usr/local/bin/code",
-  "gitProjectManager.ignoredFolders": [
-    "node_modules"
-  ]
+  "gitProjectManager.ignoredFolders": ["node_modules"],
+  "jest.showCoverageOnLoad": true,
+  "jest.pathToJest": "./node_modules/.bin/jest",
+  "jest.debugMode": true,
+  "jest.runAllTestsFirst": true,
+  "jest.autoEnable": false
 }
