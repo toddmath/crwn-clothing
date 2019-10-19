@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { Link } from 'react-router-dom';
 
 /* CSS */
 export const ErrorImageOverlay = styled.div`
@@ -24,4 +25,10 @@ export const ErrorImageContainer = styled.div`
 export const ErrorImageText = styled.h2`
   font-size: 28px;
   color: #2f8e89;
+`;
+
+export const StyledLink = styled(Link)`
+  font-size: 22px;
+  color: black;
+  text-decoration: none;
 `;

@@ -5,9 +5,9 @@
   // "terminal.integrated.rendererType": "auto",
   // "terminal.integrated.shell.osx": "/usr/local/bin/bash",
   // "typescript.disableAutomaticTypeAcquisition": true,
-  "terminal.integrated.lineHeight": 1,
-  "terminal.integrated.letterSpacing": 2.8,
-  "terminal.integrated.fontSize": 14,
+  // "terminal.integrated.lineHeight": 1,
+  // "terminal.integrated.letterSpacing": 2.8,
+  // "terminal.integrated.fontSize": 14,
   // "terminal.integrated.fontWeight": "300",
   // "formattingToggle.activateFor": [
   //   "formatOnSave"

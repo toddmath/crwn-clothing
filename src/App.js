@@ -39,7 +39,7 @@ const App = ({ checkUserSession, currentUser }) => {
                 <RoutesContainer key={location.key}>
                   <Switch location={location}>
                     <Route exact path='/' component={HomePage} key='home' />
-                    <Route path='/shop' component={ShopPage} />
+                    <Route path='/shop' component={ShopPage} key='shop' />
                     <Route
                       exact
                       path='/checkout'
@@ -52,7 +52,7 @@ const App = ({ checkUserSession, currentUser }) => {
                       key='signin'
                       render={() =>
                         currentUser ? (
-                          <Redirect to='/' />
+                          <Redirect key='home' from='/signin' to='/' />
                         ) : (
                           <SignInAndSignUpPage />
                         )

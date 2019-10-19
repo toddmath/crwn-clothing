@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
+// import { Link } from 'react-router-dom';
 import {
   ErrorImageOverlay,
   ErrorImageContainer,
   ErrorImageText,
+  StyledLink,
 } from './error-boundary.styles';
 
 class ErrorBoundary extends Component {
@@ -22,7 +24,8 @@ class ErrorBoundary extends Component {
 
   componentDidCatch(error, info) {
     if (error) {
-      console.log(`[ERROR] ${error.name}: ${error.message}`);
+      console.error(`[${error.name}]: ${error.message}`);
+      // console.log(`[ERROR] ${error.name}: ${error.message}`);
     }
   }
 
@@ -32,6 +35,7 @@ class ErrorBoundary extends Component {
         <ErrorImageOverlay>
           <ErrorImageContainer imageUrl='https://i.imgur.com/qIufhof.png' />
           <ErrorImageText>Caution! This Page is Cordoned Off</ErrorImageText>
+          <StyledLink to='/'>Go back to the homepage</StyledLink>
         </ErrorImageOverlay>
       );
     }
