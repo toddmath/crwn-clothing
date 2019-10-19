@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 /* CSS */
 export const HeaderContainer = styled.div`
@@ -45,4 +45,16 @@ export const OptionsContainer = styled.div`
 export const OptionLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
+`;
+
+export const OptionNavLink = styled(NavLink)`
+  padding: 10px 15px 9px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  box-sizing: content-box;
+  transition: all 330ms cubic-bezier(0.15, 0.27, 0.41, 0.88) 60ms;
+
+  &.active {
+    border-bottom: 1px solid #7b1fa2;
+  }
 `;

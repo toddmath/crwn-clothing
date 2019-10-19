@@ -1,7 +1,7 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import posed, { PoseGroup } from 'react-pose';
 import { connect } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import Header from './components/header/header.component';
 import Spinner from './components/spinner/spinner.component';
@@ -27,45 +27,43 @@ const App = ({ checkUserSession, currentUser }) => {
     checkUserSession();
   }, [checkUserSession]);
 
+  const location = useLocation();
+
   return (
-    <Route
-      render={({ location }) => (
-        <div>
-          <GlobalStyle />
-          <Header />
-          <ErrorBoundary>
-            <Suspense fallback={<Spinner />}>
-              <PoseGroup>
-                <RoutesContainer key={location.key}>
-                  <Switch location={location}>
-                    <Route exact path='/' component={HomePage} key='home' />
-                    <Route path='/shop' component={ShopPage} key='shop' />
-                    <Route
-                      exact
-                      path='/checkout'
-                      component={CheckOutPage}
-                      key='checkout'
-                    />
-                    <Route
-                      exact
-                      path='/signin'
-                      key='signin'
-                      render={() =>
-                        currentUser ? (
-                          <Redirect key='home' from='/signin' to='/' />
-                        ) : (
-                          <SignInAndSignUpPage />
-                        )
-                      }
-                    />
-                  </Switch>
-                </RoutesContainer>
-              </PoseGroup>
-            </Suspense>
-          </ErrorBoundary>
-        </div>
-      )}
-    />
+    <div>
+      <GlobalStyle />
+      <Header />
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <PoseGroup>
+            <RoutesContainer key={location.key}>
+              <Switch location={location}>
+                <Route exact path='/' component={HomePage} key='home' />
+                <Route path='/shop' component={ShopPage} key='shop' />
+                <Route
+                  exact
+                  path='/checkout'
+                  component={CheckOutPage}
+                  key='checkout'
+                />
+                <Route
+                  exact
+                  path='/signin'
+                  key='signin'
+                  render={() =>
+                    currentUser ? (
+                      <Redirect key='home' from='/signin' to='/' />
+                    ) : (
+                      <SignInAndSignUpPage key='signin' />
+                    )
+                  }
+                />
+              </Switch>
+            </RoutesContainer>
+          </PoseGroup>
+        </Suspense>
+      </ErrorBoundary>
+    </div>
   );
 };
 

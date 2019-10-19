@@ -7,6 +7,7 @@ import Spinner from '../../components/spinner/spinner.component';
 import { selectIsCollectionFetching } from '../../redux/shop/shop.selectors';
 // import ErrorBoundary from '../../components/error-boundary/error-boundary.component';
 import { ShopPageContainer } from './shop.styles';
+import ScrollToTopOnMount from '../../components/scroll-to-top/scroll-to-top-on-mount.component';
 
 const CollectionsOverviewContainer = lazy(() =>
   import('../../components/collections-overview/collections-overview.component')
@@ -23,6 +24,7 @@ export const ShopPage = ({ fetchCollectionsStart, match }) => {
 
   return (
     <ShopPageContainer>
+      <ScrollToTopOnMount />
       <Suspense fallback={<Spinner />}>
         <Route
           exact
