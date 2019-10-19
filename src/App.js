@@ -9,8 +9,9 @@ import ErrorBoundary from './components/error-boundary/error-boundary.component'
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions';
 import { GlobalStyle } from './global.styles';
+import HomePage from './pages/homepage/homepage.component';
 
-const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
+// const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
 const ShopPage = lazy(() => import('./pages/shop/shop.component'));
 const CheckOutPage = lazy(() => import('./pages/checkout/checkout.component'));
 const SignInAndSignUpPage = lazy(() =>
@@ -34,7 +35,7 @@ const App = ({ checkUserSession, currentUser }) => {
       <GlobalStyle />
       <Header />
       <ErrorBoundary>
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<Spinner key='spinner' />}>
           <PoseGroup>
             <RoutesContainer key={location.key}>
               <Switch location={location}>
@@ -52,7 +53,7 @@ const App = ({ checkUserSession, currentUser }) => {
                   key='signin'
                   render={() =>
                     currentUser ? (
-                      <Redirect key='home' from='/signin' to='/' />
+                      <Redirect key='homesignin' from='/signin' to='/' />
                     ) : (
                       <SignInAndSignUpPage key='signin' />
                     )
