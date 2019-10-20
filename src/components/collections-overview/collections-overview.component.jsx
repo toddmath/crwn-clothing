@@ -25,7 +25,8 @@ const SlideIn = styled(
 )`
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  justify-content: space-evenly;
 
   @media screen and (max-width: 800px) {
     align-items: center;

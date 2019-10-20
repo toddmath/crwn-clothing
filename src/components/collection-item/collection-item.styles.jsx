@@ -40,6 +40,7 @@ export const Box = styled(
 /* CSS */
 export const CollectionItemContainer = styled.div`
   width: 22vw;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -62,7 +63,7 @@ export const CollectionItemContainer = styled.div`
   @media screen and (max-width: 800px) {
     /* width: 46vw; */
     /* width: calc(50% - 10px); */
-    max-width: 100%;
+    width: 100%;
     width: 45vw;
 
     &:hover,

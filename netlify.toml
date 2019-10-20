@@ -26,10 +26,11 @@
   [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
-
-  # COMMENT: Multi-key header rules are expressed with multi-line strings
-	cache-control = '''
-	max-age=0,
-	no-cache,
-	no-store,
-	must-revalidate'''
+    # Content-Security-Policy = "font-src='none'"
+    # Add  preload ; to end when ready for HSTS
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains;"
+    cache-control = '''
+    max-age=0,
+    no-cache,
+    no-store,
+    must-revalidate'''

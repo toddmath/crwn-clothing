@@ -12,10 +12,16 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Open Sans Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-    padding: 20px 30px;
+    /* padding: 20px 38px; */
+    padding: 20px 4vw;
+    max-width: 100vw;
+
+    @media  screen and (max-width: 1014px) {
+      padding: 20px 30px;
+    }
 
     @media screen and (max-width: 800px) {
-      padding: 10px;
+      padding: 10px calc(3vw - 4px);
     }
   }
 

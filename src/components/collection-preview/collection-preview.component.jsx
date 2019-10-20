@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import CollectionItem from '../collection-item/collection-item.component';
 import {
   CollectionPreviewContainer,
@@ -8,17 +8,15 @@ import {
   Title,
 } from './collection-preview.styles';
 
-export const CollectionPreview = ({
-  title,
-  items,
-  history,
-  match,
-  routeName,
-}) => {
+export const CollectionPreview = ({ title, items, routeName }) => {
+  const history = useHistory();
+  const location = useLocation();
   return (
     <CollectionPreviewContainer>
       <TitleContainer>
-        <Title onClick={() => history.push(`${match.path}/${routeName}`)}>
+        <Title
+          onClick={() => history.push(`${location.pathname}/${routeName}`)}
+        >
           {title}
         </Title>
       </TitleContainer>
@@ -33,4 +31,4 @@ export const CollectionPreview = ({
   );
 };
 
-export default withRouter(CollectionPreview);
+export default CollectionPreview;
