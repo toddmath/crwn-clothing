@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 import posed, { PoseGroup } from 'react-pose';
 import { connect } from 'react-redux';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import {
+  Redirect,
+  Route,
+  Switch,
+  useLocation,
+  useRouteMatch,
+} from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import Header from './components/header/header.component';
 // import Spinner from './components/spinner/spinner.component';
@@ -27,11 +33,12 @@ const RoutesContainer = posed.div({
 });
 
 const App = ({ checkUserSession, currentUser }) => {
+  const location = useLocation();
+  let match = useRouteMatch(); // eslint-disable-line prefer-const
+
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
-
-  const location = useLocation();
 
   return (
     <div>
@@ -47,12 +54,12 @@ const App = ({ checkUserSession, currentUser }) => {
                 exact
                 path='/checkout'
                 component={CheckOutPage}
-                key='checkout'
+                key={`${match.url}/checkout`}
               />
               <Route
                 exact
                 path='/signin'
-                key='signin'
+                key={`${match.url}/signin`}
                 render={() =>
                   currentUser ? (
                     <Redirect key='homesignin' from='/signin' to='/' />

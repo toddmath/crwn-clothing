@@ -26,25 +26,25 @@ const SlideIn = styled(
   })
 )`
   ${props => `
-  height: ${props.size ? '380px' : '240px'};
+  height: ${props.size ? '38rem' : '24rem'};
   min-width: 30%;
   flex: 1 1 auto;
   display: flex;
-  margin: 7.5px 0;
+  margin: 0.75rem 0;
   overflow: hidden;
 
   &:first-child {
-    margin-right: 7.5px;
+    margin-right: 0.75rem;
   }
 
   &:last-child {
-    margin-left: 7.5px;
+    margin-left: 0.75rem;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 55rem) {
     flex: ${props.size ? '1 1 100%' : '1 1 auto'};
-    height: ${props.size ? '260px' : '200px'};
-    margin ${props.size ? '6px 0 0 0' : '1px'};
+    height: ${props.size ? '26rem' : '20rem'};
+    margin ${props.size ? '0.6rem 0 0 0' : '0.1rem'};
   }
   `}
 `;

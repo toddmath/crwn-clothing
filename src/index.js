@@ -7,7 +7,8 @@ import App from './App';
 import { persistor, store } from './redux/store';
 import * as serviceWorker from './serviceWorker';
 import 'typeface-open-sans-condensed';
-import 'typeface-source-sans-pro';
+import 'typeface-open-sans';
+// import 'typeface-source-sans-pro';
 
 ReactDOM.render(
   <Provider store={store}>

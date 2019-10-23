@@ -2,8 +2,16 @@ import { createGlobalStyle } from 'styled-components/macro';
 
 /* CSS */
 export const GlobalStyle = createGlobalStyle`
-  div, p, h1, h2, h3, h4, h5, h6, span, label {
-    font-family: 'Open Sans Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  html {
+    font-size: 10px;
+
+    @media screen and (max-width: 800px) {
+      font-size: 9px;
+    }
+
+    @media screen and (max-width: 400px) {
+      font-size: 8px;
+    }
   }
 
   h2 {
@@ -13,15 +21,16 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Open Sans Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     /* padding: 20px 38px; */
-    padding: 20px 4vw;
+    padding: 2rem 3rem;
     max-width: 100vw;
 
     @media  screen and (max-width: 1014px) {
-      padding: 20px 30px;
+      padding: 2rem 3rem;
     }
 
     @media screen and (max-width: 800px) {
-      padding: 10px calc(3vw - 4px);
+      /* padding: 10px calc(3vw - 4px); */
+      padding: 1rem;
     }
   }
 

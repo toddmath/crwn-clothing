@@ -16,13 +16,13 @@ export const Box = styled(
       scale: 1.125,
       opacity: 0.9,
       fontWeight: 900,
-      boxShadow: '0px 5px 10px rgba(0,0,0,0.2)',
+      boxShadow: '0px 0.5rem 1rem rgba(0,0,0,0.2)',
     },
     press: {
       scale: 0.9,
       opacity: 0.8,
       fontWeight: 800,
-      boxShadow: '0px 2px 5px rgba(0,0,0,0.1)',
+      boxShadow: '0px 0.2rem 0.5rem rgba(0,0,0,0.1)',
     },
   })
 )`
@@ -30,7 +30,7 @@ export const Box = styled(
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 255px;
+  top: 25.5rem;
   width: 80%;
   outline: none;
   margin: auto;
@@ -43,7 +43,7 @@ export const CollectionItemContainer = styled.div`
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 35rem;
   align-items: center;
   position: relative;
   transition: all 330ms cubic-bezier(0.15, 0.48, 0.56, 0.98) 38ms !important;
@@ -60,7 +60,7 @@ export const CollectionItemContainer = styled.div`
     }
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 55rem) {
     /* width: 46vw; */
     /* width: calc(50% - 10px); */
     width: 100%;
@@ -79,9 +79,13 @@ export const CollectionItemContainer = styled.div`
     }
   }
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 55rem) {
+    margin-bottom: 1.5rem;
+  }
+
+  @media screen and (max-width: 30rem) {
     width: 90vw;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
   }
 `;
 
@@ -97,14 +101,14 @@ export const AddButton2 = styled(CustomButton)`
   width: 80%;
   opacity: 0.65;
   position: absolute;
-  top: 255px;
+  top: 25.5rem;
   display: none;
-  font-weight: 700;
+  font-weight: 600;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 55rem) {
     display: block;
     min-width: unset;
-    padding: 0 10px;
+    padding: 0 1rem;
   }
 `;
 
@@ -116,11 +120,11 @@ export const BackgroundImage = styled.div`
   height: 95%;
   background-size: cover;
   background-position: center;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 
-  @media screen and (max-width: 400px) {
-    margin-bottom: 2px;
+  @media screen and (max-width: 30rem) {
+    margin-bottom: 0.2rem;
   }
 `;
 
@@ -132,17 +136,17 @@ export const CollectionFooterContainer = styled.div`
   height: 5%;
   display: flex;
   justify-content: space-between;
-  font-size: 18px;
+  font-size: 1.8rem;
 
-  @media screen and (max-width: 400px) {
-    font-size: 20px;
+  @media screen and (max-width: 30rem) {
+    font-size: 2rem;
   }
 `;
 
 /* CSS */
 export const NameContainer = styled.span`
   width: 90%;
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
 `;
 
 NameContainer.displayName = 'NameContainer';

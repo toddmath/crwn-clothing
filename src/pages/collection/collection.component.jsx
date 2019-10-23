@@ -35,11 +35,11 @@ const SlideInCollectionItem = styled(
   width: 22vw;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 35rem;
   align-items: center;
   position: relative;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 55rem) {
     max-width: 100%;
     width: 45vw;
 
@@ -56,9 +56,9 @@ const SlideInCollectionItem = styled(
     }
   }
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 30rem) {
     width: 90vw;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
   }
 `;
 

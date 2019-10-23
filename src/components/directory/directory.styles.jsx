@@ -5,5 +5,5 @@ export const DirectoryMenuContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-height: calc(100vh - 60px);
+  max-height: calc(100vh - 5rem);
 `;

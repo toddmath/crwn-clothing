@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import CollectionItem from '../collection-item/collection-item.component';
 import {
   CollectionPreviewContainer,
@@ -10,13 +10,12 @@ import {
 
 export const CollectionPreview = ({ title, items, routeName }) => {
   const history = useHistory();
-  const location = useLocation();
+  let match = useRouteMatch(); // eslint-disable-line prefer-const
+
   return (
     <CollectionPreviewContainer>
       <TitleContainer>
-        <Title
-          onClick={() => history.push(`${location.pathname}/${routeName}`)}
-        >
+        <Title onClick={() => history.push(`${match.url}/${routeName}`)}>
           {title}
         </Title>
       </TitleContainer>

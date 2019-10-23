@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import {
   BackgroundImageContainer,
   ContentContainer,
@@ -10,11 +10,12 @@ import {
 
 export const MenuItem = ({ title, imageUrl, size, linkUrl }) => {
   const history = useHistory();
-  const location = useLocation();
+  let match = useRouteMatch(); // eslint-disable-line prefer-const
+
   return (
     <MenuItemContainer
       size={size}
-      onClick={() => history.push(`${location.pathname}${linkUrl}`)}
+      onClick={() => history.push(`${match.url}${linkUrl}`)}
     >
       <BackgroundImageContainer
         className='background-image'

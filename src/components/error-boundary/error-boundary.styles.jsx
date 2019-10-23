@@ -23,12 +23,12 @@ export const ErrorImageContainer = styled.div`
 
 /* CSS */
 export const ErrorImageText = styled.h2`
-  font-size: 28px;
+  font-size: 2.8rem;
   color: #2f8e89;
 `;
 
 export const StyledLink = styled(Link)`
-  font-size: 22px;
+  font-size: 2.2rem;
   color: black;
   text-decoration: none;
 `;

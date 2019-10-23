@@ -4,21 +4,21 @@ import styled from 'styled-components/macro';
 export const CheckoutItemContainer = styled.div`
   width: 100%;
   display: flex;
-  min-height: 100px;
+  min-height: 10rem;
   border-bottom: 1px solid darkgrey;
-  padding: 15px 0;
-  font-size: 20px;
+  padding: 1.5rem 0;
+  font-size: 2rem;
   align-items: center;
 
-  @media screen and (max-width: 800px) {
-    font-size: 18px;
+  @media screen and (max-width: 55rem) {
+    font-size: 1.8rem;
   }
 `;
 
 /* CSS */
 export const ImageContainer = styled.div`
   width: 23%;
-  padding-right: 15px;
+  padding-right: 1.5rem;
 
   img {
     width: 100%;
@@ -30,7 +30,7 @@ export const ImageContainer = styled.div`
 export const TextContainer = styled.span`
   width: 23%;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 55rem) {
     width: 22%;
   }
 `;
@@ -40,7 +40,7 @@ export const QuantityContainer = styled(TextContainer)`
   display: flex;
 
   span {
-    margin: 0 10px;
+    margin: 0 1rem;
   }
 
   div {
@@ -50,6 +50,6 @@ export const QuantityContainer = styled(TextContainer)`
 
 /* CSS */
 export const RemoveButtonContainer = styled.div`
-  padding-left: 12px;
+  padding-left: 1.2rem;
   cursor: pointer;
 `;

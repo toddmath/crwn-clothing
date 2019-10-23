@@ -4,8 +4,8 @@ import styled from 'styled-components/macro';
 export const CartItemContainer = styled.div`
   width: 100%;
   display: flex;
-  height: 80px;
-  margin-bottom: 15px;
+  height: 8rem;
+  margin-bottom: 1rem;
 `;
 
 /* CSS */
@@ -20,5 +20,13 @@ export const ItemDetailsContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 1rem 2rem;
+`;
+
+export const ItemDetailName = styled.span`
+  font-size: 1.4rem;
+`;
+
+export const ItemDetailPrice = styled.span`
+  font-size: 1.2rem;
 `;

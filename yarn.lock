@@ -13733,6 +13733,11 @@ typeface-open-sans-condensed@^0.0.72:
   resolved "https://registry.yarnpkg.com/typeface-open-sans-condensed/-/typeface-open-sans-condensed-0.0.72.tgz#0210b900520c48928d76bbedbfd23aa7bcf631ff"
   integrity sha512-qKsSJBw//QDz0+LWWgsmtrQmP8x9TVjyH4FtAy8uVa0m3HomO36ZordK2vk38z5sLXPm6gOLLT6w+MvTlGekNw==
 
+typeface-open-sans@^0.0.75:
+  version "0.0.75"
+  resolved "https://registry.yarnpkg.com/typeface-open-sans/-/typeface-open-sans-0.0.75.tgz#20d0c330f14c0c40463c334adbedd6005389abe4"
+  integrity sha512-0lLmB7pfj113OP4T78SbpSmC4OCdFQ0vUxdSXQccsSb6qF76F92iEuC/DghFgmPswTyidk8+Hwf+PS/htiJoRQ==
+
 typeface-source-sans-pro@^0.0.75:
   version "0.0.75"
   resolved "https://registry.yarnpkg.com/typeface-source-sans-pro/-/typeface-source-sans-pro-0.0.75.tgz#33e60ea079738c2dbdb2d0aa28f899f565e1646e"

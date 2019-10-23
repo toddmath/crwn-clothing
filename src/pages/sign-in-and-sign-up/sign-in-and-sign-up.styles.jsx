@@ -2,17 +2,23 @@ import styled from 'styled-components/macro';
 
 /* CSS */
 export const SignInAndSignUpContainer = styled.div`
-  width: 850px;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  margin: 30px auto;
+`;
 
-  @media screen and (max-width: 800px) {
+export const SignInAndSignUpInnerContainer = styled.div`
+  display: flex;
+  width: 110rem;
+  justify-content: space-around;
+  margin: 0 auto;
+
+  @media screen and (max-width: 60rem) {
     flex-direction: column;
     width: unset;
     align-items: center;
+
     > *:first-child {
-      margin-bottom: 50px;
+      margin-bottom: 5rem;
     }
   }
 `;

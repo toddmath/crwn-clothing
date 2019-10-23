@@ -4,14 +4,21 @@ import styled from 'styled-components/macro';
 export const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 380px;
+  width: 38rem;
 
-  @media screen and (max-width: 400px) {
-    margin: 10px;
-    width: 300px;
+  @media screen and (max-width: 30rem) {
+    margin: 1rem;
   }
 `;
 
 export const SignUpTitle = styled.h2`
-  margin: 10px 0;
+  margin: 1rem 0;
+  font-size: 2.6rem;
+  font-weight: 600;
+  text-align: center;
+`;
+
+export const SignUpSubTitle = styled.span`
+  font-size: 2rem;
+  text-align: center;
 `;

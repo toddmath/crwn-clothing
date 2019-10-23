@@ -31,6 +31,7 @@
     "reselect": "^4.0.0",
     "rpi.macro": "^0.1.1",
     "styled-components": "^4.4.0",
+    "typeface-open-sans": "^0.0.75",
     "typeface-open-sans-condensed": "^0.0.72",
     "typeface-source-sans-pro": "^0.0.75"
   },

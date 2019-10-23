@@ -18,7 +18,7 @@ export const CheckOutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   return (
     <CheckoutItemContainer>
       <ImageContainer>
-        <img src={imageUrl} alt='item' />
+        <img src={imageUrl} alt={name} />
       </ImageContainer>
       <TextContainer>{name}</TextContainer>
       <QuantityContainer>
