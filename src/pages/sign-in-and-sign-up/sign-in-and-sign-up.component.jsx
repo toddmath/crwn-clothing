@@ -6,15 +6,13 @@ import {
   SignInAndSignUpInnerContainer,
 } from './sign-in-and-sign-up.styles';
 
-const SignInAndSignUpPage = () => {
-  return (
-    <SignInAndSignUpContainer>
-      <SignInAndSignUpInnerContainer>
-        <SignIn />
-        <SignUp />
-      </SignInAndSignUpInnerContainer>
-    </SignInAndSignUpContainer>
-  );
-};
+const SignInAndSignUpPage = () => (
+  <SignInAndSignUpContainer>
+    <SignInAndSignUpInnerContainer>
+      <SignIn />
+      <SignUp />
+    </SignInAndSignUpInnerContainer>
+  </SignInAndSignUpContainer>
+);
 
 export default SignInAndSignUpPage;

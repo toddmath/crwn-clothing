@@ -20,9 +20,12 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Open Sans Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-    /* padding: 20px 38px; */
     padding: 2rem 3rem;
     max-width: 100vw;
+    color: #212121;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
     @media  screen and (max-width: 1014px) {
       padding: 2rem 3rem;
@@ -34,12 +37,13 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  a {
+  a:link,
+  a:visited {
     text-decoration: none;
-    color: black;
+    color: #212121;
   }
 
-  * {
+  *, *:before, *:after {
     box-sizing: border-box;
   }
 

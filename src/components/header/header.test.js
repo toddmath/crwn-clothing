@@ -28,7 +28,7 @@ describe('Header component', () => {
     it('should render sign out link', () => {
       expect(
         wrapper
-          .find('OptionLink')
+          .find('OptionNavLink')
           .at(2)
           .text()
       ).toBe('SIGN OUT');
@@ -36,7 +36,7 @@ describe('Header component', () => {
 
     it('should call signOutStart method when link is clicked', () => {
       wrapper
-        .find('OptionLink')
+        .find('OptionNavLink')
         .at(2)
         .simulate('click');
 
@@ -56,7 +56,7 @@ describe('Header component', () => {
 
       expect(
         newWrapper
-          .find('OptionLink')
+          .find('OptionNavLink')
           .at(2)
           .text()
       ).toBe('SIGN IN');

@@ -1,13 +1,14 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Route } from 'react-router-dom';
+import { Route, useRouteMatch } from 'react-router-dom';
+
+import { Spinner, ScrollToTopOnMount } from '../../components';
+
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
-import Spinner from '../../components/spinner/spinner.component';
 import { selectIsCollectionFetching } from '../../redux/shop/shop.selectors';
 // import ErrorBoundary from '../../components/error-boundary/error-boundary.component';
 import { ShopPageContainer } from './shop.styles';
-import ScrollToTopOnMount from '../../components/scroll-to-top/scroll-to-top-on-mount.component';
 
 const CollectionsOverviewContainer = lazy(() =>
   import('../../components/collections-overview/collections-overview.component')
@@ -17,7 +18,9 @@ const CollectionPageContainer = lazy(() =>
   import('../collection/collection.container')
 );
 
-export const ShopPage = ({ fetchCollectionsStart, match }) => {
+export const ShopPage = ({ fetchCollectionsStart }) => {
+  const { path } = useRouteMatch();
+
   useEffect(() => {
     fetchCollectionsStart();
   }, [fetchCollectionsStart]);
@@ -26,14 +29,11 @@ export const ShopPage = ({ fetchCollectionsStart, match }) => {
     <ShopPageContainer>
       <ScrollToTopOnMount />
       <Suspense fallback={<Spinner />}>
+        <Route exact path={path}>
+          <CollectionsOverviewContainer />
+        </Route>
         <Route
-          exact
-          path={`${match.path}`}
-          component={CollectionsOverviewContainer}
-          key={`${match.path}`}
-        />
-        <Route
-          path={`${match.path}/:collectionId`}
+          path={`${path}/:collectionId`}
           component={CollectionPageContainer}
           key='collection'
         />
@@ -42,15 +42,16 @@ export const ShopPage = ({ fetchCollectionsStart, match }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
-});
+// const mapDispatchToProps = dispatch => ({
+//   fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
+// });
+
+const mapDispatchToProps = {
+  fetchCollectionsStart,
+};
 
 const mapStateToProps = createStructuredSelector({
   isLoading: selectIsCollectionFetching,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShopPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);

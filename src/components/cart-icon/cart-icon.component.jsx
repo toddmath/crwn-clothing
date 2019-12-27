@@ -13,29 +13,28 @@ import {
 const Box = posed.div({
   pressable: true,
   init: { scale: 1 },
-  press: { scale: 0.75 },
+  press: { scale: 0.85 },
 });
 
-export const CartIcon = ({ toggleCartHidden, itemCount }) => {
-  return (
-    <Box className='box'>
-      <CartContainer onClick={toggleCartHidden}>
-        <ShoppingIcon />
-        <ItemCountContainer>{itemCount}</ItemCountContainer>
-      </CartContainer>
-    </Box>
-  );
-};
+export const CartIcon = ({ toggleCartHidden, itemCount }) => (
+  <Box className='box'>
+    <CartContainer onClick={toggleCartHidden}>
+      <ShoppingIcon />
+      <ItemCountContainer>{itemCount}</ItemCountContainer>
+    </CartContainer>
+  </Box>
+);
 
 const mapStateToProps = createStructuredSelector({
   itemCount: selectCartItemsCount,
 });
 
-const mapDispatchToProps = dispatch => ({
-  toggleCartHidden: () => dispatch(toggleCartHidden()),
-});
+// const mapDispatchToProps = dispatch => ({
+//   toggleCartHidden: () => dispatch(toggleCartHidden()),
+// });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CartIcon);
+const mapDispatchToProps = {
+  toggleCartHidden,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

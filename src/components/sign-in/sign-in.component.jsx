@@ -14,23 +14,21 @@ import {
 } from './sign-in.styles';
 
 export const SignIn = ({ emailSignInStart, googleSignInStart }) => {
-  const [userCredentials, setCredentials] = useState({
+  const [userCreds, setUserCreds] = useState({
     email: '',
     password: '',
   });
 
-  const { email, password } = userCredentials;
+  const { email, password } = userCreds;
 
   const handleSubmit = async event => {
     event.preventDefault();
-
     emailSignInStart(email, password);
   };
 
   const handleChange = event => {
     const { value, name } = event.target;
-
-    setCredentials({ ...userCredentials, [name]: value });
+    setUserCreds({ ...userCreds, [name]: value });
   };
 
   return (
@@ -78,13 +76,15 @@ export const SignIn = ({ emailSignInStart, googleSignInStart }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  googleSignInStart: () => dispatch(googleSignInStart()),
-  emailSignInStart: (email, password) =>
-    dispatch(emailSignInStart({ email, password })),
-});
+// const mapDispatchToProps = dispatch => ({
+//   googleSignInStart: () => dispatch(googleSignInStart()),
+//   emailSignInStart: (email, password) =>
+//     dispatch(emailSignInStart({ email, password })),
+// });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(SignIn);
+const mapDispatchToProps = {
+  googleSignInStart,
+  emailSignInStart: (email, password) => emailSignInStart({ email, password }),
+};
+
+export default connect(null, mapDispatchToProps)(SignIn);

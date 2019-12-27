@@ -178,7 +178,9 @@ describe('get snapshot from userAuth', () => {
   const mockAdditionalData = {};
   const generator = getSnapshotFromUserAuth(mockUserAuth, mockAdditionalData);
 
-  expect(generator.next().value).toEqual(
-    call(createUserProfileDocument, mockUserAuth, mockAdditionalData)
-  );
+  it('should call createUserProfileDocument, userAuth, addtionalData', () => {
+    expect(generator.next().value).toEqual(
+      call(createUserProfileDocument, mockUserAuth, mockAdditionalData)
+    );
+  });
 });

@@ -14,7 +14,6 @@
     "jsx-a11y",
     "jest",
     "jest-formatting",
-    "cypress",
     "prettier"
   ],
   "extends": [
@@ -27,8 +26,6 @@
     "plugin:jsx-a11y/recommended",
     "plugin:jest/recommended",
     "plugin:jest/style",
-    "plugin:jest-formatting/recommended",
-    "plugin:cypress/recommended",
     "prettier"
   ],
   "settings": {
@@ -102,6 +99,7 @@
     "class-methods-use-this": [0],
     "import/prefer-default-export": [0],
     "import/no-extraneous-dependencies": [0],
+    "jest/no-commented-out-tests": [0],
     "no-restricted-imports": [
       "error",
       {

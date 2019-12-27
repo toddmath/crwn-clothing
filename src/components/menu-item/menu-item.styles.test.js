@@ -13,8 +13,8 @@ describe('should render menu-item styled components', () => {
       expect(tree).toMatchSnapshot();
     });
 
-    it('should have a height of 240px', () => {
-      expect(tree).toHaveStyleRule('height', '240px');
+    it('should have a height of 24rem', () => {
+      expect(tree).toHaveStyleRule('height', '24rem');
     });
   });
 
@@ -25,8 +25,8 @@ describe('should render menu-item styled components', () => {
       expect(tree).toMatchSnapshot();
     });
 
-    it('should have a height of 380px', () => {
-      expect(tree).toHaveStyleRule('height', '380px');
+    it('should have a height of 38rem', () => {
+      expect(tree).toHaveStyleRule('height', '38rem');
     });
   });
 

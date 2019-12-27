@@ -6,30 +6,27 @@ import { signUpStart } from '../../redux/user/user.actions';
 import { SignUpContainer, SignUpTitle, SignUpSubTitle } from './sign-up.styles';
 
 const SignUp = ({ signUpStart }) => {
-  const [userCredentials, setUserCredentials] = useState({
+  const [userCreds, setUserCreds] = useState({
     displayName: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
 
-  const { displayName, email, password, confirmPassword } = userCredentials;
+  const { displayName, email, password, confirmPassword } = userCreds;
 
   const handleSubmit = async event => {
     event.preventDefault();
-
     if (password !== confirmPassword) {
       alert("passwords don't match");
       return;
     }
-
     signUpStart({ displayName, email, password });
   };
 
   const handleChange = event => {
     const { name, value } = event.target;
-
-    setUserCredentials({ ...userCredentials, [name]: value });
+    setUserCreds({ ...userCreds, [name]: value });
   };
 
   return (
@@ -86,11 +83,12 @@ const SignUp = ({ signUpStart }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  signUpStart: userCredentials => dispatch(signUpStart(userCredentials)),
-});
+// const mapDispatchToProps = dispatch => ({
+//   signUpStart: userCreds => dispatch(signUpStart(userCreds)),
+// });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(SignUp);
+const mapDispatchToProps = {
+  signUpStart,
+};
+
+export default connect(null, mapDispatchToProps)(SignUp);
