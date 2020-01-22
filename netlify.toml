@@ -21,6 +21,12 @@
   to = "/index.html"
   status = 200
 
+[[redirects]]
+  from = "https://crwnclothing.netlify.com/*"
+  to = "https://www.crown-clothes.com/"
+  force = true
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -34,3 +40,16 @@
     no-cache,
     no-store,
     must-revalidate'''
+
+[build.processing]
+  skip_processing = false
+[build.processing.css]
+  bundle = false
+  minify = true
+[build.processing.js]
+  bundle = false
+  minify = true
+[build.processing.html]
+  pretty_urls = false
+[build.processing.images]
+  compress = true
