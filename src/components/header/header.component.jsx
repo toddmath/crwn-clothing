@@ -4,11 +4,11 @@ import { createStructuredSelector } from 'reselect';
 
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropDown from '../cart-dropdown/cart-dropdown.component';
+
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { signOutStart } from '../../redux/user/user.actions';
 
-import { ReactComponent as Logo } from '../../assets/crown.svg';
 import {
   HeaderContainer,
   LogoContainer,
@@ -16,10 +16,13 @@ import {
   OptionNavLink,
 } from './header.styles';
 
+import Crown from '../../icons/crown';
+// import { ReactComponent as Logo } from '../../assets/crown.svg';
+
 export const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
     <LogoContainer to='/'>
-      <Logo className='logo' />
+      <Crown className='logo' />
     </LogoContainer>
     <OptionsContainer>
       <OptionNavLink exact to='/'>

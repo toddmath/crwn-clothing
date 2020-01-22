@@ -4,7 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
 import { selectCartItems } from '../../redux/cart/cart.selectors';
+
 import CartItem from '../cart-item/cart-item.component';
+
 import {
   CartDropDownButton,
   CartDropdownContainer,
