@@ -21,20 +21,34 @@ import Crown from '../../icons/crown';
 
 export const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
-    <LogoContainer to='/'>
+    <LogoContainer
+      title='Crown Clothing Home'
+      aria-label='Crown Clothing Home'
+      to='/'
+    >
       <Crown className='logo' />
     </LogoContainer>
     <OptionsContainer>
-      <OptionNavLink exact to='/'>
+      <OptionNavLink title='Home' aria-label='Home' exact to='/'>
         HOME
       </OptionNavLink>
-      <OptionNavLink to='/shop'>SHOP</OptionNavLink>
+      <OptionNavLink title='Shop' aria-label='Shop' to='/shop'>
+        SHOP
+      </OptionNavLink>
       {currentUser ? (
-        <OptionNavLink as='div' to='/' onClick={signOutStart}>
+        <OptionNavLink
+          title='sign out'
+          aria-label='sign out'
+          as='div'
+          to='/'
+          onClick={signOutStart}
+        >
           SIGN OUT
         </OptionNavLink>
       ) : (
-        <OptionNavLink to='/signin'>SIGN IN</OptionNavLink>
+        <OptionNavLink title='sign in' aria-label='sign in' to='/signin'>
+          SIGN IN
+        </OptionNavLink>
       )}
       <CartIcon />
     </OptionsContainer>

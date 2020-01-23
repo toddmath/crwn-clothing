@@ -1,7 +1,6 @@
 import styled from 'styled-components/macro';
-import { ReactComponent as ShoppingIconSVG } from '../../assets/shopping-bag.svg';
+import { Shop } from 'grommet-icons';
 
-/* CSS */
 export const CartContainer = styled.div`
   width: 4.5rem;
   height: 4.5rem;
@@ -10,20 +9,19 @@ export const CartContainer = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  svg {
+    isolation: auto;
+  }
 `;
 
-/* CSS */
-export const ShoppingIcon = styled(ShoppingIconSVG)`
-  width: 2.4rem;
-  height: 2.4rem;
+export const ShoppingIcon = styled(Shop)`
+  width: 2.5rem;
+  height: 2.5rem;
 `;
 
-/* CSS */
 export const ItemCountContainer = styled.span`
   position: absolute;
-  font-size: 1rem;
-  font-weight: bold;
-  bottom: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  bottom: 1.1rem;
 `;
-
-// ItemCountContainer.displayName = 'ItemCountContainer';

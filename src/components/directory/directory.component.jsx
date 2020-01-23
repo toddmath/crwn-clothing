@@ -44,7 +44,11 @@ const SlideIn = styled(
   @media screen and (max-width: 55rem) {
     flex: ${props.size ? '1 1 100%' : '1 1 auto'};
     height: ${props.size ? '26rem' : '20rem'};
-    margin ${props.size ? '0.6rem 0 0 0' : '0.1rem'};
+    margin: ${props.size ? '0.6rem 0 0 0' : '0.1rem'};
+
+    &:last-child {
+      margin: ${props.size ? '0.6rem 0 0 0' : '0.1rem 0'};
+    }
   }
   `}
 `;

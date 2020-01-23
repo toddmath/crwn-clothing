@@ -1,11 +1,20 @@
 import styled from 'styled-components/macro';
 
+// export const SpinnerOverlay = styled.div`
+//   height: 60vh;
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;
+
 export const SpinnerOverlay = styled.div`
-  height: 60vh;
-  width: 100%;
+  height: 80vh;
   display: flex;
+  width: 100vw;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 `;
 
 export const SpinnerContainer = styled.div`

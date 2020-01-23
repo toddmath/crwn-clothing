@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import posed from 'react-pose';
+
 import CustomButton from '../custom-button/custom-button.component';
 
 export const Box = styled(

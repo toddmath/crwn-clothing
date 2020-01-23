@@ -3,15 +3,16 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Route, useRouteMatch } from 'react-router-dom';
 
-import { Spinner, ScrollToTopOnMount } from '../../components';
+import { Spinner, ScrollToTopOnMount, ErrorBoundary } from '../../components';
+// import ErrorBoundary from '../../components/error-boundary/error-boundary.component';
 
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 import { selectIsCollectionFetching } from '../../redux/shop/shop.selectors';
-// import ErrorBoundary from '../../components/error-boundary/error-boundary.component';
+
 import { ShopPageContainer } from './shop.styles';
 
 const CollectionsOverviewContainer = lazy(() =>
-  import('../../components/collections-overview/collections-overview.component')
+  import('../../components/collections-overview/collections-overview.container')
 );
 
 const CollectionPageContainer = lazy(() =>
@@ -28,16 +29,18 @@ export const ShopPage = ({ fetchCollectionsStart }) => {
   return (
     <ShopPageContainer>
       <ScrollToTopOnMount />
-      <Suspense fallback={<Spinner />}>
-        <Route exact path={path}>
-          <CollectionsOverviewContainer />
-        </Route>
-        <Route
-          path={`${path}/:collectionId`}
-          component={CollectionPageContainer}
-          key='collection'
-        />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Route exact path={path}>
+            <CollectionsOverviewContainer />
+          </Route>
+          <Route
+            path={`${path}/:collectionId`}
+            component={CollectionPageContainer}
+            key='collection'
+          />
+        </Suspense>
+      </ErrorBoundary>
     </ShopPageContainer>
   );
 };

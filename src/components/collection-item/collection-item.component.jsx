@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { addItem } from '../../redux/cart/cart.actions';
+
 import {
   CollectionItemContainer,
   AddButton,

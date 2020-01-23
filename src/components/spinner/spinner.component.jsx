@@ -1,9 +1,11 @@
 import React from 'react';
-import { SpinnerContainer, SpinnerOverlay } from './spinner.styles';
+import SpringSpinner from '@bit/bondz.react-epic-spinners.spring-spinner';
+
+import { SpinnerOverlay } from './spinner.styles';
 
 const Spinner = () => (
   <SpinnerOverlay>
-    <SpinnerContainer />
+    <SpringSpinner color='#212121' size={70} />
   </SpinnerOverlay>
 );
 
