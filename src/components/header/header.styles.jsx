@@ -9,7 +9,7 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 2.5rem;
 
-  @media screen and (max-width: 55rem) {
+  @media screen and (max-width: 55em) {
     height: 6rem;
     padding: 1rem;
     margin-bottom: 2rem;
@@ -22,7 +22,7 @@ export const LogoContainer = styled(Link)`
   width: 7rem;
   padding: 2.5rem;
 
-  @media screen and (max-width: 55rem) {
+  @media screen and (max-width: 55em) {
     width: 5rem;
     padding: 0;
   }
@@ -36,7 +36,7 @@ export const OptionsContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
 
-  @media screen and (max-width: 55rem) {
+  @media screen and (max-width: 55em) {
     width: 80%;
   }
 `;

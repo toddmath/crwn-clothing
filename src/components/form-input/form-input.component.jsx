@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
   FormInputContainer,
   FormInputLabel,
@@ -10,14 +12,23 @@ const FormInput = ({ handleChange, label, ref, ...props }) => (
     <FormInputContainer
       data-testid='form-input'
       onChange={handleChange}
+      aria-required='true'
+      required
       {...props}
     />
-    {label ? (
-      <FormInputLabel className={props.value.length ? 'shrink' : ''}>
+    {label && (
+      <FormInputLabel className={props.value?.length ? 'shrink' : ''}>
         {label}
       </FormInputLabel>
-    ) : null}
+    )}
   </GroupContainer>
 );
+
+FormInput.propTypes = {
+  handleChange: PropTypes.func,
+  label: PropTypes.string,
+  ref: PropTypes.number,
+  value: PropTypes.string,
+};
 
 export default FormInput;

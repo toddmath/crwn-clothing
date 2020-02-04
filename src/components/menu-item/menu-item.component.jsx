@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import {
-  Box,
   BackgroundImageContainer,
   ContentContainer,
   ContentSubTitle,
@@ -14,25 +14,32 @@ export const MenuItem = ({ title, imageUrl, size, linkUrl }) => {
   const history = useHistory();
   let match = useRouteMatch(); // eslint-disable-line prefer-const
 
+  const handleHistory = () => history.push(`${match.url}${linkUrl}`);
+
   return (
     <MenuItemContainer
       title={title}
       aria-label={title}
       size={size}
-      onClick={() => history.push(`${match.url}${linkUrl}`)}
+      onClick={handleHistory}
     >
       <BackgroundImageContainer
         imageUrl={imageUrl}
         className='background-image'
       />
-      <Box className='box'>
-        <ContentContainer>
-          <ContentTitle>{title.toUpperCase()}</ContentTitle>
-          <ContentSubTitle>SHOP NOW</ContentSubTitle>
-        </ContentContainer>
-      </Box>
+      <ContentContainer>
+        <ContentTitle>{title}</ContentTitle>
+        <ContentSubTitle>shop now</ContentSubTitle>
+      </ContentContainer>
     </MenuItemContainer>
   );
+};
+
+MenuItem.propTypes = {
+  imageUrl: PropTypes.string.isRequired,
+  linkUrl: PropTypes.string.isRequired,
+  size: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 export default MenuItem;

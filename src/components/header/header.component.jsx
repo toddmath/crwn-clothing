@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -17,7 +18,6 @@ import {
 } from './header.styles';
 
 import Crown from '../../icons/crown';
-// import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 export const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
@@ -52,18 +52,24 @@ export const Header = ({ currentUser, hidden, signOutStart }) => (
       )}
       <CartIcon />
     </OptionsContainer>
-    {hidden ? null : <CartDropDown />}
+    {!hidden && <CartDropDown />}
   </HeaderContainer>
 );
+
+Header.propTypes = {
+  currentUser: PropTypes.exact({
+    id: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
+    email: PropTypes.string,
+  }),
+  hidden: PropTypes.bool.isRequired,
+  signOutStart: PropTypes.func,
+};
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
   hidden: selectCartHidden,
 });
-
-// const mapDispatchToProps = dispatch => ({
-//   signOutStart: () => dispatch(signOutStart()),
-// });
 
 const mapDispatchToProps = {
   signOutStart,

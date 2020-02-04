@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
+
 import { signUpStart } from '../../redux/user/user.actions';
+
 import { SignUpContainer, SignUpTitle, SignUpSubTitle } from './sign-up.styles';
 
 const SignUp = ({ signUpStart }) => {
@@ -41,8 +45,6 @@ const SignUp = ({ signUpStart }) => {
           onChange={handleChange}
           label='Display Name'
           aria-label='Display Name'
-          aria-required='true'
-          required
         />
         <FormInput
           type='email'
@@ -51,9 +53,7 @@ const SignUp = ({ signUpStart }) => {
           onChange={handleChange}
           label='Email'
           aria-label='Email'
-          aria-required='true'
           autoComplete='username'
-          required
         />
         <FormInput
           type='password'
@@ -62,9 +62,7 @@ const SignUp = ({ signUpStart }) => {
           onChange={handleChange}
           label='Password'
           aria-label='Password'
-          aria-required='true'
           autoComplete='new-password'
-          required
         />
         <FormInput
           type='password'
@@ -73,14 +71,16 @@ const SignUp = ({ signUpStart }) => {
           onChange={handleChange}
           label='Confirm Password'
           aria-label='Confirm Password'
-          aria-required='true'
           autoComplete='new-password'
-          required
         />
         <CustomButton type='submit'> SIGN UP </CustomButton>
       </form>
     </SignUpContainer>
   );
+};
+
+SignUp.propTypes = {
+  signUpStart: PropTypes.func.isRequired,
 };
 
 // const mapDispatchToProps = dispatch => ({

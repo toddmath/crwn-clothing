@@ -13,7 +13,7 @@ export const buttonStyles = css`
     border: 1px solid black;
   }
 
-  @media screen and (max-width: 30rem) {
+  @media screen and (max-width: 30em) {
     font-size: 1.2rem;
     padding: auto 1rem;
     vertical-align: center;
@@ -25,7 +25,7 @@ const addButtonStyles = css`
   color: black;
   border: unset;
 
-  @media screen and (max-width: 30rem) {
+  @media screen and (max-width: 30em) {
     font-size: 1.2rem;
     padding: auto 1rem;
     vertical-align: center;
@@ -45,7 +45,7 @@ export const invertedButtonStyles = css`
     border: none;
   }
 
-  @media screen and (max-width: 30rem) {
+  @media screen and (max-width: 30em) {
     font-size: 1.2rem;
     padding: auto 1rem;
     vertical-align: center;
@@ -66,7 +66,7 @@ export const googleSignInStyles = css`
     border: 1px solid #4285f4;
   }
 
-  @media screen and (max-width: 30rem) {
+  @media screen and (max-width: 30em) {
     font-size: 1.2rem;
     padding: auto 1rem;
     vertical-align: center;

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
+
 import {
   googleSignInStart,
   emailSignInStart,
 } from '../../redux/user/user.actions';
+
 import {
   SignInContainer,
   SignInTitle,
@@ -23,7 +27,7 @@ export const SignIn = ({ emailSignInStart, googleSignInStart }) => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    emailSignInStart(email, password);
+    await emailSignInStart(email, password);
   };
 
   const handleChange = event => {
@@ -76,11 +80,10 @@ export const SignIn = ({ emailSignInStart, googleSignInStart }) => {
   );
 };
 
-// const mapDispatchToProps = dispatch => ({
-//   googleSignInStart: () => dispatch(googleSignInStart()),
-//   emailSignInStart: (email, password) =>
-//     dispatch(emailSignInStart({ email, password })),
-// });
+SignIn.propTypes = {
+  emailSignInStart: PropTypes.func.isRequired,
+  googleSignInStart: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = {
   googleSignInStart,

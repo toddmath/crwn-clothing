@@ -12,7 +12,7 @@ export const SignInAndSignUpInnerContainer = styled.div`
   justify-content: space-around;
   margin: 0 auto;
 
-  @media screen and (max-width: 60rem) {
+  @media screen and (max-width: 60em) {
     flex-direction: column;
     width: unset;
     align-items: center;

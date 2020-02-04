@@ -5,7 +5,6 @@ import 'firebase/auth';
 import 'firebase/firestore';
 // import 'firebase/performance';
 
-// cSpell: disable
 export const config = {
   apiKey: 'AIzaSyATNX2F21SsC33XuBZDOGyJwT1UgvCTPUg',
   authDomain: 'crwn-db-409fe.firebaseapp.com',
@@ -15,7 +14,6 @@ export const config = {
   messagingSenderId: '717530139246',
   appId: '1:717530139246:web:0fd962b63d08668f75347f',
 };
-// cSpell: enable
 
 firebase.initializeApp(config);
 // firebase.firestore().enablePersistence();
@@ -31,12 +29,11 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
-    const createdAt = new Date();
+    // const createdAt = new Date();
     try {
       await userRef.set({
         displayName,
         email,
-        createdAt,
         ...additionalData,
       });
     } catch (error) {
@@ -66,6 +63,7 @@ export const addCollectionAndDocuments = async (
   const collectionRef = firestore.collection(collectionKey);
 
   const batch = firestore.batch();
+
   objectsToAdd.forEach(obj => {
     const newDocRef = collectionRef.doc();
     batch.set(newDocRef, obj);
@@ -74,21 +72,24 @@ export const addCollectionAndDocuments = async (
   return await batch.commit();
 };
 
+const makeLow = str => String(str).toLowerCase();
+const makeClean = url => encodeURI(makeLow(url));
+
 export const convertCollectionsSnapshotToMap = collections => {
   const transformedCollection = collections.docs.map(doc => {
     const { title, items } = doc.data();
 
     return {
-      routeName: encodeURI(title.toLowerCase()),
+      routeName: makeClean(title),
       id: doc.id,
       title,
       items,
     };
   });
 
-  return transformedCollection.reduce((accumulator, collection) => {
-    accumulator[collection.title.toLowerCase()] = collection;
-    return accumulator;
+  return transformedCollection.reduce((acc, collection) => {
+    acc[makeLow(collection.title)] = collection;
+    return acc;
   }, {});
 };
 
@@ -101,11 +102,14 @@ export const getCurrentUser = () => {
   });
 };
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+const auth = firebase.auth();
+const firestore = firebase.firestore();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-export const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+
+const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+
+export { auth, firestore, googleProvider, signInWithGoogle };
 
 export default firebase;

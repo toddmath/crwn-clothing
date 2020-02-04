@@ -1,5 +1,5 @@
 /* eslint-disable react/no-children-prop */
-import React, { useEffect, StrictMode, lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -27,35 +27,33 @@ const App = ({ checkUserSession, currentUser }) => {
   return (
     <>
       <GlobalStyle />
-      <StrictMode>
-        <Header />
-        <ErrorBoundary>
-          <Suspense fallback={<Spinner />}>
-            <Switch location={location}>
-              <Route exact path='/'>
-                <HomePage />
-              </Route>
-              <Route path='/shop'>
-                <ShopPage />
-              </Route>
-              <Route exact path='/checkout'>
-                <CheckOutPage />
-              </Route>
-              <Route
-                exact
-                path='/signin'
-                render={() =>
-                  currentUser ? (
-                    <Redirect strict from='/signin' to='/' />
-                  ) : (
-                    <SignInAndSignUpPage />
-                  )
-                }
-              />
-            </Switch>
-          </Suspense>
-        </ErrorBoundary>
-      </StrictMode>
+      <Header />
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Switch location={location}>
+            <Route exact path='/'>
+              <HomePage />
+            </Route>
+            <Route path='/shop'>
+              <ShopPage />
+            </Route>
+            <Route exact path='/checkout'>
+              <CheckOutPage />
+            </Route>
+            <Route
+              exact
+              path='/signin'
+              render={() =>
+                currentUser ? (
+                  <Redirect strict from='/signin' to='/' />
+                ) : (
+                  <SignInAndSignUpPage />
+                )
+              }
+            />
+          </Switch>
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 };
