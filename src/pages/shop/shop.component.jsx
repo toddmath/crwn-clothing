@@ -4,7 +4,6 @@ import { createStructuredSelector } from 'reselect';
 import { Route, useRouteMatch } from 'react-router-dom';
 
 import { Spinner, ScrollToTopOnMount, ErrorBoundary } from '../../components';
-// import ErrorBoundary from '../../components/error-boundary/error-boundary.component';
 
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 import { selectIsCollectionFetching } from '../../redux/shop/shop.selectors';
@@ -14,7 +13,6 @@ import { ShopPageContainer } from './shop.styles';
 const CollectionsOverviewContainer = lazy(() =>
   import('../../components/collections-overview/collections-overview.container')
 );
-
 const CollectionPageContainer = lazy(() =>
   import('../collection/collection.container')
 );
@@ -34,20 +32,17 @@ export const ShopPage = ({ fetchCollectionsStart }) => {
           <Route exact path={path}>
             <CollectionsOverviewContainer />
           </Route>
+        </Suspense>
+        <Suspense fallback={<Spinner />}>
           <Route
             path={`${path}/:collectionId`}
             component={CollectionPageContainer}
-            key='collection'
           />
         </Suspense>
       </ErrorBoundary>
     </ShopPageContainer>
   );
 };
-
-// const mapDispatchToProps = dispatch => ({
-//   fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
-// });
 
 const mapDispatchToProps = {
   fetchCollectionsStart,

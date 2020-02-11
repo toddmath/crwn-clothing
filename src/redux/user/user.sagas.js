@@ -1,7 +1,7 @@
-import { takeLatest, put, all, call } from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 
+import { createRootSaga, createTakeLatest } from '../helpers/saga.helpers';
 import UserActionTypes from './user.types';
-
 import {
   signInSuccess,
   signInFailure,
@@ -10,7 +10,6 @@ import {
   signUpSuccess,
   signUpFailure,
 } from './user.actions';
-
 import {
   auth,
   googleProvider,
@@ -18,19 +17,23 @@ import {
   getCurrentUser,
 } from '../../firebase/firebase.utils';
 
-function* getSnapshotFromUserAuth(userAuth, additionalData) {
+const {
+  GOOGLE_SIGN_IN_START,
+  EMAIL_SIGN_IN_START,
+  CHECK_USER_SESSION,
+  SIGN_OUT_START,
+  SIGN_UP_START,
+  SIGN_UP_SUCCESS,
+} = UserActionTypes;
+
+function* getSnapshotFromUserAuth(userAuth, otherData) {
   try {
-    const userRef = yield call(
-      createUserProfileDocument,
-      userAuth,
-      additionalData
-    );
+    const userRef = yield call(createUserProfileDocument, userAuth, otherData);
     const userSnapshot = yield userRef.get();
     const { createdAt, ...normalizedUser } = userSnapshot.data();
-
     yield put(signInSuccess({ id: userSnapshot.id, ...normalizedUser }));
   } catch (error) {
-    yield put(signInFailure(error));
+    yield put(signInFailure(error.message));
   }
 }
 
@@ -48,17 +51,19 @@ function* signInWithEmail({ payload: { email, password } }) {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
   } catch (error) {
-    yield put(signInFailure(error));
+    yield put(signInFailure(error.message));
   }
 }
 
 function* isUserAuthenticated() {
   try {
     const userAuth = yield getCurrentUser();
-    if (!userAuth) return;
-    yield getSnapshotFromUserAuth(userAuth);
+    // if (!userAuth) return;
+    if (userAuth) {
+      yield getSnapshotFromUserAuth(userAuth);
+    }
   } catch (error) {
-    yield put(signInFailure(error));
+    yield put(signInFailure(error.message));
   }
 }
 
@@ -67,7 +72,7 @@ function* signOut() {
     yield auth.signOut();
     yield put(signOutSuccess());
   } catch (error) {
-    yield put(signOutFailure(error));
+    yield put(signOutFailure(error.message));
   }
 }
 
@@ -76,7 +81,7 @@ function* signUp({ payload: { email, password, displayName } }) {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     yield put(signUpSuccess({ user, additionalData: { displayName } }));
   } catch (error) {
-    yield put(signUpFailure(error));
+    yield put(signUpFailure(error.message));
   }
 }
 
@@ -84,40 +89,32 @@ function* signInAfterSignUp({ payload: { user, additionalData } }) {
   yield getSnapshotFromUserAuth(user, additionalData);
 }
 
-function* onGoogleSignInStart() {
-  yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
-}
+const onGoogleSignInStart = createTakeLatest(
+  GOOGLE_SIGN_IN_START,
+  signInWithGoogle
+);
+const onEmailSignInStart = createTakeLatest(
+  EMAIL_SIGN_IN_START,
+  signInWithEmail
+);
+const onCheckUserSession = createTakeLatest(
+  CHECK_USER_SESSION,
+  isUserAuthenticated
+);
+const onSignOutStart = createTakeLatest(SIGN_OUT_START, signOut);
+const onSignUpStart = createTakeLatest(SIGN_UP_START, signUp);
+const onSignUpSuccess = createTakeLatest(SIGN_UP_SUCCESS, signInAfterSignUp);
 
-function* onEmailSignInStart() {
-  yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
-}
+const sagas = [
+  onGoogleSignInStart,
+  onEmailSignInStart,
+  isUserAuthenticated,
+  onSignOutStart,
+  onSignUpStart,
+  onSignUpSuccess,
+];
 
-function* onCheckUserSession() {
-  yield takeLatest(UserActionTypes.CHECK_USER_SESSION, isUserAuthenticated);
-}
-
-function* onSignOutStart() {
-  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
-}
-
-function* onSignUpStart() {
-  yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
-}
-
-function* onSignUpSuccess() {
-  yield takeLatest(UserActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
-}
-
-function* userSagas() {
-  yield all([
-    call(onGoogleSignInStart),
-    call(onEmailSignInStart),
-    call(isUserAuthenticated),
-    call(onSignOutStart),
-    call(onSignUpStart),
-    call(onSignUpSuccess),
-  ]);
-}
+const userSagas = createRootSaga(sagas);
 
 export {
   getSnapshotFromUserAuth,

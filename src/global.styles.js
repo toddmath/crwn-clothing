@@ -1,53 +1,48 @@
 import { createGlobalStyle } from 'styled-components/macro';
 
+import { systemFontFace } from './fontFaces';
+import { media } from './helpers';
+
 /* CSS */
 export const GlobalStyle = createGlobalStyle`
+  ${systemFontFace};
   html {
     font-size: 10px;
-
-    @media screen and (max-width: 800px) {
-      font-size: 9px;
-    }
-
-    @media screen and (max-width: 400px) {
-      font-size: 8px;
-    }
+    ${media.tablet`font-size: 9px;`}
+    ${media.phablet`font-size: 8px;`}
   }
-
   h2 {
     font-weight: 600;
   }
-
   body {
-    font-family: 'Open Sans Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-family: 'Open Sans Condensed', 'system-ui', sans-serif;
     padding: 2rem 3rem;
     max-width: 100vw;
     color: #212121;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-    @media  screen and (max-width: 1014px) {
-      padding: 2rem 3rem;
-    }
-
-    @media screen and (max-width: 800px) {
-      /* padding: 10px calc(3vw - 4px); */
-      padding: 1rem;
+    ${media.desktop`padding: 2rem 3rem;`}
+    ${media.tablet`padding: 1rem;`}
+    /* box-sizing: border-box; */
+    &&, &:before, &:after {
+      box-sizing: border-box;
     }
   }
-
-  a:link,
-  a:visited {
+  a:link {
     text-decoration: none;
     color: #212121;
   }
-
-  *, *:before, *:after {
-    box-sizing: border-box;
+  a:visited {
+    color: #212121;
+    text-decoration: none;
   }
-
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  }
+  #root {
+    &&, &:before, &:after, & div {
+      box-sizing: border-box;
+    }
   }
 `;

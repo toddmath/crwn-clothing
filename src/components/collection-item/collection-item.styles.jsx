@@ -2,8 +2,8 @@ import styled from 'styled-components/macro';
 import posed from 'react-pose';
 
 import CustomButton from '../custom-button/custom-button.component';
+import { media } from '../../helpers';
 
-/* CSS */
 export const CollectionItemContainer = styled.div`
   max-width: 28vw;
   min-width: 22vw;
@@ -15,22 +15,17 @@ export const CollectionItemContainer = styled.div`
   justify-content: space-between;
   position: relative;
   transition: all 330ms cubic-bezier(0.15, 0.48, 0.56, 0.98) 38ms !important;
-
   &:hover,
   &:focus {
     .image {
       opacity: 0.8;
     }
-
     button {
       opacity: 0.85;
       display: flex;
     }
   }
-
-  @media screen and (max-width: 55em) {
-    /* width: 46vw; */
-    /* width: calc(50% - 10px); */
+  ${media.tablet`
     width: 100%;
     min-width: 44vw;
     max-width: 50vw;
@@ -48,14 +43,13 @@ export const CollectionItemContainer = styled.div`
         display: flex;
       }
     }
-  }
-
-  @media screen and (max-width: 30em) {
+  `}
+  ${media.phablet`
     min-width: 90vw;
     width: 100%;
     min-height: 90vw;
     height: 100%;
-  }
+  `}
 `;
 
 export const AddButton = styled(CustomButton)`
@@ -73,12 +67,11 @@ export const AddButton2 = styled(CustomButton)`
   top: 25.5rem;
   display: none;
   font-weight: 600;
-
-  @media screen and (max-width: 55em) {
+  ${media.tablet`
     display: block;
     min-width: unset;
     padding: 0 1rem;
-  }
+  `}
 `;
 
 AddButton.displayName = 'AddButton';
@@ -101,10 +94,7 @@ export const CollectionFooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 1.8rem;
-
-  @media screen and (max-width: 30em) {
-    font-size: 2rem;
-  }
+  ${media.phablet`font-size: 2rem;`}
 `;
 
 /* CSS */
@@ -153,16 +143,17 @@ export const Box = styled(
   margin: auto;
   padding: auto;
   font-weight: 700;
-
-  @media screen and (max-width: 55em) {
+  ${media.tablet`top: 70%;`}
+  ${media.phablet`top: 75%;`}
+`;
+/*
+@media screen and (max-width: 55em) {
     top: 70%;
   }
-
   @media screen and (max-width: 30em) {
     top: 75%;
   }
-`;
-
+*/
 // export const CollectionItemContainer = styled.div`
 //   width: 22vw;
 //   max-width: 100%;

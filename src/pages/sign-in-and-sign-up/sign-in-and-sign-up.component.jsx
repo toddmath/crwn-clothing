@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { SignIn, SignUp } from '../../components';
 
 import {
   SignInAndSignUpContainer,
-  SignInAndSignUpInnerContainer,
+  SignInContainer,
+  SignUpContainer,
 } from './sign-in-and-sign-up.styles';
 
 const SignInAndSignUpPage = () => (
   <SignInAndSignUpContainer>
-    <SignInAndSignUpInnerContainer>
+    <SignInContainer>
       <SignIn />
+    </SignInContainer>
+    <SignUpContainer>
       <SignUp />
-    </SignInAndSignUpInnerContainer>
+    </SignUpContainer>
   </SignInAndSignUpContainer>
 );
 
-export default SignInAndSignUpPage;
+export default memo(SignInAndSignUpPage);

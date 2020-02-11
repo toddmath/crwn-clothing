@@ -1,14 +1,8 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { connect } from 'react-redux';
-import { useRouteMatch, useParams } from 'react-router-dom';
-import styled from 'styled-components/macro';
 
+import { selectCollection } from '../../redux/shop/shop.selectors';
 import { CollectionItem } from '../../components';
-import {
-  selectCollection,
-  selectIsCollectionsLoaded,
-} from '../../redux/shop/shop.selectors';
 
 import {
   CollectionPageContainer,

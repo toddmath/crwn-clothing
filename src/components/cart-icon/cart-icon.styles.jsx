@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+
 import { Shop } from 'grommet-icons';
 
 export const CartContainer = styled.div`

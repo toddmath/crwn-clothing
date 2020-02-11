@@ -1,14 +1,14 @@
 import styled from 'styled-components/macro';
 
-/* CSS */
+import { media } from '../../helpers';
+
 export const SignInContainer = styled.div`
-  width: 38rem;
+  width: 100%;
+  min-width: 32rem;
   display: flex;
   flex-direction: column;
-
-  @media screen and (max-width: 30em) {
-    margin: 1rem;
-  }
+  text-align: center;
+  ${media.phablet`margin: 1rem;`}
 `;
 
 export const SignInTitle = styled.h2`
@@ -19,17 +19,8 @@ export const SignInTitle = styled.h2`
 `;
 
 export const ButtonsBarContainer = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   box-sizing: border-box;
-
-  @media screen and (max-width: 30em) {
-    margin: 1rem;
-    width: 30rem;
-  }
-`;
-
-export const SignInSubTitle = styled.span`
-  font-size: 2rem;
-  text-align: center;
 `;

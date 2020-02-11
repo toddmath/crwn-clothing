@@ -1,28 +1,34 @@
-import React from 'react';
+import React, { memo, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  FormInputContainer,
+  StyledInput,
   FormInputLabel,
   GroupContainer,
 } from './form-input.styles';
 
-const FormInput = ({ handleChange, label, ref, ...props }) => (
-  <GroupContainer>
-    <FormInputContainer
-      data-testid='form-input'
-      onChange={handleChange}
-      aria-required='true'
-      required
-      {...props}
-    />
-    {label && (
-      <FormInputLabel className={props.value?.length ? 'shrink' : ''}>
-        {label}
-      </FormInputLabel>
-    )}
-  </GroupContainer>
-);
+const FormInput = ({ handleChange, label, ref, ...props }) => {
+  const inputRef = useRef();
+
+  return (
+    <GroupContainer>
+      <StyledInput
+        data-testid='form-input'
+        ref={inputRef}
+        onChange={handleChange}
+        onMouseEnter={() => inputRef.current.focus()}
+        aria-required='true'
+        required
+        {...props}
+      />
+      {label && (
+        <FormInputLabel className={props.value?.length ? 'shrink' : ''}>
+          {label}
+        </FormInputLabel>
+      )}
+    </GroupContainer>
+  );
+};
 
 FormInput.propTypes = {
   handleChange: PropTypes.func,
@@ -31,4 +37,4 @@ FormInput.propTypes = {
   value: PropTypes.string,
 };
 
-export default FormInput;
+export default memo(FormInput);

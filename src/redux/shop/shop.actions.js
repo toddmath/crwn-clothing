@@ -1,34 +1,45 @@
-import {
-  convertCollectionsSnapshotToMap,
-  firestore,
-} from '../../firebase/firebase.utils';
 import ShopActionTypes from './shop.types';
+import {
+  firestore,
+  convertCollectionsSnapshotToMap,
+} from '../../firebase/firebase.utils';
+
+const {
+  FETCH_COLLECTIONS_START,
+  FETCH_COLLECTIONS_SUCCESS,
+  FETCH_COLLECTIONS_FAILURE,
+} = ShopActionTypes;
 
 export const fetchCollectionsStart = () => ({
-  type: ShopActionTypes.FETCH_COLLECTIONS_START,
+  type: FETCH_COLLECTIONS_START,
 });
 
 export const fetchCollectionsSuccess = collectionsMap => ({
-  type: ShopActionTypes.FETCH_COLLECTIONS_SUCCESS,
+  type: FETCH_COLLECTIONS_SUCCESS,
   payload: collectionsMap,
 });
 
 export const fetchCollectionsFailure = errorMessage => ({
-  type: ShopActionTypes.FETCH_COLLECTIONS_FAILURE,
+  type: FETCH_COLLECTIONS_FAILURE,
   payload: errorMessage,
 });
 
-export const fetchCollectionsStartAsync = () => {
-  return dispatch => {
-    const collectionRef = firestore.collection('collections');
-    dispatch(fetchCollectionsStart());
+export const fetchCollectionsStartAsync = () => async dispatch => {
+  const collectionRef = firestore.collection('collections');
+  dispatch(fetchCollectionsStart());
 
-    collectionRef
-      .get()
-      .then(snapShot => {
-        const collectionsMap = convertCollectionsSnapshotToMap(snapShot);
-        dispatch(fetchCollectionsSuccess(collectionsMap));
-      })
-      .catch(error => dispatch(fetchCollectionsFailure(error.message)));
-  };
+  try {
+    const snapShot = await collectionRef.get();
+    const collectionsMap = convertCollectionsSnapshotToMap(snapShot);
+    dispatch(fetchCollectionsSuccess(collectionsMap));
+  } catch (error) {
+    dispatch(fetchCollectionsFailure(error.message));
+  }
+  // collectionRef
+  //   .get()
+  //   .then(snapShot => {
+  //     const collectionsMap = convertCollectionsSnapshotToMap(snapShot);
+  //     dispatch(fetchCollectionsSuccess(collectionsMap));
+  //   })
+  //   .catch(error => dispatch(fetchCollectionsFailure(error.message)));
 };

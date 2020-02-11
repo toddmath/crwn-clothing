@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Spinner from '../spinner/spinner.component';
+import { Spinner } from '../index';
 
 const WithSpinner = WrappedComponent => ({ isLoading, ...otherProps }) => {
   return isLoading ? <Spinner /> : <WrappedComponent {...otherProps} />;

@@ -43,10 +43,6 @@ CollectionItem.propTypes = {
   }).isRequired,
 };
 
-// const mapDispatchToProps = dispatch => ({
-//   addItem: item => dispatch(addItem(item)),
-// });
-
 const mapDispatchToProps = {
   addItem,
 };

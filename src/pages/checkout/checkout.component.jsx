@@ -11,43 +11,49 @@ import {
 
 import {
   CheckoutPageContainer,
-  CheckOutHeaderContainer,
-  HeaderBlock,
   TotalContainer,
   WarningContainer,
+  CheckOutTable,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  PayContainer,
 } from './checkout.styles';
+
+const headers = ['product', 'description', 'quantity', 'price', 'remove'];
 
 export const CheckOutPage = ({ cartItems, total }) => (
   <CheckoutPageContainer>
-    <CheckOutHeaderContainer>
-      <HeaderBlock>
-        <span>PRODUCT</span>
-      </HeaderBlock>
-      <HeaderBlock>
-        <span>DESCRIPTION</span>
-      </HeaderBlock>
-      <HeaderBlock>
-        <span>QUANTITY</span>
-      </HeaderBlock>
-      <HeaderBlock>
-        <span>PRICE</span>
-      </HeaderBlock>
-      <HeaderBlock>
-        <span>REMOVE</span>
-      </HeaderBlock>
-    </CheckOutHeaderContainer>
-    {cartItems.map(cartItem => (
-      <CheckOutItem key={cartItem.id} cartItem={cartItem} />
-    ))}
-    <TotalContainer>
-      <span>TOTAL ${total}</span>
-    </TotalContainer>
-    <WarningContainer>
-      *Please use the following for test credit card payments*
-      <br />
-      4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
-    </WarningContainer>
-    <StripeCheckoutButton price={total} />
+    <CheckOutTable>
+      <TableHeader>
+        <TableRow scope='row'>
+          {headers.map(text => (
+            <TableHead key={text}>{text}</TableHead>
+          ))}
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {cartItems.map(cartItem => (
+          <CheckOutItem key={cartItem.id} cartItem={cartItem} />
+        ))}
+      </TableBody>
+    </CheckOutTable>
+    <PayContainer>
+      <TotalContainer>
+        <span>total ${total}</span>
+      </TotalContainer>
+      <WarningContainer>
+        *Please use the following for test credit card payments*
+        <br />
+        VISA: <span>4242 4242 4242 4242</span>
+        <br />
+        MASTERCARD: <span>5555 5555 5555 4444</span>
+        <br />
+        Exp: Any Future Date, CVV: Any 3 Digits
+      </WarningContainer>
+      <StripeCheckoutButton price={total} />
+    </PayContainer>
   </CheckoutPageContainer>
 );
 

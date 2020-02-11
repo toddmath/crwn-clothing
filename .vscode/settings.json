@@ -1,4 +1,11 @@
 {
+  /* as of 2/10/2020 */
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
+  "stylelint.enable": true,
+  "stylelint.packageManager": "yarn",
+  /* end of 2/10/2020 */
   "cSpell.words": ["Buton", "Camo", "Yeezy", "lqip"],
   "javascript.format.enable": false,
   "terminal.integrated.experimentalRefreshOnResume": true,
@@ -62,6 +69,12 @@
   "jest.runAllTestsFirst": true,
   "jest.autoEnable": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "[html]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": false
+    }
   }
 }

@@ -10,11 +10,12 @@ import { Spinner, ErrorBoundary, Header } from './components';
 import { checkUserSession } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
-const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
-const ShopPage = lazy(() => import('./pages/shop/shop.component'));
-const CheckOutPage = lazy(() => import('./pages/checkout/checkout.component'));
-const SignInAndSignUpPage = lazy(() =>
-  import('./pages/sign-in-and-sign-up/sign-in-and-sign-up.component')
+const lazyImport = fileName => lazy(() => import(`${fileName}`));
+const HomePage = lazyImport('./pages/homepage/homepage.component');
+const ShopPage = lazyImport('./pages/shop/shop.component');
+const CheckOutPage = lazyImport('./pages/checkout/checkout.component');
+const SignInAndSignUpPage = lazyImport(
+  './pages/sign-in-and-sign-up/sign-in-and-sign-up.component'
 );
 
 const App = ({ checkUserSession, currentUser }) => {
@@ -61,10 +62,6 @@ const App = ({ checkUserSession, currentUser }) => {
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
-
-// const mapDispatchToProps = dispatch => ({
-//   checkUserSession: () => dispatch(checkUserSession()),
-// });
 
 const mapDispatchToProps = {
   checkUserSession,

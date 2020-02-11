@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
 import { selectCartItems } from '../../redux/cart/cart.selectors';
 
@@ -11,13 +13,14 @@ import {
   CartDropDownButton,
   CartDropdownContainer,
   CartItemsContainer,
-  EmptyMessageContainer,
+  EmptyMessage,
 } from './cart-dropdown.styles';
 
 export const CartDropdown = ({ cartItems, dispatch }) => {
   const history = useHistory();
 
-  const handleClick = () => {
+  const handleClick = e => {
+    if (e) e.preventDefault();
     history.push('/checkout');
     dispatch(toggleCartHidden());
   };
@@ -30,14 +33,25 @@ export const CartDropdown = ({ cartItems, dispatch }) => {
             <CartItem key={cartItem.id} item={cartItem} />
           ))
         ) : (
-          <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
+          <EmptyMessage>Your cart is empty</EmptyMessage>
         )}
       </CartItemsContainer>
-      <CartDropDownButton onClick={handleClick}>
-        GO TO CHECKOUT
-      </CartDropDownButton>
+      <CartDropDownButton onClick={handleClick}>checkout</CartDropDownButton>
     </CartDropdownContainer>
   );
+};
+
+CartDropdown.propTypes = {
+  cartItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      quantity: PropTypes.number.isRequired,
+    })
+  ),
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

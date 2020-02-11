@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ import {
 
 export const MenuItem = ({ title, imageUrl, size, linkUrl }) => {
   const history = useHistory();
-  let match = useRouteMatch(); // eslint-disable-line prefer-const
+  const match = useRouteMatch();
 
   const handleHistory = () => history.push(`${match.url}${linkUrl}`);
 
@@ -42,4 +42,4 @@ MenuItem.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default MenuItem;
+export default memo(MenuItem);

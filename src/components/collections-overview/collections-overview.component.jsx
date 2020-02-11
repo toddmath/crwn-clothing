@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -43,4 +43,6 @@ const mapStateToProps = createStructuredSelector({
   collections: selectCollectionsForPreview,
 });
 
-export default connect(mapStateToProps)(CollectionsOverview);
+const MemoCollectionsOverview = memo(CollectionsOverview);
+
+export default connect(mapStateToProps)(MemoCollectionsOverview);

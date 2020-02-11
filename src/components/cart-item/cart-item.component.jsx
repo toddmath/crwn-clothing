@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+
 import {
   CartItemContainer,
   CartItemImage,
@@ -18,5 +19,10 @@ const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
     </ItemDetailsContainer>
   </CartItemContainer>
 );
+
+CartItem.whyDidYouRender = {
+  logOnDifferentValues: true,
+  customName: 'CartItem',
+};
 
 export default memo(CartItem);

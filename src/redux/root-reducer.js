@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 
-import { reducer as formReducer } from 'redux-form';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -20,7 +19,6 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   directory: directoryReducer,
   shop: shopReducer,
-  form: formReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

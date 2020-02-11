@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -30,10 +30,10 @@ export const Header = ({ currentUser, hidden, signOutStart }) => (
     </LogoContainer>
     <OptionsContainer>
       <OptionNavLink title='Home' aria-label='Home' exact to='/'>
-        HOME
+        Home
       </OptionNavLink>
       <OptionNavLink title='Shop' aria-label='Shop' to='/shop'>
-        SHOP
+        Shop
       </OptionNavLink>
       {currentUser ? (
         <OptionNavLink
@@ -43,11 +43,11 @@ export const Header = ({ currentUser, hidden, signOutStart }) => (
           to='/'
           onClick={signOutStart}
         >
-          SIGN OUT
+          Sign Out
         </OptionNavLink>
       ) : (
         <OptionNavLink title='sign in' aria-label='sign in' to='/signin'>
-          SIGN IN
+          Sign In
         </OptionNavLink>
       )}
       <CartIcon />
@@ -75,4 +75,14 @@ const mapDispatchToProps = {
   signOutStart,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+function arePropsEqual(prevProps, nextProps) {
+  // ['header', 'currentUser'].every(val => prevProps[val] === nextProps[val]);
+  return (
+    prevProps.currentUser === nextProps.currentUser &&
+    prevProps.hidden === nextProps.hidden
+  );
+}
+
+const MemoHeader = memo(Header, arePropsEqual);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MemoHeader);

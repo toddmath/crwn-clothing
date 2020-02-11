@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import styled from 'styled-components/macro'; // eslint-disable-line no-unused-vars
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import CustomButton from '../custom-button/custom-button.component';
-import FormInput from '../form-input/form-input.component';
-
+import { FormInput } from '../index';
 import { signUpStart } from '../../redux/user/user.actions';
-
-import { SignUpContainer, SignUpTitle, SignUpSubTitle } from './sign-up.styles';
+import { SignUpContainer, SignUpTitle, SignUpButton } from './sign-up.styles';
 
 const SignUp = ({ signUpStart }) => {
   const [userCreds, setUserCreds] = useState({
@@ -16,33 +14,38 @@ const SignUp = ({ signUpStart }) => {
     password: '',
     confirmPassword: '',
   });
-
   const { displayName, email, password, confirmPassword } = userCreds;
 
-  const handleSubmit = async event => {
-    event.preventDefault();
+  const handleSubmit = async evt => {
+    if (evt) evt.preventDefault();
     if (password !== confirmPassword) {
       alert("passwords don't match");
       return;
     }
-    signUpStart({ displayName, email, password });
+    await signUpStart({ displayName, email, password });
   };
 
-  const handleChange = event => {
-    const { name, value } = event.target;
-    setUserCreds({ ...userCreds, [name]: value });
-  };
+  const handleCreds = useCallback(
+    e => setUserCreds({ ...userCreds, [e.target.name]: e.target.value }),
+    [userCreds]
+  );
 
   return (
     <SignUpContainer>
-      <SignUpTitle> I do not have an account </SignUpTitle>{' '}
-      <SignUpSubTitle> Sign up with your email and password </SignUpSubTitle>{' '}
+      <SignUpTitle>I do not have an account</SignUpTitle>
+      <span
+        css={`
+          font-size: 2rem;
+        `}
+      >
+        Sign up with your email and password
+      </span>
       <form className='sign-up-form' onSubmit={handleSubmit}>
         <FormInput
           type='text'
           name='displayName'
           value={displayName}
-          onChange={handleChange}
+          onChange={handleCreds}
           label='Display Name'
           aria-label='Display Name'
         />
@@ -50,7 +53,7 @@ const SignUp = ({ signUpStart }) => {
           type='email'
           name='email'
           value={email}
-          onChange={handleChange}
+          onChange={handleCreds}
           label='Email'
           aria-label='Email'
           autoComplete='username'
@@ -59,7 +62,7 @@ const SignUp = ({ signUpStart }) => {
           type='password'
           name='password'
           value={password}
-          onChange={handleChange}
+          onChange={handleCreds}
           label='Password'
           aria-label='Password'
           autoComplete='new-password'
@@ -68,12 +71,12 @@ const SignUp = ({ signUpStart }) => {
           type='password'
           name='confirmPassword'
           value={confirmPassword}
-          onChange={handleChange}
+          onChange={handleCreds}
           label='Confirm Password'
           aria-label='Confirm Password'
           autoComplete='new-password'
         />
-        <CustomButton type='submit'> SIGN UP </CustomButton>
+        <SignUpButton type='submit'>Sign Up</SignUpButton>
       </form>
     </SignUpContainer>
   );
@@ -82,10 +85,6 @@ const SignUp = ({ signUpStart }) => {
 SignUp.propTypes = {
   signUpStart: PropTypes.func.isRequired,
 };
-
-// const mapDispatchToProps = dispatch => ({
-//   signUpStart: userCreds => dispatch(signUpStart(userCreds)),
-// });
 
 const mapDispatchToProps = {
   signUpStart,

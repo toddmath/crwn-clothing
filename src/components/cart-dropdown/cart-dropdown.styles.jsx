@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
+
 import CustomButton from '../custom-button/custom-button.component';
 
-/* CSS */
 export const CartDropdownContainer = styled.div`
   position: absolute;
   width: 24rem;
@@ -16,18 +16,20 @@ export const CartDropdownContainer = styled.div`
   z-index: 5;
 `;
 
-/* CSS */
 export const CartDropDownButton = styled(CustomButton)`
+  text-transform: uppercase;
   margin-top: auto;
+  font-size: 1.8rem;
+  line-height: 4.5rem;
+  font-weight: 500;
+  letter-spacing: 0.38rem;
 `;
 
-/* CSS */
-export const EmptyMessageContainer = styled.span`
+export const EmptyMessage = styled.span`
   font-size: 1.8rem;
   margin: 5rem auto;
 `;
 
-/* CSS */
 export const CartItemsContainer = styled.div`
   height: 24rem;
   display: flex;

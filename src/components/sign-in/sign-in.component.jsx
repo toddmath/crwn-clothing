@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import styled from 'styled-components/macro'; // eslint-disable-line no-unused-vars
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import FormInput from '../form-input/form-input.component';
-import CustomButton from '../custom-button/custom-button.component';
+// import FormInput from '../form-input/form-input.component';
+// import CustomButton from '../custom-button/custom-button.component';
+import { FormInput, CustomButton } from '../index';
 
 import {
   googleSignInStart,
@@ -12,9 +14,8 @@ import {
 
 import {
   SignInContainer,
-  SignInTitle,
   ButtonsBarContainer,
-  SignInSubTitle,
+  SignInTitle,
 } from './sign-in.styles';
 
 export const SignIn = ({ emailSignInStart, googleSignInStart }) => {
@@ -30,49 +31,51 @@ export const SignIn = ({ emailSignInStart, googleSignInStart }) => {
     await emailSignInStart(email, password);
   };
 
-  const handleChange = event => {
-    const { value, name } = event.target;
-    setUserCreds({ ...userCreds, [name]: value });
-  };
+  const handleCreds = useCallback(
+    e => setUserCreds({ ...userCreds, [e.target.name]: e.target.value }),
+    [userCreds]
+  );
 
   return (
     <SignInContainer>
       <SignInTitle>I already have an account</SignInTitle>
-      <SignInSubTitle>Sign in with your email and password</SignInSubTitle>
+      <span
+        css={`
+          font-size: 2rem;
+        `}
+      >
+        Sign in with your email and password
+      </span>
 
       <form id='form' onSubmit={handleSubmit}>
         <FormInput
           name='email'
           type='email'
           value={email}
-          handleChange={handleChange}
+          handleChange={handleCreds}
           label='Email'
           aria-label='Email'
           autoComplete='username'
-          aria-required='true'
           data-testid='email-input'
-          required
         />
         <FormInput
           name='password'
           type='password'
           value={password}
-          handleChange={handleChange}
+          handleChange={handleCreds}
           label='Password'
           aria-label='Password'
           autoComplete='current-password'
-          aria-required='true'
           data-testid='password-input'
-          required
         />
         <ButtonsBarContainer>
-          <CustomButton type='submit'> Sign in </CustomButton>
+          <CustomButton type='submit'>Sign in</CustomButton>
           <CustomButton
             type='button'
             onClick={googleSignInStart}
             isGoogleSignIn
           >
-            Sign in with Google
+            Google Sign In
           </CustomButton>
         </ButtonsBarContainer>
       </form>

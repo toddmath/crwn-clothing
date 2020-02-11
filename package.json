@@ -5,12 +5,11 @@
   "homepage": "https://crown-clothes.com/",
   "dependencies": {
     "@bit/bondz.react-epic-spinners.spring-spinner": "^0.3.0",
-    "@reduxjs/toolkit": "^1.2.3",
     "axios": "^0.19.2",
-    "dayjs": "^1.8.19",
-    "firebase": "^7.8.0",
+    "dayjs": "^1.8.20",
+    "firebase": "^7.8.1",
     "grommet-icons": "^4.4.0",
-    "immer": "^5.3.2",
+    "immer": "^5.3.5",
     "lodash.isequal": "^4.5.0",
     "lodash.memoize": "^4.1.2",
     "lodash.reduce": "^4.6.0",
@@ -29,17 +28,15 @@
     "react-stripe-checkout": "^2.6.3",
     "react-waypoint": "^9.0.2",
     "redux": "^4.0.5",
-    "redux-form": "^8.2.6",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.1.3",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "rpi.macro": "^0.1.1",
-    "styled-components": "^5.0.0",
+    "styled-components": "^5.0.1",
     "typeface-open-sans": "^0.0.75",
-    "typeface-open-sans-condensed": "^0.0.72",
-    "typeface-source-sans-pro": "^0.0.75"
+    "typeface-open-sans-condensed": "^0.0.72"
   },
   "devDependencies": {
     "@testing-library/react": "^9.4.0",
@@ -51,14 +48,14 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "18.0.1",
     "eslint-config-prettier": "^6.10.0",
-    "eslint-config-react-app": "^5.1.0",
+    "eslint-config-react-app": "^5.2.0",
     "eslint-plugin-flowtype": "^4.6.0",
     "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jest": "^23.6.0",
+    "eslint-plugin-jest": "^23.7.0",
     "eslint-plugin-jest-formatting": "^1.2.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.18.2",
+    "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^2.3.0",
     "first-input-delay": "^0.1.3",
     "husky": "^4.2.1",
@@ -75,9 +72,10 @@
     "react-test-renderer": "^16.12.0",
     "redux-devtools-extension": "^2.13.8",
     "redux-saga-testing": "^2.0.0",
-    "stylelint": "^13.0.0",
+    "stylelint": "^13.1.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-high-performance-animation": "^1.4.0",
     "stylelint-processor-styled-components": "^1.9.0"
   },
   "peerDependencies": {
@@ -86,7 +84,7 @@
   },
   "resolutions": {
     "**/**/serialize-javascript": "^2.1.2",
-    "**/**/handlebars": "^4.7.2"
+    "**/**/handlebars": "^4.7.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -124,8 +122,8 @@
       "prettier --config .prettierrc.js --write",
       "git add"
     ],
-    "src/**/*.styles.js": [
-      "stylelint --fix",
+    "src/**/*.styles.jsx": [
+      "stylelint",
       "git add"
     ]
   }
