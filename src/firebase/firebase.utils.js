@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-use-before-define */
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -16,14 +15,17 @@ export const config = {
 };
 
 firebase.initializeApp(config);
-// firebase.firestore().enablePersistence();
 
+// firebase.firestore().enablePersistence();
 // const perf = firebase.performance();
 
-export const createUserProfileDocument = async (userAuth, additionalData) => {
+const auth = firebase.auth();
+const firestore = firebase.firestore();
+
+async function createUserProfileDocument(userAuth, additionalData) {
   if (!userAuth) return;
 
-  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const userRef = await firestore.doc(`users/${userAuth.uid}`);
 
   const snapShot = await userRef.get();
 
@@ -42,25 +44,22 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
 
   return userRef; // eslint-disable-line consistent-return
-};
+}
 
-export const getUserCartRef = async userId => {
+async function getUserCartRef(userId) {
   const cartsRef = firestore.collection('carts').where('userId', '==', userId);
   const snapShot = await cartsRef.get();
 
   if (snapShot.empty) {
-    const cartDocRef = firestore.collection('carts').doc();
+    const cartDocRef = await firestore.collection('carts').doc();
     await cartDocRef.set({ userId, cartItems: [] });
     return cartDocRef;
   }
   return snapShot.docs[0].ref;
-};
+}
 
-export const addCollectionAndDocuments = async (
-  collectionKey,
-  objectsToAdd
-) => {
-  const collectionRef = firestore.collection(collectionKey);
+async function addCollectionAndDocuments(collectionKey, objectsToAdd) {
+  const collectionRef = await firestore.collection(collectionKey);
 
   const batch = firestore.batch();
 
@@ -70,46 +69,73 @@ export const addCollectionAndDocuments = async (
   });
 
   return await batch.commit();
-};
+}
 
-const makeLow = str => String(str).toLowerCase();
-const makeClean = url => encodeURI(makeLow(url));
+const toLow = str => String(str).toLowerCase();
+const clean = url => encodeURI(toLow(url));
 
-export const convertCollectionsSnapshotToMap = collections => {
-  const transformedCollection = collections.docs.map(doc => {
+const mapCollections = array => {
+  return array.docs.map(doc => {
     const { title, items } = doc.data();
-
+    const { id } = doc;
     return {
-      routeName: makeClean(title),
-      id: doc.id,
+      routeName: clean(title),
+      id,
       title,
       items,
     };
   });
-
-  return transformedCollection.reduce((acc, collection) => {
-    acc[makeLow(collection.title)] = collection;
-    return acc;
-  }, {});
 };
 
-export const getCurrentUser = () => {
+const toHashMap = array =>
+  array.reduce((acc, collection) => {
+    const { title } = collection;
+    acc[toLow(title)] = collection;
+    return acc;
+  }, {});
+
+function convertCollectionsSnapshotToMap(collections) {
+  // const transformedCollection = collections.docs.map(doc => {
+  //   const { title, items } = doc.data();
+  //   return {
+  //     routeName: clean(title),
+  //     id: doc.id,
+  //     title,
+  //     items,
+  //   };
+  // });
+
+  return toHashMap(mapCollections(collections));
+}
+
+/**
+ * Helper function that attaches an eventListener onto firebase sign-in and sign-out events.
+ * @returns {Promise} A promise that resolves when `onAuthStateChange` event triggers.
+ */
+function getCurrentUser() {
   return new Promise((resolve, reject) => {
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
       unsubscribe();
       resolve(userAuth);
     }, reject);
   });
-};
+}
 
-const auth = firebase.auth();
-const firestore = firebase.firestore();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
-
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 
 const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
-export { auth, firestore, googleProvider, signInWithGoogle };
+export {
+  auth,
+  firestore,
+  createUserProfileDocument,
+  getUserCartRef,
+  addCollectionAndDocuments,
+  convertCollectionsSnapshotToMap,
+  getCurrentUser,
+  googleProvider,
+  signInWithGoogle,
+};
 
 export default firebase;

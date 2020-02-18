@@ -1,14 +1,16 @@
-/* eslint-disable react/no-children-prop */
 import React, { useEffect, lazy, Suspense } from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-
-import { GlobalStyle } from './global.styles';
-import { Spinner, ErrorBoundary, Header } from './components';
+import { useDispatch } from 'react-redux';
+// import { createStructuredSelector } from 'reselect';
 
 import { checkUserSession } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
+import { useDeepSelector } from './hooks';
+import { CartDropDownProvider } from './context/cart-dropdown.context';
+
+import { GlobalStyle } from './global.styles';
+import Header from './components/header/header.component';
+import { Spinner, ErrorBoundary } from './components';
 
 const lazyImport = fileName => lazy(() => import(`${fileName}`));
 const HomePage = lazyImport('./pages/homepage/homepage.component');
@@ -18,17 +20,21 @@ const SignInAndSignUpPage = lazyImport(
   './pages/sign-in-and-sign-up/sign-in-and-sign-up.component'
 );
 
-const App = ({ checkUserSession, currentUser }) => {
+const App = () => {
   const location = useLocation();
+  const currentUser = useDeepSelector(selectCurrentUser);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    checkUserSession();
-  }, [checkUserSession]);
+    dispatch(checkUserSession());
+  }, [dispatch]);
 
   return (
     <>
       <GlobalStyle />
-      <Header />
+      <CartDropDownProvider>
+        <Header />
+      </CartDropDownProvider>
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
           <Switch location={location}>
@@ -59,12 +65,13 @@ const App = ({ checkUserSession, currentUser }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-});
+// const mapStateToProps = createStructuredSelector({
+//   currentUser: selectCurrentUser,
+// });
 
-const mapDispatchToProps = {
-  checkUserSession,
-};
+// const mapDispatchToProps = {
+//   checkUserSession,
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

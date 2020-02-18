@@ -40,7 +40,15 @@ export const selectIsCollectionFetching = createDeepEqualSelector(
   shop => shop.isFetching
 );
 
+export const makeSelectIsCollectionFetching = () => {
+  return createDeepEqualSelector([selectShop], shop => shop.isFetching);
+};
+
 export const selectIsCollectionsLoaded = createDeepEqualSelector(
   [selectShop],
   shop => !!shop.collections
 );
+
+export const makeSelectIsCollectionsLoaded = () => {
+  return createDeepEqualSelector([selectShop], shop => !!shop.collections);
+};

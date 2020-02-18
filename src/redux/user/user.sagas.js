@@ -1,7 +1,12 @@
 import { put, call } from 'redux-saga/effects';
 
 import { createRootSaga, createTakeLatest } from '../helpers/saga.helpers';
-import UserActionTypes from './user.types';
+import {
+  auth,
+  googleProvider,
+  createUserProfileDocument,
+  getCurrentUser,
+} from '../../firebase/firebase.utils';
 import {
   signInSuccess,
   signInFailure,
@@ -10,12 +15,7 @@ import {
   signUpSuccess,
   signUpFailure,
 } from './user.actions';
-import {
-  auth,
-  googleProvider,
-  createUserProfileDocument,
-  getCurrentUser,
-} from '../../firebase/firebase.utils';
+import UserActionTypes from './user.types';
 
 const {
   GOOGLE_SIGN_IN_START,
@@ -93,28 +93,29 @@ const onGoogleSignInStart = createTakeLatest(
   GOOGLE_SIGN_IN_START,
   signInWithGoogle
 );
+
 const onEmailSignInStart = createTakeLatest(
   EMAIL_SIGN_IN_START,
   signInWithEmail
 );
+
 const onCheckUserSession = createTakeLatest(
   CHECK_USER_SESSION,
   isUserAuthenticated
 );
+
 const onSignOutStart = createTakeLatest(SIGN_OUT_START, signOut);
 const onSignUpStart = createTakeLatest(SIGN_UP_START, signUp);
 const onSignUpSuccess = createTakeLatest(SIGN_UP_SUCCESS, signInAfterSignUp);
 
-const sagas = [
+const userSagas = createRootSaga([
   onGoogleSignInStart,
   onEmailSignInStart,
   isUserAuthenticated,
   onSignOutStart,
   onSignUpStart,
   onSignUpSuccess,
-];
-
-const userSagas = createRootSaga(sagas);
+]);
 
 export {
   getSnapshotFromUserAuth,

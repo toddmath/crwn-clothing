@@ -1,20 +1,13 @@
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
+import { createMakeMapStateToProps } from '../../redux/helpers/selector.helpers';
 
-import { selectIsCollectionFetching } from '../../redux/shop/shop.selectors';
+import { makeSelectIsCollectionFetching } from '../../redux/shop/shop.selectors';
 
-import WithSpinner from '../with-spinner/with-spinner.component';
 import CollectionsOverview from './collections-overview.component';
+import WithSpinnerContainer from '../with-spinner/with-spinner.container';
 
-const mapStateToProps = createStructuredSelector({
-  isLoading: selectIsCollectionFetching,
-});
+const makeMapStateToProps = createMakeMapStateToProps(
+  makeSelectIsCollectionFetching,
+  'isLoading'
+);
 
-// * Redux's compose method essentially curries our methods together nicely
-const CollectionsOverviewContainer = compose(
-  connect(mapStateToProps),
-  WithSpinner
-)(CollectionsOverview);
-
-export default CollectionsOverviewContainer;
+export default WithSpinnerContainer(CollectionsOverview, makeMapStateToProps);

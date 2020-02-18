@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 
-import { SignIn, SignUp } from '../../components';
+import SignUp from '../../components/sign-up/sign-up.component';
+import SignIn from '../../components/sign-in/sign-in.component';
 
 import {
   SignInAndSignUpContainer,

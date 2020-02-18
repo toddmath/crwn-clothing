@@ -1,9 +1,7 @@
 /* eslint-disable prefer-template */
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components/macro';
 
-// import SpringSpinner from '@bit/bondz.react-epic-spinners.spring-spinner';
 import { SpinnerOverlay, Spring } from './spinner.styles';
 
 const SimpleSpringSpinner = ({
@@ -46,15 +44,13 @@ SimpleSpringSpinner.defaultProps = {
   className: '',
 };
 
-const SpringSpinner = memo(SimpleSpringSpinner);
-
 export const Spinner = ({
   color = '#212121',
   size = 20,
   animationDuration,
 }) => (
   <SpinnerOverlay>
-    <SpringSpinner
+    <SimpleSpringSpinner
       size={size}
       color={color}
       animationDuration={animationDuration}

@@ -24,11 +24,13 @@ const toEm = px => toFloat(toFloat(px) / 16).toFixed(2) + 'em'; // eslint-disabl
 const toKeys = obj => Object.keys(obj);
 
 export const media = toKeys(sizes).reduce((acc, key) => {
-  acc[key] = (...args) => css`
-    @media (max-width: ${toEm(sizes[key])}) {
-      ${css(...args)};
-    }
-  `;
+  if (key in sizes) {
+    acc[key] = (...args) => css`
+      @media (max-width: ${toEm(sizes[key])}) {
+        ${css(...args)};
+      }
+    `;
+  }
   return acc;
 }, {});
 

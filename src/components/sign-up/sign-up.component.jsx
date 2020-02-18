@@ -3,7 +3,8 @@ import styled from 'styled-components/macro'; // eslint-disable-line no-unused-v
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { FormInput } from '../index';
+// import { FormInput } from '../index';
+import FormInput from '../form-input/form-input.component';
 import { signUpStart } from '../../redux/user/user.actions';
 import { SignUpContainer, SignUpTitle, SignUpButton } from './sign-up.styles';
 

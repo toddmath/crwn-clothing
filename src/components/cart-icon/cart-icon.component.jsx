@@ -1,45 +1,48 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import posed from 'react-pose';
+import React, { memo } from 'react';
+import { useSelector } from 'react-redux';
+// import { createStructuredSelector } from 'reselect';
 
-// import { Shop } from 'grommet-icons';
-
-import { toggleCartHidden } from '../../redux/cart/cart.actions';
+// import { toggleCartHidden } from '../../redux/cart/cart.actions';
 import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
+import { useCartDropDown } from '../../context/cart-dropdown.context';
 
 import {
+  Box,
   CartContainer,
   ItemCountContainer,
   ShoppingIcon,
 } from './cart-icon.styles';
 
-const Box = posed.div({
-  pressable: true,
-  init: { scale: 1 },
-  press: { scale: 0.85 },
-});
+export const CartIcon = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [cartHidden, toggleCartHidden] = useCartDropDown();
+  const itemCount = useSelector(selectCartItemsCount);
 
-export const CartIcon = ({ toggleCartHidden, itemCount }) => (
-  <Box className='box'>
-    <CartContainer onClick={toggleCartHidden}>
-      <ShoppingIcon />
-      <ItemCountContainer>{itemCount}</ItemCountContainer>
-    </CartContainer>
-  </Box>
-);
+  const toggleHidden = evt => {
+    if (evt) evt.preventDefault();
+    toggleCartHidden(hidden => !hidden);
+  };
 
-const mapStateToProps = createStructuredSelector({
-  itemCount: selectCartItemsCount,
-});
-
-const mapDispatchToProps = {
-  toggleCartHidden,
+  return (
+    <Box className='box'>
+      <CartContainer onClick={toggleHidden}>
+        <ShoppingIcon />
+        <ItemCountContainer>{itemCount}</ItemCountContainer>
+      </CartContainer>
+    </Box>
+  );
 };
 
+// const mapStateToProps = createStructuredSelector({
+//   itemCount: selectCartItemsCount,
+// });
+// const mapDispatchToProps = {
+//   toggleCartHidden,
+// };
 // CartIcon.whyDidYouRender = {
 //   logOnDifferentValues: true,
 //   customName: 'CartIcon',
 // };
+// export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
+export default memo(CartIcon);

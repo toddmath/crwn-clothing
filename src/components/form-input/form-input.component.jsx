@@ -1,5 +1,5 @@
 import React, { memo, useRef } from 'react';
-import PropTypes from 'prop-types';
+import t from 'prop-types';
 
 import {
   StyledInput,
@@ -9,6 +9,7 @@ import {
 
 const FormInput = ({ handleChange, label, ref, ...props }) => {
   const inputRef = useRef();
+  const setFocus = () => inputRef.current.focus();
 
   return (
     <GroupContainer>
@@ -16,7 +17,7 @@ const FormInput = ({ handleChange, label, ref, ...props }) => {
         data-testid='form-input'
         ref={inputRef}
         onChange={handleChange}
-        onMouseEnter={() => inputRef.current.focus()}
+        onMouseEnter={setFocus}
         aria-required='true'
         required
         {...props}
@@ -31,10 +32,10 @@ const FormInput = ({ handleChange, label, ref, ...props }) => {
 };
 
 FormInput.propTypes = {
-  handleChange: PropTypes.func,
-  label: PropTypes.string,
-  ref: PropTypes.number,
-  value: PropTypes.string,
+  handleChange: t.func,
+  label: t.string,
+  ref: t.number,
+  value: t.string,
 };
 
 export default memo(FormInput);

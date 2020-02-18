@@ -1,11 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components/macro'; // eslint-disable-line no-unused-vars
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-// import FormInput from '../form-input/form-input.component';
-// import CustomButton from '../custom-button/custom-button.component';
-import { FormInput, CustomButton } from '../index';
+import FormInput from '../form-input/form-input.component';
+import { CustomButton } from '../index';
 
 import {
   googleSignInStart,
@@ -18,17 +17,16 @@ import {
   SignInTitle,
 } from './sign-in.styles';
 
-export const SignIn = ({ emailSignInStart, googleSignInStart }) => {
+export const SignIn = ({ googleSignInStart, emailSignInStart }) => {
   const [userCreds, setUserCreds] = useState({
     email: '',
     password: '',
   });
-
   const { email, password } = userCreds;
 
-  const handleSubmit = async event => {
-    event.preventDefault();
-    await emailSignInStart(email, password);
+  const handleSubmit = async evt => {
+    if (evt) evt.preventDefault();
+    emailSignInStart(email, password);
   };
 
   const handleCreds = useCallback(

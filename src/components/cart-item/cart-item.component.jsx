@@ -20,9 +20,4 @@ const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
   </CartItemContainer>
 );
 
-CartItem.whyDidYouRender = {
-  logOnDifferentValues: true,
-  customName: 'CartItem',
-};
-
 export default memo(CartItem);

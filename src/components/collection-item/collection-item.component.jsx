@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { addItem } from '../../redux/cart/cart.actions';
 
@@ -14,8 +14,10 @@ import {
   Box,
 } from './collection-item.styles';
 
-export const CollectionItem = ({ item, addItem }) => {
+export const CollectionItem = ({ item }) => {
   const { name, price, imageUrl } = item;
+  const dispatch = useDispatch();
+  const handleAddItem = () => dispatch(addItem(item));
 
   return (
     <CollectionItemContainer>
@@ -25,7 +27,7 @@ export const CollectionItem = ({ item, addItem }) => {
         <PriceContainer>{price}</PriceContainer>
       </CollectionFooterContainer>
       <Box className='box'>
-        <AddButton onClick={() => addItem(item)} regular>
+        <AddButton onClick={handleAddItem} regular>
           Add to cart
         </AddButton>
       </Box>
@@ -34,7 +36,6 @@ export const CollectionItem = ({ item, addItem }) => {
 };
 
 CollectionItem.propTypes = {
-  addItem: PropTypes.func.isRequired,
   item: PropTypes.exact({
     id: PropTypes.number.isRequired,
     imageUrl: PropTypes.string.isRequired,
@@ -43,8 +44,4 @@ CollectionItem.propTypes = {
   }).isRequired,
 };
 
-const mapDispatchToProps = {
-  addItem,
-};
-
-export default connect(null, mapDispatchToProps)(CollectionItem);
+export default memo(CollectionItem);

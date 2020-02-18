@@ -1,6 +1,13 @@
 import styled from 'styled-components/macro';
+import posed from 'react-pose';
 
 import { Shop } from 'grommet-icons';
+
+export const Box = posed.div({
+  pressable: true,
+  init: { scale: 1 },
+  press: { scale: 0.85 },
+});
 
 export const CartContainer = styled.div`
   width: 4.5rem;
@@ -10,7 +17,7 @@ export const CartContainer = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  svg {
+  & svg {
     isolation: auto;
   }
 `;

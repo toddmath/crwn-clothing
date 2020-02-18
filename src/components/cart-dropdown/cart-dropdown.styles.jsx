@@ -5,7 +5,7 @@ import CustomButton from '../custom-button/custom-button.component';
 export const CartDropdownContainer = styled.div`
   position: absolute;
   width: 24rem;
-  height: 34rem;
+  height: 35rem;
   display: flex;
   flex-direction: column;
   padding: 2rem;
@@ -31,8 +31,34 @@ export const EmptyMessage = styled.span`
 `;
 
 export const CartItemsContainer = styled.div`
-  height: 24rem;
+  height: 25rem;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  scrollbar-width: thin;
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(80, 80, 80, 0.65);
+    border-radius: 10px;
+    outline: 1px solid slategrey;
+
+    &:hover {
+      background-color: rgba(80, 80, 80, 0.9);
+    }
+
+    &:active {
+      background-color: rgba(80, 80, 80, 1);
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
 `;

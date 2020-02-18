@@ -1,14 +1,3 @@
-// export const createAction = (actionType, actionPayload) => {
-//   return actionPayload
-//     ? actionPayload => ({
-//         type: actionType,
-//         payload: actionPayload,
-//       })
-//     : () => ({
-//         type: actionType,
-//       });
-// };
-
 export function createAction(type, prepartedAction) {
   function actionCreator(...args) {
     if (prepartedAction) {
@@ -34,6 +23,6 @@ export function createAction(type, prepartedAction) {
   return actionCreator;
 }
 
-export function getTyoe(actionCreator) {
+export function getType(actionCreator) {
   return `${actionCreator}`;
 }

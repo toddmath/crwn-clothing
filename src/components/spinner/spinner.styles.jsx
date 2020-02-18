@@ -1,9 +1,9 @@
 import styled, { keyframes, css } from 'styled-components/macro';
 
 export const SpinnerOverlay = styled.div`
-  height: 80vh;
+  height: 84vh;
   display: flex;
-  width: 100vw;
+  width: 100%;
   justify-content: center;
   align-items: center;
   overflow: hidden;
@@ -31,32 +31,20 @@ export const SpinnerContainer = styled.div`
 
 const springSpinnerAnimation = props => keyframes`
   0% {
-    border-width: 0px;
-  }
-  12.5% {
-    border-width: calc(${props.size}vmin / 7);
+    border-width: calc(${props.size}px / 7);
   }
   25% {
-    border-width: calc(${props.size}vmin / 23.33);
-  }
-  37.5% {
-    border-width: calc(${props.size}vmin / 7);
+    border-width: calc(${props.size}px / 23.33);
   }
   50% {
     transform: rotate(115deg);
-    border-width: calc(${props.size}vmin / 23.33);
-  }
-  62.5% {
-    border-width: calc(${props.size}vmin / 7);
+    border-width: calc(${props.size}px / 7);
   }
   75% {
-    border-width: calc(${props.size}vmin / 23.33);
-  }
-  87.5% {
-    border-width: calc(${props.size}vmin / 7);
+    border-width: calc(${props.size}px / 23.33);
   }
   100% {
-    border-width: 0px;
+    border-width: calc(${props.size}px / 7);
   }
 `;
 
@@ -75,7 +63,7 @@ const SpinnerRotatorStyles = css`
   .spring-spinner-rotator {
     width: ${props => props.size}vmin;
     height: ${props => props.size}vmin;
-    border: calc(${props => props.size}vmin / 7) solid transparent;
+    border: calc(${props => props.size}px / 7) solid transparent;
     border-right-color: ${props => props.color};
     border-top-color: ${props => props.color};
     border-radius: 50%;

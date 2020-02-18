@@ -4,9 +4,13 @@ import { getUserCartRef } from '../../firebase/firebase.utils';
 import { selectCurrentUser } from '../user/user.selectors';
 import { clearCart, setCartFromFirebase } from './cart.actions';
 import { selectCartItems } from './cart.selectors';
-import { createRootSaga, createTakeLatest } from '../helpers/saga.helpers';
 import CartActionTypes from './cart.types';
 import UserActionTypes from '../user/user.types';
+import {
+  createRootSaga,
+  createTakeLatest,
+  createTakeLeading,
+} from '../helpers/saga.helpers';
 
 const { SIGN_OUT_SUCCESS, SIGN_IN_SUCCESS } = UserActionTypes;
 const { ADD_ITEM, REMOVE_ITEM, CLEAR_ITEM_FROM_CART } = CartActionTypes;
@@ -44,7 +48,7 @@ export const onSignOutSuccess = createTakeLatest(
   clearCartOnSignOut
 );
 
-export const onUserSignIn = createTakeLatest(
+export const onUserSignIn = createTakeLeading(
   SIGN_IN_SUCCESS,
   checkCartFromFirebase
 );
@@ -55,7 +59,6 @@ export const onCartChange = createTakeLatest(
   updateCartInFirebase
 );
 
-// const sagas = [onSignOutSuccess, onCartChange, onUserSignIn];
 export const cartSagas = createRootSaga([
   onSignOutSuccess,
   onCartChange,

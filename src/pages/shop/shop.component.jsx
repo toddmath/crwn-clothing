@@ -1,13 +1,11 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import { Route, useRouteMatch } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import { Spinner, ScrollToTopOnMount, ErrorBoundary } from '../../components';
-
+import { useScrollToOnMount } from '../../hooks';
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
-import { selectIsCollectionFetching } from '../../redux/shop/shop.selectors';
 
+import { Spinner, ErrorBoundary } from '../../components';
 import { ShopPageContainer } from './shop.styles';
 
 const CollectionsOverviewContainer = lazy(() =>
@@ -17,16 +15,17 @@ const CollectionPageContainer = lazy(() =>
   import('../collection/collection.container')
 );
 
-export const ShopPage = ({ fetchCollectionsStart }) => {
+export const ShopPage = () => {
+  useScrollToOnMount();
+  const dispatch = useDispatch();
   const { path } = useRouteMatch();
 
   useEffect(() => {
-    fetchCollectionsStart();
-  }, [fetchCollectionsStart]);
+    dispatch(fetchCollectionsStart());
+  }, [dispatch]);
 
   return (
     <ShopPageContainer>
-      <ScrollToTopOnMount />
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
           <Route exact path={path}>
@@ -34,22 +33,13 @@ export const ShopPage = ({ fetchCollectionsStart }) => {
           </Route>
         </Suspense>
         <Suspense fallback={<Spinner />}>
-          <Route
-            path={`${path}/:collectionId`}
-            component={CollectionPageContainer}
-          />
+          <Route exact path={`${path}/:collectionId`}>
+            <CollectionPageContainer />
+          </Route>
         </Suspense>
       </ErrorBoundary>
     </ShopPageContainer>
   );
 };
 
-const mapDispatchToProps = {
-  fetchCollectionsStart,
-};
-
-const mapStateToProps = createStructuredSelector({
-  isLoading: selectIsCollectionFetching,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);
+export default ShopPage;

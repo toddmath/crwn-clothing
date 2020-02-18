@@ -1,4 +1,6 @@
 {
+  /* as of 2/13/2020 */
+  "eslint.nodePath": "/Users/todd/.nvm/versions/node/v12.16.0/bin/node",
   /* as of 2/10/2020 */
   "css.validate": false,
   "scss.validate": false,

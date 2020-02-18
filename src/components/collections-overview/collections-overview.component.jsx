@@ -1,8 +1,6 @@
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { createStructuredSelector } from 'reselect';
 import { selectCollectionsForPreview } from '../../redux/shop/shop.selectors';
 
 import CollectionPreview from '../collection-preview/collection-preview.component';
@@ -11,38 +9,19 @@ import {
   CollectionPreviewContainer,
 } from './collections-overview.styles';
 
-export const CollectionsOverview = ({ collections }) => (
-  <CollectionsOverviewContainer>
-    {collections.map(({ id, ...otherCollectionProps }) => (
-      <CollectionPreviewContainer key={id}>
-        <CollectionPreview {...otherCollectionProps} />
-      </CollectionPreviewContainer>
-    ))}
-  </CollectionsOverviewContainer>
-);
+export const CollectionsOverview = () => {
+  const collections = useSelector(selectCollectionsForPreview);
 
-CollectionsOverview.propTypes = {
-  collections: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.string.isRequired,
-      items: PropTypes.arrayOf(
-        PropTypes.exact({
-          id: PropTypes.number.isRequired,
-          imageUrl: PropTypes.string.isRequired,
-          name: PropTypes.string.isRequired,
-          price: PropTypes.number.isRequired,
-        })
-      ),
-      routeName: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  return (
+    <CollectionsOverviewContainer>
+      {collections &&
+        collections.map(({ id, ...otherCollectionProps }) => (
+          <CollectionPreviewContainer key={id}>
+            <CollectionPreview {...otherCollectionProps} />
+          </CollectionPreviewContainer>
+        ))}
+    </CollectionsOverviewContainer>
+  );
 };
 
-const mapStateToProps = createStructuredSelector({
-  collections: selectCollectionsForPreview,
-});
-
-const MemoCollectionsOverview = memo(CollectionsOverview);
-
-export default connect(mapStateToProps)(MemoCollectionsOverview);
+export default CollectionsOverview;

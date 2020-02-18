@@ -1,14 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createStructuredSelector } from 'reselect';
+import { useSelector } from 'react-redux';
+// import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
+// import { createStructuredSelector } from 'reselect';
 
-import { toggleCartHidden } from '../../redux/cart/cart.actions';
+// import { toggleCartHidden } from '../../redux/cart/cart.actions';
+// import CartItem from '../cart-item/cart-item.component';
 import { selectCartItems } from '../../redux/cart/cart.selectors';
+import { useCartDropDown } from '../../context/cart-dropdown.context';
 
-import CartItem from '../cart-item/cart-item.component';
-
+import { CartItem } from '../index';
 import {
   CartDropDownButton,
   CartDropdownContainer,
@@ -16,13 +18,16 @@ import {
   EmptyMessage,
 } from './cart-dropdown.styles';
 
-export const CartDropdown = ({ cartItems, dispatch }) => {
+export const CartDropdown = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [cartHidden, toggleCartHidden] = useCartDropDown();
+  const cartItems = useSelector(selectCartItems);
   const history = useHistory();
 
   const handleClick = e => {
     if (e) e.preventDefault();
     history.push('/checkout');
-    dispatch(toggleCartHidden());
+    toggleCartHidden(hidden => !hidden);
   };
 
   return (
@@ -41,22 +46,4 @@ export const CartDropdown = ({ cartItems, dispatch }) => {
   );
 };
 
-CartDropdown.propTypes = {
-  cartItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      imageUrl: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      quantity: PropTypes.number.isRequired,
-    })
-  ),
-  dispatch: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
-});
-
-// export default withRouter(connect(mapStateToProps)(CartDropdown));
-export default connect(mapStateToProps)(CartDropdown);
+export default CartDropdown;

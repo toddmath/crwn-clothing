@@ -16,14 +16,22 @@ export const ItemDetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
-  padding: 1rem 2rem;
+  justify-content: flex-start;
+  padding: 1rem 2rem 1rem 1rem;
 `;
 
 export const ItemDetailName = styled.span`
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  letter-spacing: 0.003rem;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
 `;
 
 export const ItemDetailPrice = styled.span`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.6;
+  width: 100%;
+  text-align: center;
 `;
