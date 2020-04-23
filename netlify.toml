@@ -53,3 +53,6 @@
   pretty_urls = false
 [build.processing.images]
   compress = true
+
+[[plugins]]
+  package = "netlify-plugin-subfont"
