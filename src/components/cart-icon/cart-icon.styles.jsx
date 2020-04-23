@@ -1,17 +1,11 @@
 import styled from 'styled-components/macro';
-import posed from 'react-pose';
 
-import { Shop } from 'grommet-icons';
-
-export const Box = posed.div({
-  pressable: true,
-  init: { scale: 1 },
-  press: { scale: 0.85 },
-});
+// import { Shop } from 'grommet-icons';
+import ShoppingBag from '../../icons/shopping-bag';
 
 export const CartContainer = styled.div`
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 4rem;
+  height: 4rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -19,17 +13,19 @@ export const CartContainer = styled.div`
   cursor: pointer;
   & svg {
     isolation: auto;
+    width: 4rem;
+    height: 4rem;
   }
 `;
 
-export const ShoppingIcon = styled(Shop)`
-  width: 2.5rem;
-  height: 2.5rem;
+export const ShoppingIcon = styled(ShoppingBag)`
+  width: 100%;
+  height: 100%;
 `;
 
 export const ItemCountContainer = styled.span`
   position: absolute;
   font-size: 1.2rem;
   font-weight: 800;
-  bottom: 1.1rem;
+  bottom: 0.8rem;
 `;

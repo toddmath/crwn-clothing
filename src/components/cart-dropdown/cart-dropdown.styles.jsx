@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import CustomButton from '../custom-button/custom-button.component';
 
 export const CartDropdownContainer = styled.div`
-  position: absolute;
+  /* position: absolute; */
   width: 24rem;
   height: 35rem;
   display: flex;
@@ -11,8 +11,8 @@ export const CartDropdownContainer = styled.div`
   padding: 2rem;
   border: 1px solid black;
   background-color: white;
-  top: 9rem;
-  right: 4rem;
+  /* top: 9rem;
+  right: 4rem; */
   z-index: 5;
 `;
 

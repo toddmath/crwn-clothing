@@ -57,15 +57,16 @@ export const ImageContainer = styled.div`
   width: auto;
   margin: 0;
   min-height: 100%;
-  img {
-    width: 100%;
-    height: 100%;
-    vertical-align: middle;
-    padding: 1rem 0;
-    ${media.desktop`padding: 0.5rem 0;`}
-    ${media.tablet`padding: 0.25rem 0;`}
-    ${media.phone`padding: 0;`}
-  }
+`;
+
+export const StyledImage = styled.img`
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  padding: 1rem 0;
+  ${media.desktop`padding: 0.5rem 0;`}
+  ${media.tablet`padding: 0.25rem 0;`}
+  ${media.phone`padding: 0;`}
 `;
 
 export const TextContainer = styled.span`
@@ -77,12 +78,19 @@ export const QuantityContainer = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  span {
-    margin: 0 1rem;
-  }
   div {
     cursor: pointer;
+    user-select: none;
   }
+`;
+
+export const QuantityButton = styled.div`
+  cursor: pointer;
+  user-select: none;
+`;
+
+export const Quantity = styled.span`
+  margin: 0 1rem;
 `;
 
 export const RemoveButtonContainer = styled.div`
@@ -90,6 +98,7 @@ export const RemoveButtonContainer = styled.div`
   text-align: right;
   display: inline-block;
   padding-right: 2.5rem;
+  user-select: none;
   ${media.tablet`padding-right: 1.5rem;`}
   ${media.phablet`padding-right: 0;`}
 `;

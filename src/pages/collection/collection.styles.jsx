@@ -20,8 +20,8 @@ export const CollectionPageContainer = styled.div`
 `;
 
 export const CollectionTitle = styled.h2`
-  font-family: 'Open Sans Condensed', 'system-ui', sans-serif;
-  color: #333;
+  font-family: ${({ theme }) => theme.font.family};
+  color: ${({ theme }) => theme.colors.h2};
   display: inline-block;
   font-size: 4.6rem;
   font-weight: 600;
@@ -43,8 +43,6 @@ export const CollectionItemsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(22vw, 1fr));
   grid-template-rows: minmax(38rem, 1fr);
-  /* row-gap: 2rem;
-  column-gap: 2rem; */
   grid-gap: 2rem;
   ${media.giant`
     grid-template-rows: minmax(35rem, 1fr);
@@ -61,18 +59,3 @@ export const CollectionItemsContainer = styled.div`
     grid-template-rows: minmax(90vw, 1fr);
   `}
 `;
-
-/*
-grid-template-columns: 1fr 1fr 1fr 1fr;
-grid-gap: 1rem;
-${media.tablet`
-  grid-template-columns: repeat(2, minmax(44vw, 1fr));
-  grid-template-rows: minmax(44vw, 1fr);
-  grid-gap: 2rem;
-`}
-${media.phablet`
-  grid-template-columns: minmax(90vw, 1fr);
-  grid-template-rows: minmax(90vw, 1fr);
-  row-gap: 2rem;
-`}
-*/

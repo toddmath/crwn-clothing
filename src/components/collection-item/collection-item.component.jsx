@@ -26,7 +26,7 @@ export const CollectionItem = ({ item }) => {
         <NameContainer>{name}</NameContainer>
         <PriceContainer>{price}</PriceContainer>
       </CollectionFooterContainer>
-      <Box className='box'>
+      <Box>
         <AddButton onClick={handleAddItem} regular>
           Add to cart
         </AddButton>

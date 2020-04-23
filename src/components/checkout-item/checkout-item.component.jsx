@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import {
   clearItemFromCart,
@@ -10,25 +10,29 @@ import {
 
 import {
   ImageContainer,
+  StyledImage,
   TextContainer,
   QuantityContainer,
+  QuantityButton,
+  Quantity,
   RemoveButtonContainer,
   TableRow,
   TableCell,
   TableHeadCol,
 } from './checkout-item.styles';
 
-export const CheckOutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
+export const CheckOutItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
-  const remove = () => removeItem(cartItem);
-  const add = () => addItem(cartItem);
-  const clear = () => clearItem(cartItem);
+  const dispatch = useDispatch();
+  const remove = () => dispatch(removeItem(cartItem));
+  const add = () => dispatch(addItem(cartItem));
+  const clear = () => dispatch(clearItemFromCart(cartItem));
 
   return (
     <TableRow>
       <TableHeadCol scope='col' colspan='1'>
         <ImageContainer>
-          <img src={imageUrl} alt={name} />
+          <StyledImage src={imageUrl} alt={name} />
         </ImageContainer>
       </TableHeadCol>
       <TableCell>
@@ -36,13 +40,9 @@ export const CheckOutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
       </TableCell>
       <TableCell>
         <QuantityContainer>
-          <div className='remove-item' onClick={remove}>
-            &#10094;
-          </div>
-          <span>{quantity}</span>
-          <div className='add-item' onClick={add}>
-            &#10095;
-          </div>
+          <QuantityButton onClick={remove}>&#10094;</QuantityButton>
+          <Quantity>{quantity}</Quantity>
+          <QuantityButton onClick={add}>&#10095;</QuantityButton>
         </QuantityContainer>
       </TableCell>
       <TableCell>{price}</TableCell>
@@ -56,7 +56,6 @@ export const CheckOutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
 };
 
 CheckOutItem.propTypes = {
-  addItem: PropTypes.func.isRequired,
   cartItem: PropTypes.exact({
     id: PropTypes.number.isRequired,
     imageUrl: PropTypes.string.isRequired,
@@ -64,11 +63,7 @@ CheckOutItem.propTypes = {
     price: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
   }),
-  clearItem: PropTypes.func.isRequired,
-  removeItem: PropTypes.func.isRequired,
 };
-
-CheckOutItem.whyDidYouRender = false;
 
 // const mapDispatchToProps = dispatch => ({
 //   clearItem: item => dispatch(clearItemFromCart(item)),
@@ -76,10 +71,12 @@ CheckOutItem.whyDidYouRender = false;
 //   removeItem: item => dispatch(removeItem(item)),
 // });
 
-const mapDispatchToProps = {
-  clearItem: item => clearItemFromCart(item),
-  addItem: item => addItem(item),
-  removeItem: item => removeItem(item),
-};
+// const mapDispatchToProps = {
+//   clearItem: item => clearItemFromCart(item),
+//   addItem: item => addItem(item),
+//   removeItem: item => removeItem(item),
+// };
 
-export default connect(null, mapDispatchToProps)(CheckOutItem);
+// export default connect(null, mapDispatchToProps)(CheckOutItem);
+
+export default CheckOutItem;

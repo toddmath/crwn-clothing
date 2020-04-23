@@ -15,7 +15,7 @@ const CollectionPageContainer = lazy(() =>
   import('../collection/collection.container')
 );
 
-export const ShopPage = () => {
+export function ShopPage() {
   useScrollToOnMount();
   const dispatch = useDispatch();
   const { path } = useRouteMatch();
@@ -31,8 +31,6 @@ export const ShopPage = () => {
           <Route exact path={path}>
             <CollectionsOverviewContainer />
           </Route>
-        </Suspense>
-        <Suspense fallback={<Spinner />}>
           <Route exact path={`${path}/:collectionId`}>
             <CollectionPageContainer />
           </Route>
@@ -40,6 +38,6 @@ export const ShopPage = () => {
       </ErrorBoundary>
     </ShopPageContainer>
   );
-};
+}
 
 export default ShopPage;

@@ -13,8 +13,7 @@ import {
 
 export const CollectionPage = () => {
   const { collectionId } = useParams();
-  const collection = useSelector(selectCollection(collectionId));
-  const { title, items } = collection;
+  const { title, items } = useSelector(selectCollection(collectionId));
 
   return (
     <CollectionPageContainer>

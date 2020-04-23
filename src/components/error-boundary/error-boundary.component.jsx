@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
+
 import {
   ErrorImageOverlay,
   ErrorImageContainer,
@@ -9,13 +10,14 @@ import {
 } from './error-boundary.styles';
 
 class ErrorBoundary extends Component {
-  constructor() {
-    super();
+  // constructor() {
+  //   super();
 
-    this.state = {
-      hasErrored: false,
-    };
-  }
+  //   this.state = {
+  //     hasErrored: false,
+  //   };
+  // }
+  state = { hasErrored: false };
 
   static getDerivedStateFromError(error) {
     // process the error

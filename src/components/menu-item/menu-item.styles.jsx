@@ -1,8 +1,10 @@
 import styled from 'styled-components/macro';
+import { animated as a } from 'react-spring';
 
 import { media } from '../../helpers';
 
-export const ContentContainer = styled.div`
+export const ContentContainer = styled(a.div)`
+  box-sizing: border-box;
   height: 9rem;
   padding: 0 2.5rem;
   display: flex;
@@ -11,18 +13,15 @@ export const ContentContainer = styled.div`
   justify-content: center;
   border: 1px solid black;
   background-color: white;
-  opacity: 0.7;
+  /* opacity: 0.7; */
   position: absolute;
-
+  user-select: none;
+  outline: none;
+  /* transition: opacity 400ms ease-in; */
   ${media.tablet`
     height: 8rem;
     padding: 0 1.8rem;
   `}
-  /* @media screen and (max-width: 55em) {
-    height: 8rem;
-    padding: 0 1.8rem;
-  } */
-
   ${media.phablet`
     height: 7rem;
     padding: 0 1.2rem;
@@ -35,10 +34,6 @@ export const ContentTitle = styled.span`
   margin-bottom: 0.6rem;
   font-size: 2.2rem;
   color: #4a4a4a;
-
-  /* @media screen and (max-width: 55em) {
-    font-size: 1.8rem;
-  } */
   ${media.tablet`font-size: 1.8rem;`}
   ${media.phablet`
     font-size: 1.6rem;
@@ -51,12 +46,25 @@ export const ContentSubTitle = styled.span`
   text-align: center;
   font-weight: lighter;
   font-size: 1.6rem;
-
-  /* @media screen and (max-width: 55em) {
-    font-size: 1.5rem;
-  } */
   ${media.tablet`font-size: 1.5rem;`}
   ${media.phablet`font-size: 1.4rem;`}
+`;
+
+export const BackgroundImageContainer = styled(a.div)`
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-image: ${props => `url(${props.imageurl})`};
+  /* perspective-origin: center;
+  perspective: 100rem; */
+`;
+
+export const StyledBackgroundImage = styled.img`
+  width: auto;
+  height: auto;
+  background-position: center;
+  background-size: cover;
 `;
 
 export const MenuItemContainer = styled.div`
@@ -69,35 +77,33 @@ export const MenuItemContainer = styled.div`
   border: 1px solid black;
   margin: 0;
   display: flex;
-
+  perspective-origin: center;
+  perspective: 700rem;
   &:hover {
     cursor: pointer;
-
-    & .background-image {
-      transform: scale(1.11);
-      transition: transform 6.4s cubic-bezier(0.1, 0.26, 0.41, 0.87) 38ms;
-    }
-
-    & .content {
-      opacity: 0.7;
-    }
   }
 `;
 
-export const BackgroundImageContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
-`;
+/*
+&:hover {
+  cursor: pointer;
+  & ${BackgroundImageContainer} {
+    transform: scale(1.11);
+    transition: transform 6.4s cubic-bezier(0.1, 0.26, 0.41, 0.87) 38ms;
+  }
+  & ${ContentContainer} {
+    opacity: 1;
+  }
 
-export const StyledBackgroundImage = styled.img`
-  width: auto;
-  height: auto;
-  background-position: center;
-  background-size: cover;
-`;
+  // *
+  &:hover {
+    cursor: pointer;
+    & ${ContentContainer} {
+      opacity: 1;
+    }
+  }
+}
+*/
 
 /* CSS */
 // export const ContentTitle = styled.span`

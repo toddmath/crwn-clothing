@@ -1,12 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
-// import { createStructuredSelector } from 'reselect';
 
-// import { toggleCartHidden } from '../../redux/cart/cart.actions';
-// import CartItem from '../cart-item/cart-item.component';
 import { selectCartItems } from '../../redux/cart/cart.selectors';
 import { useCartDropDown } from '../../context/cart-dropdown.context';
 
@@ -20,15 +15,17 @@ import {
 
 export const CartDropdown = () => {
   // eslint-disable-next-line no-unused-vars
-  const [cartHidden, toggleCartHidden] = useCartDropDown();
+  const [showCart, toggleCartHidden] = useCartDropDown();
   const cartItems = useSelector(selectCartItems);
   const history = useHistory();
 
-  const handleClick = e => {
-    if (e) e.preventDefault();
+  const handleClick = evt => {
+    if (evt) evt.preventDefault();
     history.push('/checkout');
     toggleCartHidden(hidden => !hidden);
   };
+
+  if (!showCart) return null;
 
   return (
     <CartDropdownContainer>

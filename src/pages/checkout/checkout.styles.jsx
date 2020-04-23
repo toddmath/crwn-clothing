@@ -7,12 +7,10 @@ export const CheckoutPageContainer = styled.div`
   min-height: 80vh;
   margin: 5rem auto 0;
   display: block;
-
   button {
     margin-left: auto;
     margin-top: 5rem;
   }
-
   ${media.tablet`width: 90%;`}
 `;
 
@@ -42,18 +40,15 @@ export const TableHead = styled.th`
   text-align: center;
   font-weight: 300;
   font-size: 2.4rem;
-
   &:first-child {
     text-align: left;
     width: 25%;
     padding-left: 1.5rem;
   }
-
   &:last-child {
     text-align: right;
     padding-right: 1.5rem;
   }
-
   ${media.tablet`
     font-size: 2.2rem;
     &:first-child {

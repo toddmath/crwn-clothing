@@ -72,6 +72,7 @@ export const getButtonStyles = props => {
       `;
 };
 
+/* CSS */
 export const CustomButtonContainer = styled.button`
   min-width: 16.5rem;
   width: auto;
@@ -86,6 +87,8 @@ export const CustomButtonContainer = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
+  user-select: none;
+  outline: none;
   ${getButtonStyles}
 `;
 

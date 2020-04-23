@@ -1,16 +1,19 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useDarkMode } from '../../hooks/useDarkMode';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { signOutStart } from '../../redux/user/user.actions';
 
+import DarkModeToggle from '../dark-mode-toggle/dark-mode-toggle.component';
 import { CartIcon } from '../index';
 import { OptionsContainer, OptionNavLink } from './header-links.styles';
 
-const HeaderLinks = () => {
+function HeaderLinks() {
   const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
   const handleSignOut = () => dispatch(signOutStart());
+  const darkMode = useDarkMode(false);
 
   return (
     <OptionsContainer>
@@ -35,9 +38,14 @@ const HeaderLinks = () => {
           Sign In
         </OptionNavLink>
       )}
+      <DarkModeToggle
+        onChange={darkMode.toggle}
+        checked={darkMode.value}
+        size={60}
+      />
       <CartIcon />
     </OptionsContainer>
   );
-};
+}
 
 export default HeaderLinks;

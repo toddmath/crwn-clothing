@@ -6,6 +6,7 @@ export const CollectionsOverviewContainer = styled.div`
   grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(1, 100%);
   row-gap: 4rem;
+  /* opacity: ${props => (props.isPending ? 0.4 : 1)}; */
 `;
 
 export const CollectionPreviewContainer = styled.div`
