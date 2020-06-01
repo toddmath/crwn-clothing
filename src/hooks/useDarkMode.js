@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 
 import { createPersistedState } from './usePersistedState';
 import useEventListener from './useEventListener';
+import { createEnum } from '../helpers';
 
 const noop = () => {};
 
@@ -21,12 +22,12 @@ export function initialize(storageKey, storageProvider, glbl = global) {
 
   const mql = glbl.matchMedia ? glbl.matchMedia(preferDarkQuery) : {};
 
-  const mediaQueryEventTarget = {
+  const mediaQueryEventTarget = createEnum({
     addEventListener: (_, handler) =>
       mql.addListener && mql.addListener(handler),
     removeEventListener: (_, handler) =>
       mql.removeListener && mql.removeListener(handler),
-  };
+  });
 
   const isColorSchemeQuerySupported = mql.media === preferDarkQuery;
 
@@ -34,7 +35,7 @@ export function initialize(storageKey, storageProvider, glbl = global) {
     isColorSchemeQuerySupported ? mql.matches : usersInitialState;
 
   // Mock element if SSR else real body element.
-  const defaultElement = (glbl.document && glbl.document.body) || mockElement;
+  const defaultElement = (glbl.document && glbl.document.body) ?? mockElement;
 
   const getDefaultOnChange = (
     element = defaultElement,
@@ -82,7 +83,7 @@ export function useDarkMode(
 
   const stateChangeCallback = useMemo(
     () =>
-      onChange || getDefaultOnChange(element, classNameDark, classNameLight),
+      onChange ?? getDefaultOnChange(element, classNameDark, classNameLight),
     [onChange, element, classNameDark, classNameLight, getDefaultOnChange]
   );
 
@@ -98,12 +99,14 @@ export function useDarkMode(
     mediaQueryEventTarget
   );
 
-  return {
+  const returnData = createEnum({
     value: state,
     enable: useCallback(() => setState(true), [setState]),
     disable: useCallback(() => setState(false), [setState]),
     toggle: useCallback(() => setState(current => !current), [setState]),
-  };
+  });
+
+  return returnData;
 }
 
 export default useDarkMode;

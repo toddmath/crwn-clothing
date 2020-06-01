@@ -2,6 +2,7 @@ export function createAction(type, prepartedAction) {
   function actionCreator(...args) {
     if (prepartedAction) {
       const prepared = prepartedAction(...args);
+
       if (!prepared) {
         throw new Error(`action did not return an object!`);
       }
@@ -13,6 +14,7 @@ export function createAction(type, prepartedAction) {
         ...('error' in prepared && { error: prepared.error }),
       };
     }
+
     return { type, payload: args[0] };
   }
 

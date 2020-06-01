@@ -1,54 +1,48 @@
-// import { createSelector } from 'reselect';
-
-import createDeepEqualSelector from '../deep-equal.selector';
+import { createSelector } from 'reselect';
 
 const selectShop = state => state.shop;
 
-export const selectCollections = createDeepEqualSelector(
+const selectCollections = createSelector(
   [selectShop],
   shop => shop.collections
 );
 
-// * Normal Compare Version
-// export const selectCollectionsForPreview = createSelector(
-//   [selectCollections],
-//   collections =>
-//     collections ? Object.keys(collections).map(key => collections[key]) : []
-// );
+const mapCollectionKeys = colls => Object.keys(colls).map(key => colls[key]);
 
-// * Deep Equal Compare Version
-export const selectCollectionsForPreview = createDeepEqualSelector(
+const selectCollectionsForPreview = createSelector(
   [selectCollections],
-  collections =>
-    collections ? Object.keys(collections).map(key => collections[key]) : []
+  collections => (collections ? mapCollectionKeys(collections) : [])
 );
 
-// * Normal Compare Version
-// export const selectCollection = collectionUrlParam =>
-//   createSelector([selectCollections], collections =>
-//     collections ? collections[collectionUrlParam] : null
-//   );
-
-// * Deep Equal Compare Version
-export const selectCollection = collectionUrlParam =>
-  createDeepEqualSelector([selectCollections], collections =>
+const selectCollection = collectionUrlParam =>
+  createSelector([selectCollections], collections =>
     collections ? collections[collectionUrlParam] : null
   );
 
-export const selectIsCollectionFetching = createDeepEqualSelector(
+const selectIsCollectionFetching = createSelector(
   [selectShop],
   shop => shop.isFetching
 );
 
-export const makeSelectIsCollectionFetching = () => {
-  return createDeepEqualSelector([selectShop], shop => shop.isFetching);
+const makeSelectIsCollectionFetching = () => {
+  return createSelector([selectShop], shop => shop.isFetching);
 };
 
-export const selectIsCollectionsLoaded = createDeepEqualSelector(
+const selectIsCollectionsLoaded = createSelector(
   [selectShop],
   shop => !!shop.collections
 );
 
-export const makeSelectIsCollectionsLoaded = () => {
-  return createDeepEqualSelector([selectShop], shop => !!shop.collections);
+const makeSelectIsCollectionsLoaded = () => {
+  return createSelector([selectShop], shop => !!shop.collections);
+};
+
+export {
+  selectCollections,
+  selectCollectionsForPreview,
+  selectCollection,
+  selectIsCollectionFetching,
+  makeSelectIsCollectionFetching,
+  selectIsCollectionsLoaded,
+  makeSelectIsCollectionsLoaded,
 };

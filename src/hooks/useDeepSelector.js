@@ -4,16 +4,16 @@ import { isEqual } from 'lodash.isequal';
 
 /**
  * Custom hook wrapping `useSelector` and lodash's deep comparison function `isEqual`.
- * @param {function} selector Selector function, ideally from `reselect`.
+ * @param {Function} selector Selector function, ideally from `reselect`.
+ * @returns {Function}
  */
-export default function useDeepSelector(selector) {
-  return useSelector(selector, isEqual);
-}
+const useDeepSelector = selector => useSelector(selector, isEqual);
 
 /**
  * Custom hook wrapping `useMemo`, `useSelector` and lodash's deep comparison function `isEqual`.
  * @param {function} selector Selector function, ideally from `reselect`.
  */
-export function useMemoDeepSelector(selector) {
-  return useMemo(useSelector(selector, isEqual), [selector]);
-}
+export const useMemoDeepSelector = selector =>
+  useMemo(useSelector(selector, isEqual), [selector]);
+
+export default useDeepSelector;

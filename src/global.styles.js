@@ -18,19 +18,22 @@ export const GlobalStyle = createGlobalStyle`
   h2 {
     font-weight: 600;
   }
-  a:link {
-    text-decoration: none;
-    color: ${({ theme }) => theme.colors.fg};
-  }
-  a:visited {
-    color: ${({ theme }) => theme.colors.fg};
-    text-decoration: none;
+  a {
+    &:link {
+      text-decoration: none;
+      color: ${({ theme }) => theme.colors.fg};
+    }
+    &:visited {
+      color: ${({ theme }) => theme.colors.fg};
+      text-decoration: none;
+    }
   }
   body {
     font-family: ${({ theme }) => theme.font.family};
     padding: 2rem 3rem;
     max-width: 100vw;
     color: ${({ theme }) => theme.colors.fg};
+    transition: background-color 200ms ease, color 300ms ease;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -42,16 +45,24 @@ export const GlobalStyle = createGlobalStyle`
     &.dark-mode {
       color: ${({ theme }) => theme.colors.bg};
       background-color: ${({ theme }) => theme.colors.fg};
-      &#root, & a, & div {
+      transition: background-color 200ms ease, color 300ms ease;
+      &#root,
+      & a,
+      & div {
         color: ${({ theme }) => theme.colors.bg};
         background-color: ${({ theme }) => theme.colors.fg};
+        transition: background-color 200ms ease, color 300ms ease;
       }
-      & h1, & h2 {
+      & h1,
+      & h2 {
         color: ${({ theme }) => theme.colors.medium};
+        transition: background-color 200ms ease, color 300ms ease;
       }
       & svg {
         fill: ${({ theme }) => theme.colors.border};
         stroke: ${({ theme }) => theme.colors.border};
+        ${'' /* transition: fill 300ms ease, stroke 300ms ease; */}
+        transition: unset;
       }
     }
   }

@@ -12,7 +12,16 @@ const options = Object.freeze({
 });
 
 // eslint-disable-next-line no-unused-vars
-const DarkModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
+const noop = (nextValue) => null;
+
+// eslint-disable-next-line no-unused-vars
+const DarkModeToggle = ({
+  size = 70,
+  checked = false,
+  onChange = noop,
+  speed = 1,
+  ...extraProps
+}) => {
   const ref = useRef();
   const [progress, setProgress] = useState(() => 0);
 
@@ -45,7 +54,7 @@ const DarkModeToggle = ({ size, checked, onChange, speed, ...extraProps }) => {
       size={size}
       onClick={() => ref.current.anim.isPaused && onChange(!checked)}
     >
-      <DarkModeFlexCenter size={size}>
+      <DarkModeFlexCenter size={size} {...extraProps}>
         <Lottie
           ref={ref}
           speed={speed}
@@ -70,11 +79,11 @@ DarkModeToggle.propTypes = {
   speed: PropTypes.number,
 };
 
-DarkModeToggle.defaultProps = {
-  size: 85,
-  checked: false,
-  onChange: nextValue => null, // eslint-disable-line no-unused-vars
-  speed: 1.3,
-};
+// DarkModeToggle.defaultProps = {
+//   size: 85,
+//   checked: false,
+//   onChange: nextValue => null, // eslint-disable-line no-unused-vars
+//   speed: 1.3,
+// };
 
 export default DarkModeToggle;

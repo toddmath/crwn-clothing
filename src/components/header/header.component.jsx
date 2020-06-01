@@ -11,12 +11,6 @@ export function Header() {
   const [notHidden] = useCartDropDown();
 
   const props = useSpring({
-    position: 'absolute',
-    top: '9rem',
-    right: '4rem',
-    height: '35rem',
-    width: '24rem',
-    zIndex: '4',
     opacity: notHidden ? 1 : 0,
     display: notHidden ? 'block' : 'none',
   });
@@ -25,7 +19,17 @@ export function Header() {
     <HeaderContainer>
       <HeaderLogo />
       <HeaderLinks />
-      <a.div style={props}>
+      <a.div
+        style={{
+          position: 'absolute',
+          top: '9rem',
+          right: '4rem',
+          height: '35rem',
+          width: '24rem',
+          zIndex: '4',
+          ...props,
+        }}
+      >
         <CartDropDown />
       </a.div>
     </HeaderContainer>

@@ -6,8 +6,8 @@
   "dependencies": {
     "@bit/bondz.react-epic-spinners.spring-spinner": "^0.3.0",
     "axios": "^0.19.2",
-    "dayjs": "^1.8.25",
-    "firebase": "^7.14.1",
+    "dayjs": "^1.8.26",
+    "firebase": "^7.14.2",
     "grommet-icons": "^4.4.0",
     "immer": "^6.0.3",
     "lodash.isequal": "^4.5.0",
@@ -40,51 +40,52 @@
     "typeface-open-sans-condensed": "^0.0.72"
   },
   "devDependencies": {
-    "@testing-library/react": "^9.4.0",
+    "@testing-library/react": "^10.0.4",
     "@testing-library/react-hooks": "^3.2.1",
-    "babel-eslint": "10.0.3",
+    "babel-eslint": "10.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",
     "eslint": "^6.8.0",
-    "eslint-config-airbnb": "18.0.1",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-config-react-app": "^5.2.0",
-    "eslint-plugin-flowtype": "^4.6.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jest": "^23.7.0",
+    "eslint-config-airbnb": "18.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-flowtype": "^4.7.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.8.2",
     "eslint-plugin-jest-formatting": "^1.2.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.18.3",
-    "eslint-plugin-react-hooks": "^2.4.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^4.0.0",
     "first-input-delay": "^0.1.3",
-    "husky": "^4.2.3",
+    "husky": "^4.2.5",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "jest-extended": "^0.11.5",
     "jest-generator": "^1.0.7",
     "jest-in-case": "^1.0.2",
-    "jest-styled-components": "^7.0.0",
+    "jest-styled-components": "^7.0.2",
     "k-redux-saga-tester": "^1.0.0",
-    "lint-staged": "^10.0.7",
-    "prettier": "^1.19.1",
+    "lint-staged": "^10.2.2",
+    "prettier": "^2.0.5",
     "prettier-eslint": "^9.0.1",
-    "react-test-renderer": "^16.12.0",
+    "react-test-renderer": "^16.13.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-saga-testing": "^2.0.0",
-    "stylelint": "^13.2.0",
+    "stylelint": "^13.3.3",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.10.0"
   },
   "peerDependencies": {
-    "babel-eslint": "10.0.3",
+    "babel-eslint": "10.1.0",
     "eslint": "^6.8.0"
   },
   "resolutions": {
     "**/**/serialize-javascript": "^2.1.2",
-    "**/**/handlebars": "^4.7.3"
+    "**/**/handlebars": "^4.7.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -120,12 +121,10 @@
   "lint-staged": {
     "src/**/*.jsx": [
       "eslint --config .eslintrc --fix",
-      "prettier --config .prettierrc.js --write",
-      "git add"
+      "prettier --config .prettierrc.js --write"
     ],
-    "src/**/*.styles.jsx": [
-      "stylelint",
-      "git add"
+    "src/**/*.styles.js(x)?": [
+      "stylelint"
     ]
   }
 }

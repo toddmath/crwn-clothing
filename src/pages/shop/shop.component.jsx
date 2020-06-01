@@ -7,10 +7,10 @@ import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 
 import { Spinner, ErrorBoundary } from '../../components';
 import { ShopPageContainer } from './shop.styles';
-
-const CollectionsOverviewContainer = lazy(() =>
-  import('../../components/collections-overview/collections-overview.container')
-);
+import CollectionsOverviewContainer from '../../components/collections-overview/collections-overview.container';
+// const CollectionsOverviewContainer = lazy(() =>
+//   import('../../components/collections-overview/collections-overview.container')
+// );
 const CollectionPageContainer = lazy(() =>
   import('../collection/collection.container')
 );
@@ -26,11 +26,11 @@ export function ShopPage() {
 
   return (
     <ShopPageContainer>
+      <Route exact path={path}>
+        <CollectionsOverviewContainer />
+      </Route>
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
-          <Route exact path={path}>
-            <CollectionsOverviewContainer />
-          </Route>
           <Route exact path={`${path}/:collectionId`}>
             <CollectionPageContainer />
           </Route>

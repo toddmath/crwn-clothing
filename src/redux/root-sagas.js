@@ -1,4 +1,3 @@
-// import { all, call } from 'redux-saga/effects';
 import { createRootSaga } from './helpers/saga.helpers';
 
 import { shopSagas } from './shop/shop.sagas';

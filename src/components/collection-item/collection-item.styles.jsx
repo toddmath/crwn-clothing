@@ -41,7 +41,7 @@ export const Box = styled(
 `;
 
 export const CollectionItemContainer = styled.div`
-  min-width: 22vw;
+  /* min-width: 22vw; */
   width: 100%;
   height: 38rem;
   position: relative;

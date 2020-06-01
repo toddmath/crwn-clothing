@@ -54,6 +54,7 @@ export const onUserSignIn = createTakeLeading(
 );
 
 const cartChangeActions = [ADD_ITEM, REMOVE_ITEM, CLEAR_ITEM_FROM_CART];
+
 export const onCartChange = createTakeLatest(
   cartChangeActions,
   updateCartInFirebase

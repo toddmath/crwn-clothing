@@ -1,4 +1,6 @@
-export const UserActionTypes = {
+import { createEnum } from '../../helpers';
+
+export const UserActionTypes = createEnum({
   SET_CURRENT_USER: 'SET_CURRENT_USER',
   GOOGLE_SIGN_IN_START: 'GOOGLE_SIGN_IN_START',
   EMAIL_SIGN_IN_START: 'EMAIL_SIGN_IN_START',
@@ -11,6 +13,6 @@ export const UserActionTypes = {
   SIGN_UP_START: 'SIGN_UP_START',
   SIGN_UP_SUCCESS: 'SIGN_UP_SUCCESS',
   SIGN_UP_FAILURE: 'SIGN_UP_FAILURE',
-};
+});
 
 export default UserActionTypes;

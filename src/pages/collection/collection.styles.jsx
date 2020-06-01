@@ -41,9 +41,9 @@ export const CollectionTitle = styled.h2`
 
 export const CollectionItemsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(22vw, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20vw, auto));
   grid-template-rows: minmax(38rem, 1fr);
-  grid-gap: 2rem;
+  gap: 2rem;
   ${media.giant`
     grid-template-rows: minmax(35rem, 1fr);
     row-gap: 3rem;

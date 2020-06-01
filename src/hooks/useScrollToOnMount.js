@@ -1,9 +1,9 @@
 import { useLayoutEffect, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const isBrowser = typeof window !== `undefined`;
+const isBrowser = () => typeof window !== `undefined`;
 
-export const useIsomorphicLayoutEffect = isBrowser
+export const useIsomorphicLayoutEffect = isBrowser()
   ? useLayoutEffect
   : useEffect;
 

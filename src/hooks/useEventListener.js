@@ -16,7 +16,7 @@ const useIsomorphicLayoutEffect = isBrowser ? useLayoutEffect : useEffect;
 export default function useEventListener(eventName, handler, element = window) {
   const savedHandler = useSavedRef(handler);
 
-  const isSupported = e => e && e?.addEventListener;
+  const isSupported = e => e?.addEventListener;
 
   useIsomorphicLayoutEffect(() => {
     if (!isSupported(element)) return;

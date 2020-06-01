@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import produce from 'immer';
 
+import { createEnum } from '../../helpers';
 import CartActionTypes from './cart.types';
 import { addItemToCart, removeItemFromCart } from './cart.utils';
 
@@ -13,10 +14,10 @@ const {
   SET_CART_FROM_FIREBASE,
 } = CartActionTypes;
 
-const initialState = {
+const initialState = createEnum({
   hidden: true,
   cartItems: [],
-};
+});
 
 const cartReducer = produce((draft = initialState, action) => {
   switch (action.type) {
@@ -38,7 +39,7 @@ const cartReducer = produce((draft = initialState, action) => {
       draft.cartItems = [];
       return draft;
     case SET_CART_FROM_FIREBASE:
-      if (draft.cartItems && draft.cartItems.length > 0) {
+      if (draft.cartItems?.length > 0) {
         draft.cartItems.push(action.payload);
       } else draft.cartItems = action.payload;
       return; // eslint-disable-line consistent-return

@@ -32,5 +32,5 @@ export const fetchCollectionsStart = createTakeLatest(
   fetchCollectionsAsync
 );
 
-/* root shop Saga */
+/** root shop Saga */
 export const shopSagas = createRootSaga([fetchCollectionsStart]);

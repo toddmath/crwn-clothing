@@ -2,6 +2,7 @@
 import produce from 'immer';
 
 import ShopActionTypes from './shop.types';
+import { createEnum } from '../../helpers';
 
 const {
   FETCH_COLLECTIONS_START,
@@ -9,11 +10,11 @@ const {
   FETCH_COLLECTIONS_FAILURE,
 } = ShopActionTypes;
 
-const INITIAL_STATE = {
+const INITIAL_STATE = createEnum({
   collections: null,
   isFetching: false,
   errorMessage: undefined,
-};
+});
 
 const shopReducer = produce((draft = INITIAL_STATE, action) => {
   switch (action.type) {

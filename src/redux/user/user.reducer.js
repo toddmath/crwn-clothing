@@ -1,6 +1,8 @@
 /* eslint-disable no-param-reassign */
 import produce from 'immer';
 
+import { createEnum } from '../../helpers';
+
 import UserActionTypes from './user.types';
 
 const {
@@ -11,10 +13,10 @@ const {
   SIGN_UP_FAILURE,
 } = UserActionTypes;
 
-const INITIAL_STATE = {
+const INITIAL_STATE = createEnum({
   currentUser: null,
   error: null,
-};
+});
 
 const userReducer = produce((draft = INITIAL_STATE, action) => {
   switch (action.type) {

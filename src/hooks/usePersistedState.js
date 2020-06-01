@@ -2,52 +2,79 @@
 import { useState, useEffect, useRef } from 'react';
 
 import useEventListener from './useEventListener';
+import { createEnum, isFunction } from '../helpers';
 
-export const createStorage = provider => ({
-  get(key, defaultValue) {
-    const json = provider.getItem(key);
+export const createStorage = provider => {
+  return createEnum({
+    get(key, defaultValue) {
+      const json = provider.getItem(key);
+      const def = isFunction(defaultValue) ? defaultValue() : defaultValue;
+      return json === null ? def : JSON.parse(json);
+    },
+    set(key, value) {
+      provider.setItem(key, JSON.stringify(value));
+    },
+  });
+};
 
-    return json === null
-      ? typeof defaultValue === 'function'
-        ? defaultValue()
-        : defaultValue
-      : JSON.parse(json);
-  },
-  set(key, value) {
-    provider.setItem(key, JSON.stringify(value));
-  },
-});
-
-const globalState = {};
+const globalCache = new Map();
 
 export function createGlobalState(key, thisCallback, initialValue) {
-  if (!globalState[key]) {
-    globalState[key] = { callbacks: [], value: initialValue };
+  if (!globalCache.has(key)) {
+    globalCache.set(key, { callbacks: [], value: initialValue });
   }
 
-  globalState[key].callbacks.push(thisCallback);
+  globalCache.get(key).callbacks.push(thisCallback);
 
-  return {
+  return createEnum({
     deregister() {
-      const arr = globalState[key].callbacks;
+      const arr = globalCache.get(key).callbacks;
       const index = arr.indexOf(thisCallback);
       if (index > -1) {
         arr.splice(index, 1);
       }
     },
     emit(value) {
-      if (globalState[key].value !== value) {
-        globalState[key].value = value;
+      if (globalCache.get(key).value !== value) {
+        globalCache.get(key).value = value;
 
-        globalState[key].callbacks.forEach(cb => {
-          if (thisCallback !== cb) {
-            cb(value);
-          }
+        globalCache.get(key).callbacks.forEach(cb => {
+          if (thisCallback !== cb) cb(value);
         });
       }
     },
-  };
+  });
 }
+
+// const globalState = {};
+// export function createGlobalState(key, thisCallback, initialValue) {
+//   if (!globalState[key]) {
+//     globalState[key] = { callbacks: [], value: initialValue };
+//   }
+
+//   globalState[key].callbacks.push(thisCallback);
+
+//   return {
+//     deregister() {
+//       const arr = globalState[key].callbacks;
+//       const index = arr.indexOf(thisCallback);
+//       if (index > -1) {
+//         arr.splice(index, 1);
+//       }
+//     },
+//     emit(value) {
+//       if (globalState[key].value !== value) {
+//         globalState[key].value = value;
+
+//         globalState[key].callbacks.forEach(cb => {
+//           if (thisCallback !== cb) {
+//             cb(value);
+//           }
+//         });
+//       }
+//     },
+//   };
+// }
 
 export function usePersistedState(initialState, key, { get, set }) {
   const globalState = useRef(null);

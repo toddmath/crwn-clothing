@@ -1,4 +1,6 @@
-export const INITIAL_STATE = {
+import { createEnum } from '../../helpers';
+
+export const INITIAL_STATE = createEnum({
   sections: [
     {
       title: 'hats',
@@ -33,7 +35,7 @@ export const INITIAL_STATE = {
       linkUrl: 'shop/mens',
     },
   ],
-};
+});
 
 const directoryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {

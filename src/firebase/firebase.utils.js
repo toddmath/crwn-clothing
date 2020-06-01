@@ -3,8 +3,9 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 // import 'firebase/performance';
+import { createEnum } from '../helpers';
 
-export const config = {
+export const config = createEnum({
   apiKey: 'AIzaSyATNX2F21SsC33XuBZDOGyJwT1UgvCTPUg',
   authDomain: 'crwn-db-409fe.firebaseapp.com',
   databaseURL: 'https://crwn-db-409fe.firebaseio.com',
@@ -12,7 +13,7 @@ export const config = {
   storageBucket: 'crwn-db.appspot.com',
   messagingSenderId: '717530139246',
   appId: '1:717530139246:web:0fd962b63d08668f75347f',
-};
+});
 
 firebase.initializeApp(config);
 
@@ -24,9 +25,7 @@ const firestore = firebase.firestore();
 
 async function createUserProfileDocument(userAuth, additionalData) {
   if (!userAuth) return;
-
   const userRef = await firestore.doc(`users/${userAuth.uid}`);
-
   const snapShot = await userRef.get();
 
   if (!snapShot.exists) {
@@ -60,24 +59,29 @@ async function getUserCartRef(userId) {
 
 async function addCollectionAndDocuments(collectionKey, objectsToAdd) {
   const collectionRef = await firestore.collection(collectionKey);
-
   const batch = firestore.batch();
 
-  objectsToAdd.forEach(obj => {
+  // eslint-disable-next-line no-restricted-syntax
+  for await (const obj of objectsToAdd) {
     const newDocRef = collectionRef.doc();
     batch.set(newDocRef, obj);
-  });
+  }
 
   return await batch.commit();
 }
 
-const toLow = str => String(str).toLowerCase();
-const clean = url => encodeURI(toLow(url));
+const compose = (...fns) => arg =>
+  fns.reduceRight((acc, fn) => (fn ? fn(acc) : acc), arg);
+
+const toLower = str => String(str).toLowerCase();
+const clean = compose(encodeURI, toLower);
+// const clean = url => encodeURI(toLower(url));
 
 const mapCollections = array => {
   return array.docs.map(doc => {
     const { title, items } = doc.data();
     const { id } = doc;
+
     return {
       routeName: clean(title),
       id,
@@ -87,26 +91,18 @@ const mapCollections = array => {
   });
 };
 
-const toHashMap = array =>
-  array.reduce((acc, collection) => {
-    const { title } = collection;
-    acc[toLow(title)] = collection;
+const toHashMap = array => {
+  return array.reduce((acc, collection) => {
+    acc[toLower(collection.title)] = collection;
     return acc;
   }, {});
+};
 
-function convertCollectionsSnapshotToMap(collections) {
-  // const transformedCollection = collections.docs.map(doc => {
-  //   const { title, items } = doc.data();
-  //   return {
-  //     routeName: clean(title),
-  //     id: doc.id,
-  //     title,
-  //     items,
-  //   };
-  // });
+const convertCollectionsSnapshotToMap = compose(toHashMap, mapCollections);
 
-  return toHashMap(mapCollections(collections));
-}
+// function convertCollectionsSnapshotToMap(collections) {
+//   return toHashMap(mapCollections(collections));
+// }
 
 /**
  * Helper function that attaches an eventListener onto firebase sign-in and sign-out events.
