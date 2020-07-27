@@ -50,14 +50,14 @@ export const MenuItem = ({ title, imageUrl, size, linkUrl }) => {
     >
       <BackgroundImageContainer
         style={{
-          transform: props.x.interpolate(x => `scale(${x})`),
+          transform: props.x.interpolate((x) => `scale(${x})`),
         }}
         imageurl={imageUrl}
         className='background-image'
       />
       <ContentContainer
         style={{
-          opacity: props.o.interpolate(o => `${o}`),
+          opacity: props.o.interpolate((o) => `${o}`),
         }}
         className='content'
       >

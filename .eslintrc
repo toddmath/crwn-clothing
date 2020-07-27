@@ -8,7 +8,6 @@
     "sourceType": "module"
   },
   "plugins": [
-    "import",
     "react",
     "react-hooks",
     "jsx-a11y",
@@ -18,8 +17,6 @@
   ],
   "extends": [
     "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
     "plugin:react/recommended",
     "react-app",
     "airbnb",
@@ -32,22 +29,6 @@
   "settings": {
     "ecmascript": 8,
     "jsx": true,
-    "import/resolver": {
-      "node": {
-        "extensions": [".js"]
-      },
-      "alias": [
-        ["~components", "./src/components"],
-        ["~context", "./src/context"],
-        ["~firebase", "./src/firebase"],
-        ["~helpers", "./src/helpers"],
-        ["~hooks", "./src/hooks"],
-        ["~icons", "./src/icons"],
-        ["~pages", "./src/pages"],
-        ["~redux", "./src/redux"],
-        ["~styles", "./src/styles"]
-      ]
-    },
     "react": {
       "version": "detect"
     }
@@ -67,6 +48,7 @@
         "trailingComma": "es5"
       }
     ],
+    "import/no-unresolved": [0],
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
@@ -84,8 +66,6 @@
     "no-var": 1,
     "no-alert": "off",
     "no-return-await": "off",
-    "import/extensions": 1,
-    "import/no-named-as-default": 0,
     "indent": "off",
     "react/jsx-indent": [0],
     "react/jsx-indent-props": [0],

@@ -16,9 +16,9 @@ const CollectionPageContainer = lazy(() =>
 );
 
 export function ShopPage() {
-  useScrollToOnMount();
   const dispatch = useDispatch();
   const { path } = useRouteMatch();
+  useScrollToOnMount();
 
   useEffect(() => {
     dispatch(fetchCollectionsStart());

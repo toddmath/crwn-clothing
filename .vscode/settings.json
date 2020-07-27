@@ -78,5 +78,6 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     }
-  }
+  },
+  "deno.enable": false
 }
