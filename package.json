@@ -5,9 +5,9 @@
   "homepage": "https://crown-clothes.com/",
   "dependencies": {
     "@bit/bondz.react-epic-spinners.spring-spinner": "^0.3.0",
-    "axios": "^0.19.2",
+    "axios": "^0.31.1",
     "dayjs": "^1.8.26",
-    "firebase": "^7.14.2",
+    "firebase": "^10.9.0",
     "grommet-icons": "^4.4.0",
     "immer": "^6.0.3",
     "lodash.isequal": "^4.5.0",
